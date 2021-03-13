@@ -6,14 +6,15 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 15:57:12 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 16:15:44 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
 //Verifier qu on a bien le bon nombre d element dans va_list?
-// test de 38 a 44
+// tests ok jusqu au 60
+//gerer la condition du - sur les string
 int		parse(const char *format, va_list arg_ptr)
 {
 	t_format	*spec;
