@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 11:51:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 13:45:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			print_pad(t_format *spec);
 */
 
 int			ft_printf(const char *format, ...);
-t_format	*parse(const char *format, va_list arg_ptr, int i);
+int			parse(const char *format, va_list arg_ptr);
 /*
 ** struct.c
 */
@@ -117,6 +117,6 @@ void		print_s(t_format *spec, va_list arg_ptr);
 
 //test
 
-void		printstruct(t_format *format);
+void		printstruct(t_format format);
 
 #endif

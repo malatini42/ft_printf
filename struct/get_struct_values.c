@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 11:33:50 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 13:45:38 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int		get_type(const char *format)
 	return (0);
 }
 
+//changer de fichier pour que ce soit plus clair
 void	print_type(t_format *spec, va_list arg_ptr)
 {
 	int type;
@@ -89,7 +90,6 @@ void	print_type(t_format *spec, va_list arg_ptr)
 		print_pc(spec);
 	else if (type == S)
 	{
-		printf("\nOUHOU!\n");
 		print_s(spec, arg_ptr);
 	}
 	/*s
