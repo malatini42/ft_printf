@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 15:30:56 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 16:10:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void		print_s(const char *str, t_format *spec, va_list arg_ptr);
 
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);
+int			len_with_precision(const char *str, t_format *spec);
 
 //test
 

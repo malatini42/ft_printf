@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:20:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 15:22:56 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 16:10:34 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,19 @@ int		diff_width_for_s(t_format *format, const char *str)
 	return (diff_width);
 }
 
-//A revoir
+//A revoir - va surement etre trop long
 int		diff_width_any_type(t_format *spec, const char *str)
 {
 	int	diff_width;
 
 	diff_width = 0;
-	if (spec->precision == 0 && spec->type == S)
-		diff_width = spec->width - ft_strlen(str);
+	//verifier les deux premieres conditions et comment condenser
+	if (spec->type == S)
+		diff_width = spec->width - len_with_precision(str, spec);
+	/*
+	else if (spec->precision != 0 && spec->type == S)
+		diff_width = spec->width - spec->precision + 1;
+	*/
 	else if (spec->precision == 0 && spec->type == PC)
 		diff_width = spec->width - 1;
 	return (diff_width);

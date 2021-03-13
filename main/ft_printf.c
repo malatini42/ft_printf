@@ -6,15 +6,14 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 15:04:47 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 15:57:12 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
 //Verifier qu on a bien le bon nombre d element dans va_list?
-//Ajouter printed_chars dans la structure ?
-//remettre en ptr le spec , retester
+// test de 38 a 44
 int		parse(const char *format, va_list arg_ptr)
 {
 	t_format	*spec;
@@ -35,8 +34,6 @@ int		parse(const char *format, va_list arg_ptr)
 
 //Voir si on devrait ajouter une variable pour suivre sur quel caractere on se trouve
 //Attention differencier i et de printed chars
-//Attention tests plus ok nocrash null spec / ajouter fonction qui verifie
-//finir les tests pc 0 15
 int		ft_printf(const char *format, ...)
 {
 	int 		printed_chars;

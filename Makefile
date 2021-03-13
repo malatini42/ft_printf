@@ -6,7 +6,7 @@
 #    By: malatini <malatini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/04 08:34:15 by malatini          #+#    #+#              #
-#    Updated: 2021/03/13 15:26:59 by malatini         ###   ########.fr        #
+#    Updated: 2021/03/13 15:58:53 by malatini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,6 @@ fclean: 	clean
 re: 		fclean all
 
 test: 		${NAME}
-			${CC} main.c -L. ${NAME} && ./a.out | cat -e
+			clear && ${CC} main.c -L. ${NAME} && ./a.out | cat -e
 
 .PHONY:		bonus all clean fclean re
