@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils6.c                                           :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/12 10:09:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 10:14:05 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/13 14:20:41 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/13 15:22:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 //faire une fonction pour imprimer dans un sens ou l autre pour tous les types?s
 //outils print type_pc - reutilisable
+
 char	c_padding_to_print(t_format *format)
 {
 	char to_print;
@@ -25,7 +26,8 @@ char	c_padding_to_print(t_format *format)
 }
 
 //en cours pour pc, tester pour les autres
-int		diff_width(t_format *format)
+//Faire une fonction qui ressemble les calculs pour la width diff ?
+int		diff_width_for_pc(t_format *format)
 {
 	int diff_width;
 
@@ -41,17 +43,50 @@ int		diff_width(t_format *format)
 	return (diff_width);
 }
 
-int		print_pad(t_format *spec)
+//Faire une fonction qui ressemble les calculs pour la width diff ?
+int		diff_width_for_s(t_format *format, const char *str)
+{
+	int	diff_width;
+
+	diff_width = 0;
+	if (format->precision == 0 && format->type == S)
+		diff_width = format->width - ft_strlen(str);
+	return (diff_width);
+}
+
+//A revoir
+int		diff_width_any_type(t_format *spec, const char *str)
+{
+	int	diff_width;
+
+	diff_width = 0;
+	if (spec->precision == 0 && spec->type == S)
+		diff_width = spec->width - ft_strlen(str);
+	else if (spec->precision == 0 && spec->type == PC)
+		diff_width = spec->width - 1;
+	return (diff_width);
+}
+
+//A revoir
+int		print_pad(t_format *spec, const char *str)
 {
 	int		nb_pad;
 	char	to_print;
 	int		i;
+	//int		precision;
+	//int		len;
 
-	nb_pad = diff_width(spec);
+	nb_pad = diff_width_any_type(spec, str);
 	to_print = c_padding_to_print(spec);
 	i = 0;
+	//len = ft_strlen(str);
+	//precision = spec->precision;
 	while (nb_pad > 0)
 	{
+		/* Pas bon
+		if (spec->type == S && i > len)
+			return (i);
+		*/
 		ft_putchar(to_print);
 		i++;
 		nb_pad--;

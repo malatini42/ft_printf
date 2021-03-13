@@ -6,7 +6,7 @@
 #    By: malatini <malatini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/04 08:34:15 by malatini          #+#    #+#              #
-#    Updated: 2021/03/13 10:17:32 by malatini         ###   ########.fr        #
+#    Updated: 2021/03/13 15:26:59 by malatini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,10 @@ SRCS =	./main/ft_printf.c \
 		./utils/utils1.c \
 		./utils/utils2.c \
 		./utils/utils3.c \
-		./utils/utils4.c \
-		./utils/utils5.c \
-		./utils/utils6.c \
+		./star/star.c \
+		./utils/utils5_len.c \
+		./print/print.c \
+		./print/print_s_utils.c \
 		./type_pc/type_pc.c \
 		./type_s/type_s.c \
 

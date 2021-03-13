@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_pc.c                                          :+:      :+:    :+:   */
+/*   print_s_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/10 16:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 15:02:00 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/13 15:14:08 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/13 15:38:10 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-//Pourquoi on aurait besoin de str ? A priori pas besoin
-
-void	print_pc(const char *str, t_format *format)
+int		ft_putstr_precision(char *str, t_format *spec)
 {
 	int i;
+	//int len;
+	int precision;
 
+	precision = spec->precision;
+	if (precision == 0 && spec->flags.precision == true)
+		return (0);
+	//len = ft_strlen(str);
 	i = 0;
-	if (format->flags.justify_left == 0)
-		i += print_pad(format, str);
-	ft_putchar('%');
-	i++;
-	if (format->flags.justify_left == 1)
-		i += print_pad(format, str);
-	format->printed_chars += i;
+	while (str[i])
+	{
+		if (i >= precision && precision != 0)
+			return (i);
+		ft_putchar(str[i]);
+		i++;
+	}
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 13:45:38 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 15:40:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		get_width(const char *str, t_format *format)
 	int i;
 
 	width = 0;
-	i = (format->type == PC) ? 1 : 0;
+	i = 1;
 	while (str[i] == '-' || str[i] == '0')
 		i++;
 	while (ft_isdigit(str[i]) && str[i])
@@ -34,13 +34,17 @@ int		get_precision(const char *str, t_format *format)
 {
 	int precision;
 	int i;
+	int max;
 
 	precision = 0;
+	max = len_until_end_format(str);
 	i = (format->type == PC) ? 1 : 0;
 	while (str[i] && str[i] != '.')
 		i++;
 	if (!str[i])
 		return (precision);
+	else if (str[i] == '.' && i < max)
+		format->flags.precision = true;
 	i++;
 	while (ft_isdigit(str[i]) && str[i])
 	{
@@ -76,7 +80,7 @@ int		get_type(const char *format)
 }
 
 //changer de fichier pour que ce soit plus clair
-void	print_type(t_format *spec, va_list arg_ptr)
+void	print_type(const char *str, t_format *spec, va_list arg_ptr)
 {
 	int type;
 	/*
@@ -87,10 +91,10 @@ void	print_type(t_format *spec, va_list arg_ptr)
 	//printf("\nOUHOU!\n");
 	type = spec->type;
 	if (type == PC)
-		print_pc(spec);
+		print_pc(str, spec);
 	else if (type == S)
 	{
-		print_s(spec, arg_ptr);
+		print_s(str, spec, arg_ptr);
 	}
 	/*s
 	else if (type == UID)

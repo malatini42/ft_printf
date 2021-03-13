@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 13:45:37 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 15:30:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef	struct	s_flags
 {
 	bool justify_left;
 	bool zero_pad;
+	bool precision;
 }				t_flags;
 
 typedef struct	s_format
@@ -69,8 +70,11 @@ int			is_correct_type_no_pc(char c);
 int			found_char_until_type(const char *str, char c);
 int			len_until_end_format(const char *str);
 char		c_padding_to_print(t_format *format);
-int			diff_width(t_format *format);
-int			print_pad(t_format *spec);
+
+int			diff_width_for_pc(t_format *format);
+int			diff_width_for_s(t_format *format, const char *str);
+int			diff_width_any_type(t_format *spec, const char *str);
+int			print_pad(t_format *spec, const char *str);
 
 /*
 ** ft_printf.c
@@ -91,7 +95,7 @@ t_format	*ft_initialize_struct(void);
 int			get_width(const char *str, t_format *format);
 int			get_precision(const char *str, t_format *format);
 int			get_type(const char *format);
-void		print_type(t_format *spec, va_list arg_ptr);
+void		print_type(const char *str, t_format *spec, va_list arg_ptr);
 
 /*
 ** fill_struct.c
@@ -109,11 +113,14 @@ void		fill_struct(const char *str, t_format *format);
 */
 //type_pc
 
-void		print_pc(t_format *spec);
+void		print_pc( const char *str, t_format *spec);
 
 //type_s
 
-void		print_s(t_format *spec, va_list arg_ptr);
+void		print_s(const char *str, t_format *spec, va_list arg_ptr);
+
+//print_s_utils
+int			ft_putstr_precision(char *str, t_format *spec);
 
 //test
 

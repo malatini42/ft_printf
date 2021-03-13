@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils5.c                                           :+:      :+:    :+:   */
+/*   utils5_len.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 17:58:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 11:13:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 14:05:11 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,14 @@ int	len_until_end_format(const char *str)
 		i++;
 	}
 	return (0);
+}
+
+//A suppimer, test purposes
+void	printstruct(t_format format)
+{
+	printf("Justify-left : %d\n", format.flags.justify_left);
+	printf("Zero-pad : %d\n", format.flags.zero_pad);
+	printf("Width : %d\n", format.width);
+	printf("Precision: %d\n", format.precision);
+	printf("Type : %d\n", format.type);
 }
