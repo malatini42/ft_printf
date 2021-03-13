@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:55:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/12 16:41:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:38:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,7 @@ void	fill_struct(const char *str, t_format *format)
 	zero_pad(str, format);
 	get_width(str, format);
 	get_precision(str, format);
+	printf("\n----------------\n");
+	printstruct(format);
+	printf("\n----------------\n");
 }

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/12 16:45:55 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 11:51:25 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct	s_format
 	int width;
 	int	precision;
 	int	type;
-	int printed_chars;//pas sure de l idee
+	int printed_chars;
 }				t_format;
 
 /*
@@ -57,7 +57,7 @@ void		ft_putchar(char c);
 void		ft_putnbr(int nbr);
 int			ft_strlen(const char *s);
 
-int			is_correct_spec(char *s);//revoir si cette fonction est utilisable?
+int			is_correct_spec(const char *s);//revoir si cette fonction est utilisable?
 int			ft_putstr(char *str);
 int			find_next_correct_type_no_pc(const char *str);
 int			count_total_pc(const char *str);
@@ -67,16 +67,17 @@ int			handle_star(const char *str, t_format *format, va_list arg_ptr);
 //No "pc" pour no %
 int			is_correct_type_no_pc(char c);
 int			found_char_until_type(const char *str, char c);
-int			len_until_end_format(const char *str, t_format *spec);
+int			len_until_end_format(const char *str);
 char		c_padding_to_print(t_format *format);
 int			diff_width(t_format *format);
+int			print_pad(t_format *spec);
 
 /*
 ** ft_printf.c
 */
 
 int			ft_printf(const char *format, ...);
-t_format	*parse(const char *format, va_list arg_ptr, int printed_charss);
+t_format	*parse(const char *format, va_list arg_ptr, int i);
 /*
 ** struct.c
 */
@@ -90,7 +91,7 @@ t_format	*ft_initialize_struct(void);
 int			get_width(const char *str, t_format *format);
 int			get_precision(const char *str, t_format *format);
 int			get_type(const char *format);
-void		print_type(t_format *spec);
+void		print_type(t_format *spec, va_list arg_ptr);
 
 /*
 ** fill_struct.c
@@ -106,9 +107,13 @@ void		fill_struct(const char *str, t_format *format);
 /*
 ** manage_type.c a revoir (autres fonctions dans fichiers separes)
 */
-//typepc
+//type_pc
 
 void		print_pc(t_format *spec);
+
+//type_s
+
+void		print_s(t_format *spec, va_list arg_ptr);
 
 //test
 

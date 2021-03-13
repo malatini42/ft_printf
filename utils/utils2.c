@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:38:25 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/10 21:48:09 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 09:47:02 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,17 @@ int	ft_strlen(const char *s)
 }
 
 //Attention avec les string c est casse gueule
-int is_correct_spec(char *s)
+//revoir toutes les fonctions utils
+int is_correct_spec(const char *s)
 {
 	int i;
 
-	i = 1;
+	i = 0;
+	if (s[i] == '%')
+		i++;
 	while (s[i])
 	{
-		if (is_correct_type(s[i]) || s[i] == '%')
+		if (is_correct_type(s[i]))
 			return (1);
 		i++;
 	}

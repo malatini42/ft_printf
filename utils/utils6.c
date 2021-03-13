@@ -6,12 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 10:09:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/12 16:16:21 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/13 10:14:05 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
+//faire une fonction pour imprimer dans un sens ou l autre pour tous les types?s
 //outils print type_pc - reutilisable
 char	c_padding_to_print(t_format *format)
 {
@@ -38,4 +39,22 @@ int		diff_width(t_format *format)
 		diff_width = format->width - 1;
 	//printf("La diff width est: %i\n", diff_width);
 	return (diff_width);
+}
+
+int		print_pad(t_format *spec)
+{
+	int		nb_pad;
+	char	to_print;
+	int		i;
+
+	nb_pad = diff_width(spec);
+	to_print = c_padding_to_print(spec);
+	i = 0;
+	while (nb_pad > 0)
+	{
+		ft_putchar(to_print);
+		i++;
+		nb_pad--;
+	}
+	return (i);
 }
