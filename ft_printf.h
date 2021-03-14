@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 16:10:55 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 11:29:17 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int			diff_width_for_pc(t_format *format);
 int			diff_width_for_s(t_format *format, const char *str);
 int			diff_width_any_type(t_format *spec, const char *str);
 int			print_pad(t_format *spec, const char *str);
+char		*ft_strdup_until_type(const char *s1);
+//bool		justify_left_s(const char *str, t_format *format);
 
 /*
 ** ft_printf.c

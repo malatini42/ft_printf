@@ -5,12 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 15:14:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 16:10:59 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/14 11:23:11 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+char	*ft_strdup_until_type(const char *s1)
+{
+	int		i;
+	int		max;
+	char	*cpy;
+
+	i = 0;
+	max = len_until_end_format(s1);
+	while (s1[i] && i <= max)
+		i++;
+	if (!(cpy = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i] && i <= max)
+	{
+		cpy[i] = s1[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
+}
 
 int		ft_putstr_precision(char *str, t_format *spec)
 {

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 15:26:27 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 11:16:05 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,15 @@ void	print_s(const char *str, t_format *format, va_list arg_ptr)
 	int	i;
 	char *s;
 	(void)str;//a revoir
+
+	/*
+	printf("2----------------\n");
+	printstruct(*format);
+	printf("2----------------\n");
+	*/
 	i = 0;
+	//Probleme avec mon justify left
+	//format->flags.justify_left = false;
 	s = va_arg(arg_ptr, char *);
 	if (format->flags.justify_left == 0)
 		i += print_pad(format, s);
