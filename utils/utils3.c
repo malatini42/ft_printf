@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:20:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 11:33:20 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 13:08:21 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,24 @@ int			found_char_until_type(const char *str, char c)
 		i++;
 	}
 	return (0);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	int		i;
+	char	*cpy;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	if (!(cpy = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		cpy[i] = s1[i];
+		i++;
+	}
+	cpy[i] = '\0';
+	return (cpy);
 }

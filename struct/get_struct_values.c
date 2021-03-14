@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 15:40:23 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 11:45:52 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,36 +77,4 @@ int		get_type(const char *format)
 	else if (format[i] == 'p')
 		return (P);
 	return (0);
-}
-
-//changer de fichier pour que ce soit plus clair
-void	print_type(const char *str, t_format *spec, va_list arg_ptr)
-{
-	int type;
-	/*
-	printf("\n----------------\n");
-	printstruct(spec);
-	printf("\n----------------\n");
-	*/
-	//printf("\nOUHOU!\n");
-	type = spec->type;
-	if (type == PC)
-		print_pc(str, spec);
-	else if (type == S)
-	{
-		print_s(str, spec, arg_ptr);
-	}
-	/*s
-	else if (type == UID)
-		return (print_uid(format));
-	else if (type == C)
-		return (print_c(format));
-
-	else if (type == H)
-		return (print_pc(format));s
-	else if (type == P)
-		return (print_p(format));
-	else
-		return (-1);
-	*/
 }
