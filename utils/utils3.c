@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:20:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:08:21 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 13:41:03 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		count_total_pc(const char *str)
 
 	i = 0;
 	count = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == '%')
@@ -38,6 +40,8 @@ int			found_char_until_type(const char *str, char c)
 	int i;
 
 	i = 0;
+	if (!str && !c)
+		return (0);
 	while (str[i] && !(is_correct_type(str[i])))
 	{
 		if (str[i] == c)
@@ -53,6 +57,8 @@ char	*ft_strdup(const char *s1)
 	char	*cpy;
 
 	i = 0;
+	if (!s1)
+		return (NULL);
 	while (s1[i])
 		i++;
 	if (!(cpy = (char *)malloc(sizeof(char) * (i + 1))))

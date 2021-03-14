@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 11:35:15 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 13:54:54 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 void	ft_putchar(char c)
 {
+	if (!c)
+		return ;
 	write(1, &c, 1);
 }
 
 int	ft_isdigit(int c)
 {
+	if (!c)
+		return (0);
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
@@ -29,6 +33,8 @@ int	found_char(const char *str, char c)
 	int i;
 
 	i = 0;
+	if (!c && !str)
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == c)
@@ -40,6 +46,8 @@ int	found_char(const char *str, char c)
 
 int	is_correct_type(char c)
 {
+	if (!c)
+		return (0);
 	if (c == 'i' || c == 'd' || c == 'u' || c == 's' || c == 'c' ||
 		c == 'x' || c == 'X' || c == 'p' || c == '%')
 	{
@@ -52,6 +60,8 @@ void	ft_putnbr(int nbr)
 {
 	long n;
 
+	if (!nbr)
+		return ;
 	n = nbr;
 	if (nbr < 0)
 	{

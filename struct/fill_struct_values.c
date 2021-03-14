@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:55:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 11:39:10 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 13:54:41 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ bool	justify_left(const char *str, t_format *format)
 	int max;
 	int len;
 
+	if (!str && !format)
+		return (false);
 	dash = false;
 	max = found_char(str, '-');
 	len = len_until_end_format(str);
@@ -75,6 +77,8 @@ bool	zero_pad(const char *str, t_format *format)
 {
 	int i;
 
+	if (!str && !format)
+		return (false);
 	i = 0;
 	//faire une fonction qui compte la longueur pour ne pas depasser le type
 	if (found_char_until_type(str, '-') != 0)
@@ -100,6 +104,8 @@ int		fill_type(const char *str, t_format *format)
 {
 	int type;
 
+	if (!str && !format)
+		return (false);
 	type = get_type(str);
 	format->type = type;
 	return (type);
@@ -108,6 +114,8 @@ int		fill_type(const char *str, t_format *format)
 //A remettre au propre, pas joli
 void	fill_struct(const char *str, t_format *format)
 {
+	if (!str && !format)
+		return ;
 	fill_type(str, format);
 	justify_left(str, format);
 	zero_pad(str, format);

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 11:45:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 13:43:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		get_width(const char *str, t_format *format)
 	int width;
 	int i;
 
+	if (!str && !format)
+		return (false);
 	width = 0;
 	i = 1;
 	while (str[i] == '-' || str[i] == '0')
@@ -36,6 +38,8 @@ int		get_precision(const char *str, t_format *format)
 	int i;
 	int max;
 
+	if (!str && !format)
+		return (false);
 	precision = 0;
 	max = len_until_end_format(str);
 	i = (format->type == PC) ? 1 : 0;
@@ -59,6 +63,8 @@ int		get_type(const char *format)
 {
 	int i;
 
+	if (!format)
+		return (0);
 	i = 0;
 	if (format[i] == '%')
 		i++;

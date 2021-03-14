@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 11:46:10 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 13:23:01 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_type(const char *str, t_format *spec, va_list arg_ptr)
 		print_pc(str, spec);
 	else if (type == S)
 	{
-		print_s(str, spec, arg_ptr);
+		print_s(spec, arg_ptr);
 	}
 	/*s
 	else if (type == UID)

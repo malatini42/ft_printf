@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:38:25 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 09:47:02 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 13:39:15 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int is_correct_spec(const char *s)
 	int i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	if (s[i] == '%')
 		i++;
 	while (s[i])
@@ -46,6 +48,8 @@ int	ft_putstr(char *str)
 {
 	int i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while(str[i])
 	{
@@ -57,6 +61,8 @@ int	ft_putstr(char *str)
 
 int	is_correct_type_no_pc(char c)
 {
+	if (!c)
+		return (0);
 	if (c == 'i' || c == 'd' || c == 'u' || c == 's' || c == 'c' ||
 		c == 'x' || c == 'X' || c == 'p')
 	{
@@ -70,6 +76,8 @@ int find_next_correct_type_no_pc(const char *str)
 	int i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
 		if (is_correct_type(str[i]))
