@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 15:51:14 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 16:41:30 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char		c_padding_to_print(t_format *format);
 int			diff_width_for_pc(t_format *format);
 int			diff_width_for_s(t_format *format, const char *str);
 int			diff_width_any_type(t_format *spec, const char *str);
-int			print_pad(t_format *spec, const char *str);
+int			print_pad_pc(t_format *spec, const char *str);
 char		*ft_strdup_until_type(const char *s1);
 int			ft_putstr_limit(const char *str, int precision);
 //bool		justify_left_s(const char *str, t_format *format);
@@ -122,6 +122,7 @@ void		print_pc( const char *str, t_format *spec);
 //type_s
 
 void 		print_s(t_format *spec, va_list arg_ptr);
+void		print_s(t_format *format, va_list arg_ptr);
 
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);

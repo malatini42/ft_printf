@@ -1,27 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type_pc.c                                          :+:      :+:    :+:   */
+/*   print_pc_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/10 16:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 16:36:56 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/14 16:34:24 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/14 16:36:49 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	print_pc(const char *str, t_format *format)
+int		print_pad_pc(t_format *spec, const char *str)
 {
-	int i;
+	int		nb_pad;
+	char	to_print;
+	int		i;
 
+	nb_pad = diff_width_any_type(spec, str);
+	to_print = c_padding_to_print(spec);
 	i = 0;
-	if (format->flags.justify_left == 0)
-		i += print_pad_pc(format, str);
-	ft_putchar('%');
-	i++;
-	if (format->flags.justify_left == 1)
-		i += print_pad_pc(format, str);
-	format->printed_chars += i;
+	while (nb_pad > 0)
+	{
+		ft_putchar(to_print);
+		i++;
+		nb_pad--;
+	}
+	return (i);
+}
+
+int		diff_width_for_pc(t_format *format)
+{
+	int diff_width;
+
+	if (!format)
+		return (0);
+	diff_width = 0;
+	if (format->precision == 0)
+		diff_width = format->width - 1;
+	return (diff_width);
 }

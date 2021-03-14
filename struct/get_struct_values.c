@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:43:37 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 16:35:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		get_width(const char *str, t_format *format)
 	return (width);
 }
 
+//A ameliorer
 int		get_precision(const char *str, t_format *format)
 {
 	int precision;

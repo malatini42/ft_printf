@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:55:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:54:41 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 16:35:36 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,6 @@ t_format	*ft_initialize_struct(void)
 	return (format);
 }
 
-/* pas bon
-bool	justify_left_s(const char *str, t_format *format)
-{
-	bool dash;
-	int i;
-	int max;
-	char *cpy;
-
-	i = 0;
-	cpy = ft_strdup_until_type(str);
-	dash = false;
-	//printf("\nLa string : %s\n", str);
-	max = len_until_end_format(str);
-	printf("%i\n", max);
-	if (found_char(cpy, '-') && i <= max)
-	{
-		dash = true;
-		format->flags.justify_left = true;
-	}
-	i++;
-	free(cpy);
-	return (dash);
-}*/
-
-//Il y a quelque chose qui ne tient pas dans cette fonction
 bool	justify_left(const char *str, t_format *format)
 {
 	bool dash;
@@ -80,7 +55,6 @@ bool	zero_pad(const char *str, t_format *format)
 	if (!str && !format)
 		return (false);
 	i = 0;
-	//faire une fonction qui compte la longueur pour ne pas depasser le type
 	if (found_char_until_type(str, '-') != 0)
 	{
 		format->flags.zero_pad = false;
@@ -111,7 +85,6 @@ int		fill_type(const char *str, t_format *format)
 	return (type);
 }
 
-//A remettre au propre, pas joli
 void	fill_struct(const char *str, t_format *format)
 {
 	if (!str && !format)

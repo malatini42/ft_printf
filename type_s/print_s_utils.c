@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:56:46 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 16:35:01 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,18 @@ char	*ft_strdup_until_type(const char *s1)
 	}
 	cpy[i] = '\0';
 	return (cpy);
+}
+
+int		diff_width_for_s(t_format *format, const char *str)
+{
+	int	diff_width;
+
+	if (!format && !str)
+		return (0);
+	diff_width = 0;
+	if (format->precision == 0 && format->type == S)
+		diff_width = format->width - ft_strlen(str);
+	return (diff_width);
 }
 
 int		ft_putstr_precision(char *str, t_format *spec)
