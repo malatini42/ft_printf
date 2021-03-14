@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:26:58 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 15:51:14 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef	struct	s_flags
 {
 	bool justify_left;
 	bool zero_pad;
-	bool precision;
+	bool precision;//Il y a un pb de fond ici
 }				t_flags;
 
 typedef struct	s_format
@@ -59,7 +59,7 @@ void		ft_putnbr(int nbr);
 int			ft_strlen(const char *s);
 
 int			is_correct_spec(const char *s);//revoir si cette fonction est utilisable?
-int			ft_putstr(char *str);
+int			ft_putstr(const char *str);
 int			find_next_correct_type_no_pc(const char *str);
 int			count_total_pc(const char *str);
 int			found_star(const char *str);
@@ -76,6 +76,7 @@ int			diff_width_for_s(t_format *format, const char *str);
 int			diff_width_any_type(t_format *spec, const char *str);
 int			print_pad(t_format *spec, const char *str);
 char		*ft_strdup_until_type(const char *s1);
+int			ft_putstr_limit(const char *str, int precision);
 //bool		justify_left_s(const char *str, t_format *format);
 char		*ft_strdup(const char *s1);
 

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:38:25 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:39:15 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 15:50:09 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int is_correct_spec(const char *s)
 	return (0);
 }
 
-int	ft_putstr(char *str)
+int	ft_putstr(const char *str)
 {
 	int i;
 
