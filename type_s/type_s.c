@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 14:07:36 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 14:38:02 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,23 @@ void	print_null_s(t_format *format, char *arg)
 	int	i;
 
 	i = 0;
-	//format->printed_chars = 6; pourquoi le vrai printf renverrait un 6?
-	//je ne vois pas comment retourner (null)
-	if (format->flags.justify_left == 0)
-		i += print_pad(format, arg);
-	ft_putstr("(null)");
-	if (format->width > 0)
-		format->printed_chars += 6 + (format->width - 6);
-	else if (format->width == 0)
-		format->printed_chars += 6;
 	/*
+	printf("\n----------------\n");
+	printstruct(*format);
+	printf("\n----------------\n");
+	*/
+	if (format->flags.justify_left == 0)
+		i += print_pad(format, NULL);
+	ft_putstr("(null)");
 	if (format->flags.justify_left == 1)
 		i += print_pad(format, arg);
-	*/
-	format->printed_chars += i;
+	if (format->width > 0 && format->width > 6)
+		format->printed_chars += 6 + (format->width - 6);
+	else if (format->width > 0 && format->width < 6)
+		format->printed_chars += 6;
+	else if (format->width == 0)
+		format->printed_chars += 6;
+	//format->printed_chars += i;
 }
 
 

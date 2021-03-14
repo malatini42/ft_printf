@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:20:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:52:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 14:33:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ int		diff_width_any_type(t_format *spec, const char *str)
 	int	diff_width;
 
 	diff_width = 0;
-	if (!spec && !str)
-		return (0);
 	//verifier les deux premieres conditions et comment condenser
-	if (spec->type == S)
+	if (spec->type == S && str)
 		diff_width = spec->width - len_with_precision(str, spec);
+	else if (spec->type == S && !str)
+	{
+		diff_width = spec->width - 6;
+	}
 	/*
 	else if (spec->precision != 0 && spec->type == S)
 		diff_width = spec->width - spec->precision + 1;
@@ -87,8 +89,6 @@ int		print_pad(t_format *spec, const char *str)
 	//int		precision;
 	//int		len;
 
-	if (!spec && !str)
-		return (0);
 	nb_pad = diff_width_any_type(spec, str);
 	to_print = c_padding_to_print(spec);
 	i = 0;

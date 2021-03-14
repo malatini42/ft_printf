@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   print_all.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:20:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/13 16:10:34 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/14 14:32:21 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,29 +72,3 @@ int		diff_width_any_type(t_format *spec, const char *str)
 	return (diff_width);
 }
 
-//A revoir
-int		print_pad(t_format *spec, const char *str)
-{
-	int		nb_pad;
-	char	to_print;
-	int		i;
-	//int		precision;
-	//int		len;
-
-	nb_pad = diff_width_any_type(spec, str);
-	to_print = c_padding_to_print(spec);
-	i = 0;
-	//len = ft_strlen(str);
-	//precision = spec->precision;
-	while (nb_pad > 0)
-	{
-		/* Pas bon
-		if (spec->type == S && i > len)
-			return (i);
-		*/
-		ft_putchar(to_print);
-		i++;
-		nb_pad--;
-	}
-	return (i);
-}
