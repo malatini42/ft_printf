@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:23:01 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 08:51:58 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int		parse(const char *format, va_list arg_ptr)
 	fill_struct(format, spec);//Attention a ne pas envoyer des mauvais type!!
 	if (found_star(format))
 		handle_star(format, spec, arg_ptr);
+	/*
+	printf("\n----------------\n");
+	printstruct(*spec);
+	printf("\n----------------\n");
+	*/
 	print_type(format, spec, arg_ptr);
 	printed_chars = spec->printed_chars;
 	return (printed_chars);
@@ -36,12 +41,6 @@ int		parse(const char *format, va_list arg_ptr)
 void	print_type(const char *str, t_format *spec, va_list arg_ptr)
 {
 	int type;
-	/*
-	printf("\n----------------\n");
-	printstruct(spec);
-	printf("\n----------------\n");
-	*/
-	//printf("\nOUHOU!\n");
 	type = spec->type;
 	if (type == PC)
 		print_pc(str, spec);

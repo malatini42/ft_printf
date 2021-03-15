@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 16:35:53 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 10:00:11 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,23 @@ int		get_precision(const char *str, t_format *format)
 {
 	int precision;
 	int i;
-	int max;
+	//int max;
+	bool found;
 
-	if (!str && !format)
-		return (false);
 	precision = 0;
-	max = len_until_end_format(str);
-	i = (format->type == PC) ? 1 : 0;
-	while (str[i] && str[i] != '.')
+	found = false;
+	i = 1;
+	while (str[i])
+	{
+		if (str[i] == '.')
+		{
+			format->flags.precision = true;
+			break;
+		}
+		if (is_correct_type(str[i]))
+			return (precision);
 		i++;
-	if (!str[i])
-		return (precision);
-	else if (str[i] == '.' && i < max)
-		format->flags.precision = true;
+	}
 	i++;
 	while (ft_isdigit(str[i]) && str[i])
 	{

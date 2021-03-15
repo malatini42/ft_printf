@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:38:25 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 15:50:09 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 08:43:13 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	ft_strlen(const char *s)
 	return (i);
 }
 
-//Attention avec les string c est casse gueule
-//revoir toutes les fonctions utils
 int is_correct_spec(const char *s)
 {
 	int i;
@@ -71,6 +69,7 @@ int	is_correct_type_no_pc(char c)
 	return (0);
 }
 
+//pas logique/pas utilise ?
 int find_next_correct_type_no_pc(const char *str)
 {
 	int i;

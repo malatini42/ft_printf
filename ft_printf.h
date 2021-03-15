@@ -6,13 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 16:41:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 09:58:34 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //Reprendre tous les retours en int pour en faire des ssize_t ?
 //On peut aussi faire plusieurs fichiers .h à la fin pour que ce soit + propre
-//Remettre le nom des parametres au propre
+//Remettre le nom des parametres au propre, ne pas mettre toutes les fonctions
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
@@ -36,6 +36,7 @@ typedef	struct	s_flags
 	bool justify_left;
 	bool zero_pad;
 	bool precision;//Il y a un pb de fond ici
+	bool width;
 }				t_flags;
 
 typedef struct	s_format
@@ -121,8 +122,10 @@ void		print_pc( const char *str, t_format *spec);
 
 //type_s
 
-void 		print_s(t_format *spec, va_list arg_ptr);
 void		print_s(t_format *format, va_list arg_ptr);
+int			print_pad_s(t_format *spec, const char *str, int length);
+int			print_pad_null_s(t_format *spec, int max_precision);
+void		print_null_s(t_format *format);
 
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:20:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 16:38:34 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 08:29:59 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	c_padding_to_print(t_format *format)
 	return (to_print);
 }
 
+//Cette fonction ne prend pas en compte correctement pour les ?
+//Pas sur qu on puisse utiliser la meme fonctionne pour les differents types
 int		diff_width_any_type(t_format *spec, const char *str)
 {
 	int	diff_width;
