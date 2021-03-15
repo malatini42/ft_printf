@@ -6,13 +6,14 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 13:20:48 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 16:56:52 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //Reprendre tous les retours en int pour en faire des ssize_t ?
 //On peut aussi faire plusieurs fichiers .h à la fin pour que ce soit + propre
 //Remettre le nom des parametres au propre, ne pas mettre toutes les fonctions
+//je crois que j ai confondu la droite et la gauche ! a changer ?
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
@@ -35,7 +36,7 @@ typedef	struct	s_flags
 {
 	bool justify_left;
 	bool zero_pad;
-	bool precision;//Il y a un pb de fond ici
+	bool precision;
 	bool width;
 }				t_flags;
 
@@ -77,7 +78,7 @@ int			diff_width_for_s(t_format *format, const char *str);
 int			diff_width_any_type(t_format *spec, const char *str);
 int			print_pad_pc(t_format *spec, const char *str);
 char		*ft_strdup_until_type(const char *s1);
-int			ft_putstr_limit(const char *str, int precision);
+int			ft_putstr_limit(const char *str, int precision, int witdh, char to_print);
 //bool		justify_left_s(const char *str, t_format *format);
 char		*ft_strdup(const char *s1);
 int			ft_put_pad_0_precision(t_format *format);
@@ -130,11 +131,12 @@ void		print_s(t_format *format, va_list arg_ptr);
 int			print_pad_s(t_format *spec, const char *str, int length);
 int			print_pad_null_s_no_left(t_format *spec, int max_precision);
 void		print_null_s(t_format *format);
-int			redirect_no_justify_left(t_format *format);
+int			redirect_no_justify_left(t_format *format, char print);
 
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);
 int			len_with_precision(const char *str, t_format *spec);
+int			width_precision_null_no_left(t_format *format);
 
 //test
 

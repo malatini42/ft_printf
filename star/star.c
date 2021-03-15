@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:40:30 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/14 13:45:20 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 15:05:03 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		is_after_star(const char *str, char c)
 	}
 	return (0);
 }
-//Verifier qu on a bien le bon nombre d element dans va_list?
+
 int		handle_star(const char *str, t_format *format, va_list arg_ptr)
 {
 	int star;

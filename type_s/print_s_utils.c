@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 08:30:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 15:06:25 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int		diff_width_for_s(t_format *format, const char *str)
 	return (diff_width);
 }
 
+//voir si doublons de fonctions
 int		ft_putstr_precision(char *str, t_format *spec)
 {
 	int i;
-	//int len;
 	int precision;
 
 	if (!str && !spec)
@@ -59,7 +59,6 @@ int		ft_putstr_precision(char *str, t_format *spec)
 	precision = spec->precision;
 	if (precision == 0 && spec->flags.precision == true)
 		return (0);
-	//len = ft_strlen(str);
 	if (!str)
 		return (0);
 	i = 0;
@@ -104,7 +103,6 @@ int	len_until_end_format(const char *str)
 		return (0);
 	while (str[i])
 	{
-		//printf("On est la : %c\n", str[i]);
 		if (is_correct_type(str[i]))
 			return (i);
 		i++;

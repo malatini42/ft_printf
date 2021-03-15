@@ -6,18 +6,21 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:12:09 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 10:26:48 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 16:59:59 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-//A revoir ?
-int		ft_putstr_limit(const char *str, int precision)
+int		ft_putstr_limit(const char *str, int precision, int width, char print)
 {
-	int i;
+	int 	i;
+	int		len;
 
 	i = 0;
+	len = 0;
+	if (width > 0)
+		len += print_x_time(print, width - precision);
 	if (precision > 0)
 	{
 		while (i < precision && i < 6)
@@ -30,10 +33,9 @@ int		ft_putstr_limit(const char *str, int precision)
 	}
 	else
 		i = ft_putstr("(null)");
-	return (i);
+	return (i + len);
 }
 
-//Je devrais faire ca a l interieur d une autre fonction ?
 int		ft_put_pad_0_precision(t_format *format)
 {
 	char	to_print;
@@ -49,21 +51,21 @@ int		ft_put_pad_0_precision(t_format *format)
 	return (format->width);
 }
 
-/* Pas bon
-int		ft_putstr_width(const char *str, int width)
+int		print_pad_s(t_format *spec, const char *str, int length)
 {
-	int i;
-	int null_length;
+	int		nb_pad;
+	char	to_print;
+	int		i;
+	(void)length;
 
-	null_length = 6;
-	if (width > null_length)
-		return (0);
+	nb_pad = diff_width_any_type(spec, str);
+	to_print = c_padding_to_print(spec);
 	i = 0;
-	while (i < width)
+	while (nb_pad > 0)
 	{
-		ft_putchar(str[i]);
+		ft_putchar(to_print);
 		i++;
+		nb_pad--;
 	}
 	return (i);
 }
-*/
