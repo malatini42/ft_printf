@@ -6,12 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 18:47:24 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 19:07:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
+//A remettre au propre
 int 	print_pos_no_justify_left(t_format *format, int number)
 {
 	int i;
@@ -24,13 +25,17 @@ int 	print_pos_no_justify_left(t_format *format, int number)
 	width_to_print = 0;
 	char_to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == false)
-		i += ft_putnbr(number);
+	{
+		ft_putnbr(number);
+		i += n_size(number);
+	}
 	if (format->flags.precision == false && format->flags.width == true)
 	{
 		len = n_size(number);
 		width_to_print = format->width - len;
 		i += print_x_time(char_to_print, width_to_print);
-		i += ft_putnbr(number);	
+		ft_putnbr(number);	
+		i += n_size(number);
 	}
 	return (i);
 }
