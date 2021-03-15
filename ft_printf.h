@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 12:12:46 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 13:20:48 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int			ft_putstr_limit(const char *str, int precision);
 //bool		justify_left_s(const char *str, t_format *format);
 char		*ft_strdup(const char *s1);
 int			ft_put_pad_0_precision(t_format *format);
+int			print_pad_null_s_justify_left(t_format *spec, int max_precision);
+int			print_x_time(char c, int x);
 //int			ft_putstr_width(const char *str, int width);
 
 /*

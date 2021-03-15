@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:20:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 10:19:20 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 13:20:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,16 @@ char	*ft_strdup(const char *s1)
 	return (cpy);
 }
 
+int		print_x_time(char c, int x)
+{
+	int i;
+
+	i = 0;
+	while (i < x)
+	{
+		ft_putchar(c);
+		i++;
+	}
+	return (i);
+}
 

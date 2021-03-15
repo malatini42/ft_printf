@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 12:19:16 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 13:38:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int		redirect_no_justify_left(t_format *format)
 	return (i);
 }
 
-//je veux retourner null
-
+//rassembler les deux fonctions ?
 int		print_pad_null_s_no_left(t_format *spec, int max_precision)
 {
 	int		nb_pad;
@@ -46,25 +45,47 @@ int		print_pad_null_s_no_left(t_format *spec, int max_precision)
 	i = 0;
 	len_null = 6;
 	nb_pad = 0;
+	to_print = c_padding_to_print(spec);
 	if (spec->flags.precision == true)
 		nb_pad = spec->width - max_precision;
 	else if (spec->flags.width == true)
 		nb_pad = (spec->width - len_null >= 0) ? spec->width - len_null : 0;
-	/* peut supprimer
-	else if (spec->flags.width == true && spec->flags.justify_left == true)
-		nb_pad = spec->flags.width;
-	*/
-	if (nb_pad <= 0)
+	if (nb_pad < 0)
 		return (0);
-	to_print = c_padding_to_print(spec);
 	while (nb_pad)
 	{
 		ft_putchar(to_print);
 		i++;
 		nb_pad--;
 	}
-	if (spec->width > len_null)
+	i += ft_putstr("(null)");
+	return (i);
+}
+
+//rassembler les deux fonctions ?
+int		print_pad_null_s_justify_left(t_format *spec, int max_precision)
+{
+	int 	i;
+	int		nb_pad;
+	char	to_print;
+	int		len_null;
+
+	i = 0;
+	len_null = 6;
+	nb_pad = 0;
+	to_print = c_padding_to_print(spec);
+	if (spec->width < len_null && spec->flags.precision == false)
 		i += ft_putstr("(null)");
+	else if (spec->flags.precision == true)//spec->width < len_null &&
+	{
+		i += print_x_time(to_print, spec->width);
+	}
+	else if (spec->width > len_null && spec->flags.precision == false)
+	{
+		i += ft_putstr("(null)");
+		i += print_x_time(to_print, spec->width - len_null);
+	}
+	(void)max_precision;
 	return (i);
 }
 
@@ -74,20 +95,18 @@ void	print_null_s(t_format *format)
 	printf("\n----------------\n");
 	printstruct(*format);
 	printf("\n----------------\n");
-
+	*/
 	int max_precision;
 	int i;
 	int	width;
-	*/
+
 	max_precision = format->precision;
 	width = format->width;
 	i = 0;
 	if (format->flags.justify_left == false)
 		i += redirect_no_justify_left(format);
-	/*
 	else if (format->flags.justify_left == 1)
 		i += print_pad_null_s_justify_left(format, max_precision);
-	*/
 	format->printed_chars += i;
 }
 

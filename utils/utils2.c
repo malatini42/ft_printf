@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 18:38:25 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 08:43:13 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 13:06:43 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_putstr(const char *str)
 	if (!str)
 		return (0);
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		ft_putchar(str[i]);
 		i++;
