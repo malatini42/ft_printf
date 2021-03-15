@@ -6,11 +6,34 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 15:15:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 15:15:55 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:17:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+int		width_precision_null_no_left(t_format *format)
+{
+	int len;
+	int width_to_print;
+	char to_print;
+	int i;
+	char *n;
+
+	len = format->precision;
+	width_to_print = format->width - len;
+	i = 0;
+	n = ft_strdup("(null)");
+	to_print = c_padding_to_print(format);
+	while (i < len)
+	{
+		ft_putchar(n[i]);
+		i++;
+	}
+	i += print_x_time(to_print, width_to_print);
+	free (n);
+	return (i);
+}
 
 int		print_pad_null_s_justify_left(t_format *spec, int max_precision)
 {
@@ -25,13 +48,17 @@ int		print_pad_null_s_justify_left(t_format *spec, int max_precision)
 	to_print = c_padding_to_print(spec);
 	if (spec->width < len_null && spec->flags.precision == false)
 		i += ft_putstr("(null)");
-	else if (spec->flags.precision == true)
+	else if (spec->flags.precision == true && spec->flags.width == true)
+	{
+		i += width_precision_null_no_left(spec);
+	}
+	else if (spec->flags.precision == true && spec->flags.width == false)
 		i += print_x_time(to_print, spec->width);
 	else if (spec->width > len_null && spec->flags.precision == false)
 	{
 		i += ft_putstr("(null)");
 		i += print_x_time(to_print, spec->width - len_null);
 	}
-	(void)max_precision;//a revoir
+	(void)max_precision;//a revoir pour eviter
 	return (i);
 }
