@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:20:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 10:07:04 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 10:19:20 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,4 @@ char	*ft_strdup(const char *s1)
 	return (cpy);
 }
 
-//A revoir ?
-int		ft_putstr_limit(const char *str, int precision)
-{
-	int i;
 
-	i = 0;
-	if (precision > 0)
-	{
-		while (i < precision && i < 6)
-		{
-			if (i >= precision)
-				return (i);
-			ft_putchar(str[i]);
-			i++;
-		}
-	}
-	else
-		i = ft_putstr("(null)");
-	return (i);
-}

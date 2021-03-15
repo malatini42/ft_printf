@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 09:58:34 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 12:12:46 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char		*ft_strdup_until_type(const char *s1);
 int			ft_putstr_limit(const char *str, int precision);
 //bool		justify_left_s(const char *str, t_format *format);
 char		*ft_strdup(const char *s1);
+int			ft_put_pad_0_precision(t_format *format);
+//int			ft_putstr_width(const char *str, int width);
 
 /*
 ** ft_printf.c
@@ -124,8 +126,9 @@ void		print_pc( const char *str, t_format *spec);
 
 void		print_s(t_format *format, va_list arg_ptr);
 int			print_pad_s(t_format *spec, const char *str, int length);
-int			print_pad_null_s(t_format *spec, int max_precision);
+int			print_pad_null_s_no_left(t_format *spec, int max_precision);
 void		print_null_s(t_format *format);
+int			redirect_no_justify_left(t_format *format);
 
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 10:00:11 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 11:48:42 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int		get_width(const char *str, t_format *format)
 		i++;
 	}
 	format->width = width;
+	if (width != 0)
+		format->flags.width = true;
 	return (width);
 }
 
