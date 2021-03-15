@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 18:30:22 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:47:24 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,23 @@
 int 	print_pos_no_justify_left(t_format *format, int number)
 {
 	int i;
+	int len;
+	int width_to_print;
+	int char_to_print;
 
 	i = 0;
+	len = 0;
+	width_to_print = 0;
+	char_to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == false)
 		i += ft_putnbr(number);
-	(void)format;
-	(void)number;
+	if (format->flags.precision == false && format->flags.width == true)
+	{
+		len = n_size(number);
+		width_to_print = format->width - len;
+		i += print_x_time(char_to_print, width_to_print);
+		i += ft_putnbr(number);	
+	}
 	return (i);
 }
 

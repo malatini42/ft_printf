@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 18:27:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:49:10 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ void		print_id(t_format *format, va_list arg_ptr);
 //itoa
 int			n_size(int n);
 char		*create_string(char *str, long nb, long length, long sign);
-char		ft_itoa(int n);
+char		*ft_itoa(int n);
 int			print_neg_number(t_format *format, int number);
 int			print_pos_number(t_format *format, int number);
 int 		print_pos_no_justify_left(t_format *format, int number);

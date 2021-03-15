@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 18:29:15 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:58:38 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,3 +77,4 @@ int	ft_putnbr(int nbr)
 	ft_putchar(n % 10 + '0');
 	return (++i);
 }
+
