@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:08:29 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:24:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int			redirect_no_justify_left(t_format *format, char print);
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);
 int			len_with_precision(const char *str, t_format *spec);
-int			width_precision_null_no_left(t_format *format);
+int			width_precision_null_left(t_format *format);
 
 //test
 

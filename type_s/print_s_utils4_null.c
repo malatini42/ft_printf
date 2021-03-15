@@ -6,13 +6,14 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 15:15:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:17:53 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:34:17 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		width_precision_null_no_left(t_format *format)
+//Attention aux noms pour la droite/gauche il y a eu confusion
+int		width_precision_null_left(t_format *format)
 {
 	int len;
 	int width_to_print;
@@ -21,11 +22,11 @@ int		width_precision_null_no_left(t_format *format)
 	char *n;
 
 	len = format->precision;
-	width_to_print = format->width - len;
+	width_to_print = len < 6 ? format->width - len : format->width - 6;
 	i = 0;
 	n = ft_strdup("(null)");
 	to_print = c_padding_to_print(format);
-	while (i < len)
+	while (i < 6 && i < format->precision)
 	{
 		ft_putchar(n[i]);
 		i++;
@@ -50,7 +51,7 @@ int		print_pad_null_s_justify_left(t_format *spec, int max_precision)
 		i += ft_putstr("(null)");
 	else if (spec->flags.precision == true && spec->flags.width == true)
 	{
-		i += width_precision_null_no_left(spec);
+		i += width_precision_null_left(spec);
 	}
 	else if (spec->flags.precision == true && spec->flags.width == false)
 		i += print_x_time(to_print, spec->width);
