@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:16:01 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:17:02 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_null_s(t_format *format)
 	if (format->flags.justify_left == false)
 		i += redirect_no_justify_left(format, to_print);
 	else if (format->flags.justify_left == true)//harmoniser les noms ?
-		i += print_pad_null_s_justify_left(format, max_precision);
+		i += print_pad_null_s_justify_left(format);
 	format->printed_chars += i;
 }
 
@@ -39,7 +39,6 @@ void	print_s(t_format *format, va_list arg_ptr)
 {
 	int		i;
 	char 	*s;
-	int		len;
 
 	s = va_arg(arg_ptr, char *);
 	if (!s)
@@ -48,12 +47,10 @@ void	print_s(t_format *format, va_list arg_ptr)
 		return ;
 	}
 	i = 0;
-	len = ft_strlen(s);
-	//Faire une fonction pour les chaine null ?
 	if (format->flags.justify_left == 0)
-		i += print_pad_s(format, s, len);
+		i += print_pad_s(format, s);
 	i += ft_putstr_precision(s, format);
 	if (format->flags.justify_left == 1)
-		i += print_pad_s(format, s, len);
+		i += print_pad_s(format, s);
 	format->printed_chars += i;
 }

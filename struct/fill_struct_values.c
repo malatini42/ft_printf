@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:55:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 09:59:01 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:37:36 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ bool	justify_left(const char *str, t_format *format)
 	dash = false;
 	max = found_char(str, '-');
 	len = len_until_end_format(str);
-	//printf("\n%i\n", len);
 	if (max && max <= len)
 	{
 		dash = true;

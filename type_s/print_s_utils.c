@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 15:06:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:39:57 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		diff_width_for_s(t_format *format, const char *str)
 	return (diff_width);
 }
 
-//voir si doublons de fonctions
+
 int		ft_putstr_precision(char *str, t_format *spec)
 {
 	int i;

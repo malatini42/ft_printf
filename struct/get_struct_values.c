@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 15:05:24 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:45:36 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ int		get_type(const char *format)
 		i++;
 	while (!(is_correct_type(format[i])) && format[i])
 		i++;
-	if (format[i] == 'i' || format[i] == 'd' || format[i] == 'u')
-		return (UID);
+	if (format[i] == 'i' || format[i] == 'd')
+		return (ID);
+	else if (format[i] == 'u')
+		return (U);
 	else if (format[i] == 'c')
 		return (C);
 	else if (format[i] == 's')

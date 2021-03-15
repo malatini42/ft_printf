@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 15:15:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:34:17 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 17:40:25 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 //Attention aux noms pour la droite/gauche il y a eu confusion
 int		width_precision_null_left(t_format *format)
 {
-	int len;
-	int width_to_print;
-	char to_print;
-	int i;
-	char *n;
+	int		len;
+	int		width_to_print;
+	char	to_print;
+	int		i;
+	char	*n;
 
 	len = format->precision;
 	width_to_print = len < 6 ? format->width - len : format->width - 6;
@@ -36,7 +36,7 @@ int		width_precision_null_left(t_format *format)
 	return (i);
 }
 
-int		print_pad_null_s_justify_left(t_format *spec, int max_precision)
+int		print_pad_null_s_justify_left(t_format *spec)
 {
 	int 	i;
 	int		nb_pad;
@@ -50,9 +50,7 @@ int		print_pad_null_s_justify_left(t_format *spec, int max_precision)
 	if (spec->width < len_null && spec->flags.precision == false)
 		i += ft_putstr("(null)");
 	else if (spec->flags.precision == true && spec->flags.width == true)
-	{
 		i += width_precision_null_left(spec);
-	}
 	else if (spec->flags.precision == true && spec->flags.width == false)
 		i += print_x_time(to_print, spec->width);
 	else if (spec->width > len_null && spec->flags.precision == false)
@@ -60,6 +58,5 @@ int		print_pad_null_s_justify_left(t_format *spec, int max_precision)
 		i += ft_putstr("(null)");
 		i += print_x_time(to_print, spec->width - len_null);
 	}
-	(void)max_precision;//a revoir pour eviter
 	return (i);
 }

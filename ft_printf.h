@@ -6,14 +6,14 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:24:55 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/15 18:27:25 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //Reprendre tous les retours en int pour en faire des ssize_t ?
 //On peut aussi faire plusieurs fichiers .h à la fin pour que ce soit + propre
 //Remettre le nom des parametres au propre, ne pas mettre toutes les fonctions
-//je crois que j ai confondu la droite et la gauche ! a changer ?
+//je crois que j ai confondu la droite et la gauche ! a changer "justify right"
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
@@ -25,12 +25,13 @@
 # include <stdlib.h>
 # include <stdbool.h>
 
-# define UID 1
-# define C 2
-# define S 3
-# define PC 4
-# define H 5
-# define P 6
+# define ID 1
+# define U 2
+# define C 3
+# define S 4
+# define PC 5
+# define H 6
+# define P 7
 
 typedef	struct	s_flags
 {
@@ -57,7 +58,7 @@ int			found_char(const char *str, char c);
 int			is_correct_type(char c);
 int			ft_isdigit(int c);
 void		ft_putchar(char c);
-void		ft_putnbr(int nbr);
+int			ft_putnbr(int nbr);
 int			ft_strlen(const char *s);
 
 int			is_correct_spec(const char *s);//revoir si cette fonction est utilisable?
@@ -82,7 +83,7 @@ int			ft_putstr_limit(const char *str, int precision, int witdh, char to_print);
 //bool		justify_left_s(const char *str, t_format *format);
 char		*ft_strdup(const char *s1);
 int			ft_put_pad_0_precision(t_format *format);
-int			print_pad_null_s_justify_left(t_format *spec, int max_precision);
+int			print_pad_null_s_justify_left(t_format *spec);
 int			print_x_time(char c, int x);
 //int			ft_putstr_width(const char *str, int width);
 
@@ -128,7 +129,7 @@ void		print_pc( const char *str, t_format *spec);
 //type_s
 
 void		print_s(t_format *format, va_list arg_ptr);
-int			print_pad_s(t_format *spec, const char *str, int length);
+int			print_pad_s(t_format *spec, const char *str);
 int			print_pad_null_s_no_left(t_format *spec, int max_precision);
 void		print_null_s(t_format *format);
 int			redirect_no_justify_left(t_format *format, char print);
@@ -137,6 +138,19 @@ int			redirect_no_justify_left(t_format *format, char print);
 int			ft_putstr_precision(char *str, t_format *spec);
 int			len_with_precision(const char *str, t_format *spec);
 int			width_precision_null_left(t_format *format);
+
+//type_id
+
+void		print_id(t_format *format, va_list arg_ptr);
+
+//itoa
+int			n_size(int n);
+char		*create_string(char *str, long nb, long length, long sign);
+char		ft_itoa(int n);
+int			print_neg_number(t_format *format, int number);
+int			print_pos_number(t_format *format, int number);
+int 		print_pos_no_justify_left(t_format *format, int number);
+int 		print_pos_justify_left(t_format *format, int number);
 
 //test
 
