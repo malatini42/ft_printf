@@ -6,17 +6,18 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 19:08:12 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 10:17:59 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	if (!c)
-		return ;
+		return (0);
 	write(1, &c, 1);
+	return (1);
 }
 
 int	ft_isdigit(int c)

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 09:10:47 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 10:24:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct	s_format
 int			found_char(const char *str, char c);
 int			is_correct_type(char c);
 int			ft_isdigit(int c);
-void		ft_putchar(char c);
+int			ft_putchar(char c);
 int			ft_putnbr(int nbr);
 int			ft_strlen(const char *s);
 
@@ -161,6 +161,7 @@ int 		print_neg_justify(t_format *format, int number, char print);
 int			print_pad_then_number(t_format *format, int number);
 int			print_zero_pad_then_number_width(t_format *format, int number, char print);
 int			print_zero_pad_then_number_precision(t_format *format, int number, char print);
+int			print_zero_pad_true_width(int number, char print, int w_to_print);
 //test
 
 void		printstruct(t_format format);

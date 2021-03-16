@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 09:11:01 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 09:48:13 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int 	print_pos_no_justify(t_format *format, int number)
 	else if (format->flags.precision == false && format->flags.width == true)
 	{
 		format->flags.zero_pad = true;
-		i += print_pad_then_number(format, number);
+		i += print_zero_pad_then_number_width(format, number, char_to_print);
 	}
 	return (i);
 }
