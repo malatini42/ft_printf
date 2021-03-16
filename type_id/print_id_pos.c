@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 17:11:04 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:31:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,16 @@ int 	print_pos_no_justify(t_format *format, int number)
 		i += n_size_i(number);
 	}
 	else if (format->flags.precision == false && format->flags.width == true)
-	{
 		i += print_zero_pad_then_number_width(format, number, char_to_print);
-	}
 	else if (format->flags.precision == true && format->flags.width == false)
-	{
-		i += print_zero_pad_then_number_precision(format, number, char_to_print);
-	}
+		i += print_zero_pad_then_number_precision_i(format, number, char_to_print);
 	else if (format->flags.precision == false && format->flags.width == true)
 	{
 		format->flags.zero_pad = true;
 		i += print_zero_pad_then_number_width(format, number, char_to_print);
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
-	{
 			i += print_width_and_precision_pos(format, number, char_to_print);
-	}
 	return (i);
 }
 
@@ -108,9 +102,7 @@ int 	print_pos_justify(t_format *format, int number, char print)
 		i += print_x_time(print, width_to_print);
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
-	{
 		i += reverse_print_width_and_precision_pos(format, number, to_print);
-	}
 	return (i);
 }
 
@@ -120,11 +112,6 @@ int		print_pos_number(t_format *format, int number)
 	char 	print;
 
 	i = 0;
-	/*
-	printf("----------\n");
-	printstruct(*format);
-	printf("----------\n");
-	*/
 	print = c_padding_to_print(format);
 	if (format->flags.justify_left == 0)
 		i += print_pos_no_justify(format, number);

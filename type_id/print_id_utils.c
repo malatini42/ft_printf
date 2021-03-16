@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:52:24 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 16:47:02 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 19:08:41 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		print_zero_pad_then_number_width(t_format *format, int number, char print)
 	return (i);
 }
 
-int		print_zero_pad_then_number_precision(t_format *format, int number, char print)
+int		print_zero_pad_then_number_precision_i(t_format *format, int number, char print)
 {
 	int i;
 	int len;
@@ -73,7 +73,7 @@ int		print_zero_pad_then_number_precision(t_format *format, int number, char pri
 	}
 	len = n_size_i(num);
 	precision_to_print = format->precision - len;
-	if ((int)format->precision > num)
+	if (format->precision > num)
 	{
 		format->flags.zero_pad = true;
 		print = '0';

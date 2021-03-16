@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 17:05:54 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:47:39 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ int 	print_neg_no_justify(t_format *format, int number, char print)
 	else if (format->flags.precision == false && format->flags.width == false)
 	{
 		//printf("coucou!!\n");
-		i += print_zero_pad_then_number_precision(format, number, to_print);
+		i += print_zero_pad_then_number_precision_i(format, number, to_print);
 		//i += n_size(number) > 2 ? ft_putnbr(number) + 1 : ft_putnbr(number);
 	}
 	else if (format->flags.precision == true && format->flags.width == false)
 	{
 		if (format->flags.precision == true && format->precision != 0)
-			i += print_zero_pad_then_number_precision(format, number, print);
+			i += print_zero_pad_then_number_precision_i(format, number, print);
 		else
 		{
 			return (i);
