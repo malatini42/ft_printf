@@ -6,15 +6,15 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:54:31 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 16:32:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:06:40 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		n_size(unsigned int n)
+int		n_size_i(int n)
 {
-	unsigned int i;
+	int i;
 
 	i = 1;
 	if (n < 0)
@@ -27,9 +27,10 @@ int		n_size(unsigned int n)
 		n = n / 10;
 		i++;
 	}
-	return ((int)i);
+	return (i);
 }
 
+//pas utilisee pour l instant
 char	*create_string(char *str, long nb, long length, long sign)
 {
 	str[length] = '\0';
@@ -43,6 +44,7 @@ char	*create_string(char *str, long nb, long length, long sign)
 	return (str);
 }
 
+//pas utilise pour l instant
 char	*ft_itoa(int n)
 {
 	char	*str;
@@ -52,7 +54,7 @@ char	*ft_itoa(int n)
 
 	nb = n;
 	sign = 1;
-	length = (long)n_size(nb);
+	length = (long)n_size_i(nb);
 	if (nb == 0)
 		return (ft_strdup("0"));
 	if (nb == -2147483648)

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 16:36:46 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:12:50 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			found_char(const char *str, char c);
 int			is_correct_type(char c);
 int			ft_isdigit(int c);
 int			ft_putchar(char c);
-void		ft_putnbr(unsigned int nbr);
+void		ft_putnbr_i(int nbr);
 int			ft_strlen(const char *s);
 
 int			is_correct_spec(const char *s);//revoir si cette fonction est utilisable?
@@ -144,12 +144,12 @@ int			width_precision_null_left(t_format *format);
 void		print_id(t_format *format, va_list arg_ptr);
 
 //itoa - remettre au propre
-int			n_size(unsigned int n);
+int			n_size_i(int n);
 char		*create_string(char *str, long nb, long length, long sign);
 char		*ft_itoa(int n);
 
-int			print_pos_number(t_format *format, unsigned int number);
-int 		print_pos_no_justify(t_format *format, unsigned int number);
+int			print_pos_number(t_format *format, int number);
+int 		print_pos_no_justify(t_format *format, int number);
 int 		print_pos_justify(t_format *format, int number, char print);
 
 int			print_neg_number(t_format *format, int number);
@@ -173,5 +173,14 @@ int			reverse_print_width_and_precision_pos(t_format *format, int number, char p
 void	print_u(t_format *format, va_list arg_ptr);
 
 void		printstruct(t_format format);
+//a revoir
+int		n_size_u(unsigned int n);
+void	ft_putnbr_u(unsigned int nbr);
+int		print_pos_u_number(t_format *format, unsigned int number);
+int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
+int 	print_pos_u_no_justify(t_format *format, unsigned int number);
+//a faire
+//int print_pos_u_number(format, number);
+//+ faire un putnbr_u
 
 #endif

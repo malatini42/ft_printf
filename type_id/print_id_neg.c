@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 15:08:50 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 17:05:54 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int		print_width_and_precision_neg(t_format *format, int number, char print)
 	int width_to_print;
 	int precision_to_print;
 
-	precision_to_print = format->precision - n_size(-number);
-	if (format->precision > n_size(-number))
-		width_to_print = format->width - precision_to_print - n_size(number);//(number != 0) ? format->width - precision_to_print - n_size(-number) - 1
+	precision_to_print = format->precision - n_size_i(-number);
+	if (format->precision > n_size_i(-number))
+		width_to_print = format->width - precision_to_print - n_size_i(number);//(number != 0) ? format->width - precision_to_print - n_size(-number) - 1
 	else
-		width_to_print = format->width - n_size(number);
+		width_to_print = format->width - n_size_i(number);
 	i = 0;
 	if (format->flags.zero_pad == true)
 		print = ' ';
@@ -30,8 +30,8 @@ int		print_width_and_precision_neg(t_format *format, int number, char print)
 	if (number != 0)
 		i += ft_putchar('-');
 	i += print_x_time('0', precision_to_print);
-	ft_putnbr(-number);
-	i += n_size(-number);
+	ft_putnbr_i(-number);
+	i += n_size_i(-number);
 	return (i);
 }
 
@@ -46,17 +46,17 @@ int		reverse_print_width_and_precision_neg(t_format *format, int number, char pr
 	int width_to_print;
 	int precision_to_print;
 
-	precision_to_print = format->precision - n_size(-number);
-	if (format->precision > n_size(-number))
-		width_to_print = format->width - precision_to_print - n_size(number);//(number != 0) ? format->width - precision_to_print - n_size(-number) - 1
+	precision_to_print = format->precision - n_size_i(-number);
+	if (format->precision > n_size_i(-number))
+		width_to_print = format->width - precision_to_print - n_size_i(number);//(number != 0) ? format->width - precision_to_print - n_size(-number) - 1
 	else
-		width_to_print = format->width - n_size(number);
+		width_to_print = format->width - n_size_i(number);
 	i = 0;
 	if (number != 0)
 		i += ft_putchar('-');
 	i += print_x_time('0', precision_to_print);
-	ft_putnbr(-number);
-	i += n_size(-number);
+	ft_putnbr_i(-number);
+	i += n_size_i(-number);
 	i += print_x_time(print, width_to_print);
 	return (i);
 }
@@ -69,7 +69,7 @@ int 	print_neg_no_justify(t_format *format, int number, char print)
 
 	i = 0;
 	to_print = c_padding_to_print(format);
-	width_to_print = (format->width > n_size(number)) ? format->width - n_size(number) : 0;//a mettre dans la fonction d ensemble ?
+	width_to_print = (format->width > n_size_i(number)) ? format->width - n_size_i(number) : 0;//a mettre dans la fonction d ensemble ?
 	if (format->flags.precision == false && format->flags.width == true)
 	{
 		//revoir les differences ?
@@ -116,12 +116,12 @@ int 	print_neg_justify(t_format *format, int number, char print)
 	char	to_print;
 
 	i = 0;
-	width_to_print = (format->width > n_size(number)) ? format->width - n_size(number) : 0;
+	width_to_print = (format->width > n_size_i(number)) ? format->width - n_size_i(number) : 0;
 	to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == true)
 	{
-		ft_putnbr(number);
-		i += n_size(number);
+		ft_putnbr_i(number);
+		i += n_size_i(number);
 		i += print_x_time(print, width_to_print);
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
