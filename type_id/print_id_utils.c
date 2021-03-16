@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:52:24 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 11:19:36 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 16:25:34 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 //toujours utilisee ?
 int		print_pad_then_number(t_format *format, int number)
 {
-	int 	i;
-	char 	to_print;
+	int		i;
+	char	to_print;
 	int		width_to_print;
 
 	i = 0;
 	to_print = c_padding_to_print(format);
-	width_to_print = (format->width > n_size(number)) ? format->width - n_size(number) : 0;
+	width_to_print = (format->width > (int)n_size(number)) ? format->width - (int)n_size(number) : 0;
 	i += print_x_time(to_print, width_to_print);
 	ft_putnbr(number);
 	i += n_size(number);
@@ -45,7 +45,7 @@ int		print_zero_pad_then_number_width(t_format *format, int number, char print)
 	}
 	len = n_size(num);
 	width_to_print = format->width - len;
-	if (format->width > -num && num < 0)
+	if ((int)format->width > -num && num < 0)
 	{
 		format->flags.zero_pad = true;
 		print = '0';
@@ -73,7 +73,7 @@ int		print_zero_pad_then_number_precision(t_format *format, int number, char pri
 	}
 	len = n_size(num);
 	precision_to_print = format->precision - len;
-	if (format->precision > num)
+	if ((int)format->precision > num)
 	{
 		format->flags.zero_pad = true;
 		print = '0';

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 16:36:19 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 15:34:15 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void	print_type(const char *str, t_format *spec, va_list arg_ptr)
 {
 	int type;
 	type = spec->type;
+	/*
+	printf("----------\n");
+	printstruct(*spec);
+	printf("----------\n");
+	*/
 	if (type == PC)
 		print_pc(str, spec);
 	else if (type == S)
@@ -47,6 +52,7 @@ void	print_type(const char *str, t_format *spec, va_list arg_ptr)
 		print_u(spec, arg_ptr);
 	}
 	/*
+		return (print_u(format));
 	else if (type == C)
 		return (print_c(format));
 
@@ -57,6 +63,7 @@ void	print_type(const char *str, t_format *spec, va_list arg_ptr)
 	else
 		return (-1);
 	*/
+
 }
 
 int		ft_printf(const char *format, ...)

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 10:17:59 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 16:28:34 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,18 @@ int	is_correct_type(char c)
 	return (0);
 }
 
-int	ft_putnbr(int nbr)//Le calcul est pas top
+void	ft_putnbr(unsigned int nbr)//Le calcul est pas top
 {
-	long n;
-	int i;
+	unsigned int n;
 
-	i = 0;
 	n = nbr;
 	if (nbr < 0)
 	{
 		n = -n;
 		ft_putchar('-');
-		i++;
 	}
 	if (n > 9)
-	{
 		ft_putnbr(n / 10);
-		i++;
-	}
 	ft_putchar(n % 10 + '0');
-	return (++i);
 }
 

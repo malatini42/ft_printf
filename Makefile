@@ -6,7 +6,7 @@
 #    By: malatini <malatini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/04 08:34:15 by malatini          #+#    #+#              #
-#    Updated: 2021/03/15 18:48:33 by malatini         ###   ########.fr        #
+#    Updated: 2021/03/16 16:27:00 by malatini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,8 @@ SRCS =	./main/ft_printf.c \
 		./type_id/print_id_pos.c \
 		./type_id/print_id_neg.c \
 		./type_id/itoa.c \
+		./type_u/type_u.c \
+		./type_u/print_u_utils.c \
 
 OBJS = ${SRCS:.c=.o}
 

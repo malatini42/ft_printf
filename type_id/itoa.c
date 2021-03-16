@@ -6,15 +6,15 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:54:31 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:55:38 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 16:32:25 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		n_size(int n)
+int		n_size(unsigned int n)
 {
-	int i;
+	unsigned int i;
 
 	i = 1;
 	if (n < 0)
@@ -27,7 +27,7 @@ int		n_size(int n)
 		n = n / 10;
 		i++;
 	}
-	return (i);
+	return ((int)i);
 }
 
 char	*create_string(char *str, long nb, long length, long sign)

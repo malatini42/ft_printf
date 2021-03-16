@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 12:02:36 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 16:34:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		reverse_print_width_and_precision_pos(t_format *format, int number, char pr
 	return (i);
 }
 
-int 	print_pos_no_justify(t_format *format, int number)
+int 	print_pos_no_justify(t_format *format, unsigned int number)
 {
 	int i;
 	int len;
@@ -110,17 +110,11 @@ int 	print_pos_justify(t_format *format, int number, char print)
 	else if (format->flags.precision == true && format->flags.width == true)
 	{
 		i += reverse_print_width_and_precision_pos(format, number, to_print);
-		/*
-		else
-		{
-			i += print_width_and_precision_pos(format, number, to_print);
-		}
-		*/
 	}
 	return (i);
 }
 
-int		print_pos_number(t_format *format, int number)
+int		print_pos_number(t_format *format, unsigned int number)
 {
 	int 	i;
 	char 	print;
