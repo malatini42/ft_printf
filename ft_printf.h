@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 18:49:10 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 09:10:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,15 +143,24 @@ int			width_precision_null_left(t_format *format);
 
 void		print_id(t_format *format, va_list arg_ptr);
 
-//itoa
+//itoa - remettre au propre
 int			n_size(int n);
 char		*create_string(char *str, long nb, long length, long sign);
 char		*ft_itoa(int n);
-int			print_neg_number(t_format *format, int number);
-int			print_pos_number(t_format *format, int number);
-int 		print_pos_no_justify_left(t_format *format, int number);
-int 		print_pos_justify_left(t_format *format, int number);
 
+int			print_pos_number(t_format *format, int number);
+int 		print_pos_no_justify(t_format *format, int number);
+int 		print_pos_justify(t_format *format, int number, char print);
+
+int			print_neg_number(t_format *format, int number);
+int 		print_neg_no_justify(t_format *format, int number, char print);
+int 		print_neg_justify(t_format *format, int number, char print);
+
+//print_id utils
+
+int			print_pad_then_number(t_format *format, int number);
+int			print_zero_pad_then_number_width(t_format *format, int number, char print);
+int			print_zero_pad_then_number_precision(t_format *format, int number, char print);
 //test
 
 void		printstruct(t_format format);
