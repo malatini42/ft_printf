@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 11:30:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 11:52:11 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		print_width_and_precision_neg(t_format *format, int number, char print)
 	else
 		width_to_print = format->width - n_size(number);
 	i = 0;
+	if (format->flags.zero_pad == true)
+		print = ' ';
 	i += print_x_time(print, width_to_print);
 	if (number != 0)
 		i += ft_putchar('-');
@@ -89,6 +91,7 @@ int 	print_neg_no_justify(t_format *format, int number, char print)
 		i += print_zero_pad_then_number_precision(format, number, print);
 	else if (format->flags.precision == true && format->flags.width == true)
 	{
+		//Pas besoin de faire deux conditions
 		i += print_width_and_precision_neg(format, number, to_print);
 	}
 	return (i);

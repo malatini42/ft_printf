@@ -6,13 +6,14 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 11:26:00 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 12:02:36 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
 //A remettre au propre - passer en arg plutot que de faire pleins de var
+//Harmoniser
 
 int		print_width_and_precision_pos(t_format *format, int number, char print)
 {
@@ -26,6 +27,8 @@ int		print_width_and_precision_pos(t_format *format, int number, char print)
 	else
 		width_to_print = format->width - n_size(number);
 	i = 0;
+	if (format->flags.zero_pad == true)
+		print = ' ';
 	i += print_x_time(print, width_to_print);
 	i += print_x_time('0', precision_to_print);
 	ft_putnbr(number);
@@ -84,7 +87,7 @@ int 	print_pos_no_justify(t_format *format, int number)
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
 	{
-		i += print_width_and_precision_pos(format, number, char_to_print);
+			i += print_width_and_precision_pos(format, number, char_to_print);
 	}
 	return (i);
 }
@@ -107,17 +110,27 @@ int 	print_pos_justify(t_format *format, int number, char print)
 	else if (format->flags.precision == true && format->flags.width == true)
 	{
 		i += reverse_print_width_and_precision_pos(format, number, to_print);
+		/*
+		else
+		{
+			i += print_width_and_precision_pos(format, number, to_print);
+		}
+		*/
 	}
 	return (i);
 }
 
-//Harmoniser
 int		print_pos_number(t_format *format, int number)
 {
 	int 	i;
 	char 	print;
 
 	i = 0;
+	/*
+	printf("----------\n");
+	printstruct(*format);
+	printf("----------\n");
+	*/
 	print = c_padding_to_print(format);
 	if (format->flags.justify_left == 0)
 		i += print_pos_no_justify(format, number);

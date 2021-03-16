@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:55:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:37:36 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 12:02:15 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ bool	justify_left(const char *str, t_format *format)
 	{
 		dash = true;
 		format->flags.justify_left = true;
+		format->flags.zero_pad = false;//Attention est-ce que c est vrai pour tous les types ?
 	}
 	return (dash);
 }
@@ -90,8 +91,8 @@ void	fill_struct(const char *str, t_format *format)
 	if (!str && !format)
 		return ;
 	fill_type(str, format);
-	justify_left(str, format);
 	zero_pad(str, format);
+	justify_left(str, format);
 	get_width(str, format);
 	get_precision(str, format);
 }
