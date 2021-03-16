@@ -6,11 +6,58 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 10:34:17 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 11:30:30 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+int		print_width_and_precision_neg(t_format *format, int number, char print)
+{
+	int i;
+	int width_to_print;
+	int precision_to_print;
+
+	precision_to_print = format->precision - n_size(-number);
+	if (format->precision > n_size(-number))
+		width_to_print = format->width - precision_to_print - n_size(number);//(number != 0) ? format->width - precision_to_print - n_size(-number) - 1
+	else
+		width_to_print = format->width - n_size(number);
+	i = 0;
+	i += print_x_time(print, width_to_print);
+	if (number != 0)
+		i += ft_putchar('-');
+	i += print_x_time('0', precision_to_print);
+	ft_putnbr(-number);
+	i += n_size(-number);
+	return (i);
+}
+
+int		reverse_print_width_and_precision_neg(t_format *format, int number, char print)
+{
+	/*
+	(void)format;
+	(void)number;
+	(void)print;
+	*/
+	int i;
+	int width_to_print;
+	int precision_to_print;
+
+	precision_to_print = format->precision - n_size(-number);
+	if (format->precision > n_size(-number))
+		width_to_print = format->width - precision_to_print - n_size(number);//(number != 0) ? format->width - precision_to_print - n_size(-number) - 1
+	else
+		width_to_print = format->width - n_size(number);
+	i = 0;
+	if (number != 0)
+		i += ft_putchar('-');
+	i += print_x_time('0', precision_to_print);
+	ft_putnbr(-number);
+	i += n_size(-number);
+	i += print_x_time(print, width_to_print);
+	return (i);
+}
 
 int 	print_neg_no_justify(t_format *format, int number, char print)
 {
@@ -40,21 +87,31 @@ int 	print_neg_no_justify(t_format *format, int number, char print)
 	}
 	else if (format->flags.precision == true && format->flags.width == false)
 		i += print_zero_pad_then_number_precision(format, number, print);
+	else if (format->flags.precision == true && format->flags.width == true)
+	{
+		i += print_width_and_precision_neg(format, number, to_print);
+	}
 	return (i);
 }
 
 int 	print_neg_justify(t_format *format, int number, char print)
 {
-	int i;
-	int	width_to_print;
+	int		i;
+	int		width_to_print;
+	char	to_print;
 
 	i = 0;
 	width_to_print = (format->width > n_size(number)) ? format->width - n_size(number) : 0;
+	to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == true)
 	{
 		ft_putnbr(number);
 		i += n_size(number);
 		i += print_x_time(print, width_to_print);
+	}
+	else if (format->flags.precision == true && format->flags.width == true)
+	{
+		i += reverse_print_width_and_precision_neg(format, number, to_print);
 	}
 	return (i);
 }
