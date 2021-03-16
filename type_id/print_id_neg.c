@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 12:11:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/16 13:34:46 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,12 @@ int 	print_neg_no_justify(t_format *format, int number, char print)
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
 	{
-		if (number != 0)
-			i += print_width_and_precision_neg(format, number, to_print);
-		/*
-		//REPRENDRE ICI
-		else
+		if (format->precision == 0 && number == 0)
 		{
-			//Afficher que des width
+			i += print_x_time(to_print, format->width);
 		}
-		*/
+		else
+			i += print_width_and_precision_neg(format, number, to_print);
 	}
 	return (i);
 }
