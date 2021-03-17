@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:45:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 16:46:53 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:34:07 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,17 @@ char	which_x_type(const char *format)
 	else if (format[i] == 'X')
 		return ('X');
 	return (0);
+}
+
+//a revoir
+void	ft_putnbr_u_base(unsigned int nbr, char *base)
+{
+	long	nb;
+	int		temp;
+
+	nb = nbr;
+	if (nb >= 16)
+		ft_putnbr_u_base(nb / 16, base);
+	temp = base[(unsigned int)(nb % 16)];
+	write(1, &temp, 1);
 }

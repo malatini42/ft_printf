@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:51:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 15:13:15 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:22:51 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,36 +60,3 @@ int		print_width_and_precision_pos_u(t_format *format, unsigned int number, char
 	}
 	return (i);
 }
-
-//Pas utilisee !
-/*
-int		print_zero_pad_then_number_width_u(t_format *format, unsigned int number, char print)
-{
-	int i;
-	int len;
-	int width_to_print;
-	int num;
-
-	i = 0;
-	num = number;
-	if (number < 0 && format->flags.zero_pad == true)
-	{
-		ft_putchar('-');
-		num = -number;
-	}
-	len = n_size_u(num);
-	width_to_print = format->width - len;
-	if (format->width > -num && num < 0)
-	{
-		format->flags.zero_pad = true;
-		print = '0';
-	}
-	i += print_x_time(print, width_to_print);
-	if (number > 0)
-	{
-		ft_putnbr_u(num);
-		i += n_size_u(num);
-	}
-	return (i);
-}
-*/

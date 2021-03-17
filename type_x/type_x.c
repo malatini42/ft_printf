@@ -6,45 +6,100 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 16:47:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:33:05 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int convert_hexa(t_format *format, va_list arg_ptr, char x)
+
+/* A faire
+int 	print_pos_x_justify(t_format *format, unsigned int number, char print)
+{
+	int 	i;
+	int		width_to_print;
+	char	to_print;
+
+	i = 0;
+	to_print = c_padding_to_print(format);
+	width_to_print = (format->width > n_size_u(number)) ? format->width - n_size_u(number) : 0;
+	if (format->flags.precision == false && format->flags.width == true)
+	{
+		ft_putnbr_u_base(number);
+		i += n_size_u(number);
+		i += print_x_time(print, width_to_print);
+	}
+	else if (format->flags.precision == true && format->flags.width == true)
+		i += reverse_print_width_and_precision_pos_u(format, number, to_print);
+	return (i);
+}
+*/
+
+int 	print_pos_x_no_justify(t_format *format, unsigned int number, char x)
 {
 	int i;
-	char base[17];
+	int len;
+	int width_to_print;
+	int char_to_print;
+	char *base;
 
-	if (x == 'x')
-		ft_strcpy(base, "123456789abcdef");
-	else if (x == 'X')
-		ft_strcpy(base, "123456789ABCDEF");
-	printf("%s\n", base);
 	i = 0;
-	(void)format;
-	(void)arg_ptr;
-	(void)x;
-	return (0);
+	len = 0;
+	width_to_print = 0;
+	base = (x == 'x') ? "012345679abcdef" : "0123456789ABCDEF"; 
+	//printf("\ntest!!!\n");
+	char_to_print = c_padding_to_print(format);
+	if (format->flags.precision == false && format->flags.width == false)
+	{
+		ft_putnbr_u_base(number,base);
+		i += n_size_u(number);
+	}
+	/*
+	else if (format->flags.precision == false && format->flags.width == true)
+		i += print_zero_pad_then_number_width(format, number, char_to_print);
+	else if (format->flags.precision == true && format->flags.width == false)
+		i += print_zero_pad_then_number_precision_u(format, number, char_to_print);
+	else if (format->flags.precision == false && format->flags.width == true)
+	{
+		format->flags.zero_pad = true;
+		i += print_zero_pad_then_number_width(format, number, char_to_print);
+	}
+	else if (format->flags.precision == true && format->flags.width == true)
+		i += print_width_and_precision_pos_u(format, number, char_to_print);
+	*/
+	return (i);
 }
 
-void	print_x(const char *format, t_format *format, va_list arg_ptr)
+int		print_pos_x_number(t_format *format, unsigned int number, char x)
 {
-	int 	number;
 	int 	i;
-	char 	x;
+	char 	print;
 
 	i = 0;
-	x = which_x_type(format);
+	print = c_padding_to_print(format);
+	if (format->flags.justify_left == 0)
+		i += print_pos_x_no_justify(format, number, x);
+	/* A faire
+	else
+		i += print_pos_x_justify(format, number, print, x);
+	*/
+	return (i);
+}
+
+void	print_x(const char *str, t_format *format, va_list arg_ptr)
+{
+	unsigned int	number;
+	int 			i;
+	char 			x;
+
+	i = 0;
+	x = which_x_type(str);
 	/*
 	printf("-------------------\n");
 	printstruct(*format);
 	printf("-------------------\n");
 	*/
-	number = va_arg(arg_ptr, int);
-	//number = convert_hexa(format, arg_ptr, x);
-	//Faire une fonction qui va convertir en hexa
-	i += print_pos_u_number(format, number);
+	number = va_arg(arg_ptr, unsigned int);
+	i += print_pos_x_number(format, number, x);
 	format->printed_chars += i;
 }

@@ -6,12 +6,14 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:54:31 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 17:06:40 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 18:48:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
+//a renommer 
+//a revoir
 int		n_size_i(int n)
 {
 	int i;
@@ -45,7 +47,7 @@ char	*create_string(char *str, long nb, long length, long sign)
 }
 
 //pas utilise pour l instant
-char	*ft_itoa(int n)
+char	*ft_itoa(unsigned int n)
 {
 	char	*str;
 	long	length;
