@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 17:50:33 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 15:09:34 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,10 @@ int		print_pos_u_number(t_format *format, unsigned int number);
 int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
 int 	print_pos_u_no_justify(t_format *format, unsigned int number);
 int		print_zero_pad_then_number_precision_u(t_format * format, unsigned int number, char char_to_print);
+int		print_width_and_precision_pos_u(t_format *format, unsigned int number, char print);
+int		reverse_print_width_and_precision_pos_u(t_format *format, int number, char print);
+int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
+//int		print_zero_pad_then_number_width_u(t_format *format, unsigned int number, char print);
 //a faire
 //int print_pos_u_number(format, number);
 //+ faire un putnbr_u

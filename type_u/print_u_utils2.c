@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:51:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 19:14:48 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 15:13:15 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,63 @@ int		print_zero_pad_then_number_precision_u(t_format * format, unsigned int numb
 	i += number == 0 ? 0 : n_size_u(number);
 	return (i);
 }
+
+int		print_width_and_precision_pos_u(t_format *format, unsigned int number, char print)
+{
+	int i;
+	int width_to_print;
+	int precision_to_print;
+
+	//Ces conditions reviennent souvent on pourrait peut etre refaire une fonction
+	precision_to_print = (number > 0) ? format->precision - n_size_u(number) : format->precision;
+	if (format->precision > n_size_u(number) && number > 0)
+		width_to_print = format->width - precision_to_print - n_size_u(number);//Si le resultat est positif
+	else if (number == 0)
+		width_to_print = format->width - precision_to_print;
+	else
+		width_to_print = format->width - n_size_u(number);
+	i = 0;
+	if (format->flags.zero_pad == true)
+		print = ' ';
+	i += print_x_time(print, width_to_print);
+	i += print_x_time('0', precision_to_print);
+	if (number > 0)
+	{
+		ft_putnbr_u(number);
+		i += n_size_u(number);
+	}
+	return (i);
+}
+
+//Pas utilisee !
+/*
+int		print_zero_pad_then_number_width_u(t_format *format, unsigned int number, char print)
+{
+	int i;
+	int len;
+	int width_to_print;
+	int num;
+
+	i = 0;
+	num = number;
+	if (number < 0 && format->flags.zero_pad == true)
+	{
+		ft_putchar('-');
+		num = -number;
+	}
+	len = n_size_u(num);
+	width_to_print = format->width - len;
+	if (format->width > -num && num < 0)
+	{
+		format->flags.zero_pad = true;
+		print = '0';
+	}
+	i += print_x_time(print, width_to_print);
+	if (number > 0)
+	{
+		ft_putnbr_u(num);
+		i += n_size_u(num);
+	}
+	return (i);
+}
+*/
