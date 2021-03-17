@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_x_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 16:30:53 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/17 16:45:38 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/17 16:46:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf.h"
+#include "../ft_printf.h"
 
-int main(void)
+char	which_x_type(const char *format)
 {
-	printf("\n%i\n", ft_printf("%x", 34));
+	int i;
+
+	if (!format)
+		return (0);
+	i = 0;
+	if (format[i] == '%')
+		i++;
+	while (!(is_correct_type(format[i])) && format[i])
+		i++;
+	if (format[i] == 'x')
+		return ('x');
+	else if (format[i] == 'X')
+		return ('X');
 	return (0);
 }

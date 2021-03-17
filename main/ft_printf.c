@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 16:36:19 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 17:02:57 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,15 @@ void	print_type(const char *str, t_format *spec, va_list arg_ptr)
 	{
 		print_u(spec, arg_ptr);
 	}
+	else if (type == H)
+	{
+		print_x(str, spec, arg_ptr);
+	}
 	/*
 	else if (type == C)
 		return (print_c(format));
 
-	else if (type == H)
-		return (print_pc(format));s
+
 	else if (type == P)
 		return (print_p(format));
 	else

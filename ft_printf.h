@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 15:09:34 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 16:47:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int			count_total_pc(const char *str);
 int			found_star(const char *str);
 int			is_after_star(const char *str, char c);
 int			handle_star(const char *str, t_format *format, va_list arg_ptr);
+char		*ft_strcpy(char *dst, const char *src);
 //No "pc" pour no %
 int			is_correct_type_no_pc(char c);
 int			found_char_until_type(const char *str, char c);
@@ -85,6 +86,7 @@ char		*ft_strdup(const char *s1);
 int			ft_put_pad_0_precision(t_format *format);
 int			print_pad_null_s_justify_left(t_format *spec);
 int			print_x_time(char c, int x);
+char		which_x_type(const char *format);
 //int			ft_putstr_width(const char *str, int width);
 
 /*
@@ -186,6 +188,10 @@ int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
 //int		print_zero_pad_then_number_width_u(t_format *format, unsigned int number, char print);
 //a faire
 //int print_pos_u_number(format, number);
+
+//type x
+void	print_x(const char *format, t_format *format, va_list arg_ptr);
+int 	convert_hexa(t_format *format, va_list arg_ptr, char x);
 //+ faire un putnbr_u
 
 #endif
