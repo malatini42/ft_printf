@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:52:24 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 19:08:41 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:52:03 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		print_zero_pad_true_width(int number, char print, int w_to_print)
 		num = -number;
 	}
 	i += print_x_time(print, w_to_print);
-	ft_putnbr_i(num);//revoir le putnbr pour qu il fasse 2 en 1
+	ft_putnbr_i(num);//revoir le putnbr pour qu il fasse 2 en 1?
 	i += n_size_i(num);
 	return (i);
 }

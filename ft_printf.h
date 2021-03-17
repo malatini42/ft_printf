@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 19:33:32 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:48:41 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
 
 //type x
 void			print_x(const char *str, t_format *format, va_list arg_ptr);
-void			ft_putnbr_u_base(unsigned int nbr, char *base);
+void			ft_putnbr_u_base(unsigned int nbr, char *base, int base_len);
 int 			print_pos_x_no_justify(t_format *format, unsigned int number, char x);
 //+ faire un putnbr_u
 

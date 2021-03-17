@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 19:33:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:52:33 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int 	print_pos_x_no_justify(t_format *format, unsigned int number, char x)
 	char_to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == false)
 	{
-		ft_putnbr_u_base(number,base);
+		ft_putnbr_u_base(number, base, 16);//remettre tout ensemble pour eviter de multiplier les fonctions ?
 		i += n_size_u(number);
 	}
-	/*
+	/* revoir toutes les fonctions
 	else if (format->flags.precision == false && format->flags.width == true)
 		i += print_zero_pad_then_number_width(format, number, char_to_print);
 	else if (format->flags.precision == true && format->flags.width == false)

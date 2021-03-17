@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 16:44:02 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/17 19:50:21 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,3 @@ int		get_type(const char *format)
 	return (0);
 }
 
-char	which_x_type(const char *format)
-{
-	int i;
-
-	if (!format)
-		return (0);
-	i = 0;
-	if (format[i] == '%')
-		i++;
-	while (!(is_correct_type(format[i])) && format[i])
-		i++;
-	if (format[i] == 'x')
-		return ('x');
-	else if (format[i] == 'X')
-		return ('X');
-	return (0);
-}
