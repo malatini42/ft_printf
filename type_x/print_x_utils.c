@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:45:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 11:26:59 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:55:22 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	which_x_type(const char *format)
 	return (0);
 }
 
-
 int		ft_putnbr_u_base(unsigned int nbr, char *base)
 {
 	long			nb;
@@ -49,6 +48,7 @@ int		ft_putnbr_u_base(unsigned int nbr, char *base)
 	return (i);
 }
 
+//revoir les noms des fonctions et leur emplacement
 int		count_nbr_u_base(unsigned int nbr, char *base)
 {
 	long			nb;

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 11:27:16 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:31:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int 	print_pos_x_justify(t_format *format, unsigned int number, char x)
 	if (format->flags.precision == false && format->flags.width == true)
 	{
 		i += ft_putnbr_u_base(number, base);
-		//i += n_size_u(number);
 		i += print_x_time(to_print, width_to_print);
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
@@ -48,9 +47,7 @@ int 	print_pos_x_no_justify(t_format *format, unsigned int number, char x)
 	base = (x == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
 	char_to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == false)
-	{
-		i += ft_putnbr_u_base(number, base);//remettre tout ensemble pour eviter de multiplier les fonctions ?
-	}
+		i += ft_putnbr_u_base(number, base);
 	/* revoir toutes les fonctions */
 	else if (format->flags.precision == false && format->flags.width == true)
 		i += print_zero_pad_then_number_width_x(format, number, char_to_print, base);
@@ -83,13 +80,7 @@ void	print_x(const char *str, t_format *format, va_list arg_ptr)
 
 	i = 0;
 	x = which_x_type(str);
-	/*
-	printf("-------------------\n");
-	printstruct(*format);
-	printf("-------------------\n");
-	*/
 	number = va_arg(arg_ptr, unsigned int);
-	//ft_putnbr_u_base(number, "0123456789abcdef");
 	i += print_pos_x_number(format, number, x);
 	format->printed_chars += i;
 }
