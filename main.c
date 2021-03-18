@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 09:50:51 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 10:10:09 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(void)
 {
 	//printf("\n%x\n", 133);
 	//printf("\n%i\n", ft_printf("%7x", 33));
-	ft_printf("%.5x", 21);
+	ft_printf("%-8.5x", 34);
 	//printf("\n%i\n", ft_printf("%x", 133));
 	//printf("%x", 567);
 	//printf("\n%i\n", ft_printf("%x", 34));

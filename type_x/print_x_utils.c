@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:45:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 09:57:56 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 10:13:06 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,55 @@ int		print_zero_pad_then_number_precision_x(t_format * format, unsigned int numb
 	if (number > 0)
 		i += ft_putnbr_u_base(number, base);
 	//i += number == 0 ? 0 : n_size_u(number);
+	return (i);
+}
+
+int		print_width_and_precision_pos_x(t_format *format, unsigned int number, char print, char *base)
+{
+	int i;
+	int width_to_print;
+	int precision_to_print;
+
+	//Ces conditions reviennent souvent on pourrait peut etre refaire une fonction
+	precision_to_print = (number > 0) ? format->precision - count_nbr_u_base(number, base) : format->precision;
+	if (format->precision > count_nbr_u_base(number, base) && number > 0)
+		width_to_print = format->width - precision_to_print - count_nbr_u_base(number, base);//Si le resultat est positif
+	else if (number == 0)
+		width_to_print = format->width - precision_to_print;
+	else
+		width_to_print = format->width - count_nbr_u_base(number, base);
+	i = 0;
+	if (format->flags.zero_pad == true)
+		print = ' ';
+	i += print_x_time(print, width_to_print);
+	i += print_x_time('0', precision_to_print);
+	if (number > 0)
+	{
+		i += ft_putnbr_u_base(number, base);
+	}
+	return (i);
+}
+
+int		reverse_print_width_and_precision_pos_x(t_format *format, int number, char print, char *base)
+{
+	int i;
+	int width_to_print;
+	int precision_to_print;
+
+	precision_to_print = (number > 0) ? format->precision - count_nbr_u_base(number, base) : format->precision;
+	if (format->precision > count_nbr_u_base(number, base) && number > 0)
+		width_to_print = format->width - precision_to_print - count_nbr_u_base(number, base);//Je pourrais modifier le retour de cette fonction pour simplifier
+	else if (number == 0)
+		width_to_print = format->width - precision_to_print;
+	else
+		width_to_print = format->width - count_nbr_u_base(number, base);
+	i = 0;
+	i += print_x_time('0', precision_to_print);
+	if (number > 0)
+	{
+		i += ft_putnbr_u_base(number, base);
+	}
+	i += print_x_time(print, width_to_print);
 	return (i);
 }
 
