@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:45:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 19:46:02 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 09:57:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,76 @@ char	which_x_type(const char *format)
 	return (0);
 }
 
-//a revoir
-void	ft_putnbr_u_base(unsigned int nbr, char *base, int base_len)
+
+int		ft_putnbr_u_base(unsigned int nbr, char *base)
 {
-	long	nb;
-	int		temp;
+	long			nb;
+	int				temp;
+	int 			base_len;
+	static int		i;
 
 	nb = nbr;
-	if (nb >= base_len)
-		ft_putnbr_u_base(nb / base_len, base, base_len);
-	temp = base[(unsigned int)(nb % 16)];
+	base_len = 16;
+	i = 0;
+	if (base_len - 1 < nb)
+		ft_putnbr_u_base(nb / base_len, base);
+	temp = base[(int)(nb % base_len)];
 	write(1, &temp, 1);
+	i++;
+	return (i);
+}
+
+int		count_nbr_u_base(unsigned int nbr, char *base)
+{
+	long			nb;
+	int				temp;
+	int 			base_len;
+	static int		i;
+
+	nb = nbr;
+	base_len = 16;
+	i = 0;
+	if (base_len - 1 < nb)
+		count_nbr_u_base(nb / base_len, base);
+	temp = base[(int)(nb % base_len)];
+	i++;
+	return (i);
+}
+
+int		print_zero_pad_then_number_precision_x(t_format * format, unsigned int number, char print, char *base)
+{
+	int i;
+	int len;
+	int precision_to_print;
+
+	i = 0;
+	len = (number == 0) ? 0 : count_nbr_u_base(number, base);
+	precision_to_print = format->precision - len;
+	if ((unsigned int)format->precision >=number)
+	{
+		format->flags.zero_pad = true;
+		print = '0';
+	}
+	i += print_x_time(print, precision_to_print);
+	if (number > 0)
+		i += ft_putnbr_u_base(number, base);
+	//i += number == 0 ? 0 : n_size_u(number);
+	return (i);
+}
+
+int		print_zero_pad_then_number_width_x(t_format *format, unsigned int number, char print, char *base)
+{
+	int i;
+	int len;
+	int width_to_print;
+	int num;
+
+	i = 0;
+	num = number;
+	len = count_nbr_u_base(number, base);
+	width_to_print = format->width - len;
+	i += print_x_time(print, width_to_print);
+	i += ft_putnbr_u_base(number, base);
+	//i += n_size_i(num);
+	return (i);
 }

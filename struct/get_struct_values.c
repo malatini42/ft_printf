@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:56:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 19:50:21 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 08:22:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,3 @@ int		get_type(const char *format)
 		return (P);
 	return (0);
 }
-
