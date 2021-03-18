@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/17 19:51:11 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 17:51:35 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ int 	print_pos_justify(t_format *format, int number, char print)
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
 		i += reverse_print_width_and_precision_pos(format, number, to_print);
+	else if (format->flags.precision == false && format->flags.width == false)
+	{
+		ft_putnbr_i(number);
+		i += n_size_i(number);//a revoir pour mettre au propre ?
+	}
 	return (i);
 }
 
