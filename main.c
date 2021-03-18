@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 17:25:15 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 21:46:31 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int main(void)
 {
-	ft_printf("Le mien : %c\n", '\0');
-	printf("Le vrai : %c\n", '\0');
+	ft_printf("%%-d 42 == %-d" , "blabla");
 	return (0);
 }

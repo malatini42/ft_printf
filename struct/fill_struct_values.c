@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/07 13:55:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/16 12:02:15 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 21:45:30 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ t_format	*ft_initialize_struct(void)
 	format->flags.zero_pad = false;
 	format->flags.width = false;
 	format->flags.precision = false;
+	format->flags.star = false;
 	format->width = 0;
 	format->precision  = 0;
 	format->type = 0;
-	format->printed_chars = 0;
+	format->printed_chars = 0;//revoir cette partie laissee a l abandon ?
 	return (format);
 }
 
