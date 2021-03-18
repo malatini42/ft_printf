@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 10:50:58 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:11:58 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,41 +28,25 @@ int		parse(const char *format, va_list arg_ptr)
 	return (printed_chars);
 }
 
-void	print_type(const char *str, t_format *spec, va_list arg_ptr)
+int		print_type(const char *str, t_format *spec, va_list arg_ptr)
 {
 	int type;
 	type = spec->type;
 	if (type == PC)
 		print_pc(str, spec);
 	else if (type == S)
-	{
 		print_s(spec, arg_ptr);
-	}
 	else if (type == ID)
-	{
 		print_id(spec, arg_ptr);
-	}
 	else if (type == U)
-	{
 		print_u(spec, arg_ptr);
-	}
 	else if (type == H)
-	{
 		print_x(str, spec, arg_ptr);
-	}
 	else if (type == P)
-	{
 		print_p(str, spec, arg_ptr);
-	}
-	/*
 	else if (type == C)
-		return (print_c(format));
-
-
-
-	else
-		return (-1);
-	*/
+		print_c(spec, arg_ptr);
+	return (-1);//a voir
 }
 
 int		ft_printf(const char *format, ...)
