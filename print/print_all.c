@@ -6,12 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:20:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:39:36 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 10:51:44 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
+//A mettre dans un autre fichier d utils
 char	c_padding_to_print(t_format *format)
 {
 	char to_print;

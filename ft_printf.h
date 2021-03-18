@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 10:13:22 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:52:33 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,15 @@ int 		print_pos_x_justify(t_format *format, unsigned int number, char x);
 int			print_zero_pad_then_number_precision_x(t_format * format, unsigned int number, char print, char *base);
 int			print_width_and_precision_pos_x(t_format *format, unsigned int number, char print, char *base);
 int			reverse_print_width_and_precision_pos_x(t_format *format, int number, char print, char *base);
+int			handle_null_pointer(t_format *format, unsigned long long pointer);
 //+ faire un putnbr_u
+
+//type_p
+
+void	print_p(const char *str, t_format *format, va_list arg_ptr);
+int		print_pos_p_number(t_format *format, unsigned long long pointer);
+int 	print_pos_p_no_justify(t_format *format, unsigned long long pointer);
+int		print_width_and_precision_pos_x(t_format *format, unsigned int number, char print, char *base);
+int		print_zero_pad_then_number_precision_p(t_format * format, unsigned long long pointer, char print, char *base);
 
 #endif
