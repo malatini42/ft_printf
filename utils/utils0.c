@@ -1,70 +1,86 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils1.c                                           :+:      :+:    :+:   */
+/*   utils0.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/09 18:38:25 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 15:57:09 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/19 15:58:43 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	is_correct_type(char c)
+//revoir la fonction silent putnbr ?
+
+int	ft_putchar(char c)
 {
 	if (!c)
 		return (0);
-	if (c == 'i' || c == 'd' || c == 'u' || c == 's' || c == 'c' ||
-		c == 'x' || c == 'X' || c == 'p' || c == '%')
-	{
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_isdigit(int c)
+{
+	if (!c)
+		return (0);
+	if (c >= '0' && c <= '9')
 		return (1);
+	return (0);
+}
+
+int	found_char(const char *str, char c)
+{
+	int i;
+
+	i = 0;
+	if (!c && !str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
 	}
 	return (0);
 }
 
-int	ft_strlen(const char *s)
+int		n_size_i(int n)
 {
 	int i;
 
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
+	i = 1;
+	if (n < 0)
+	{
 		i++;
+		n = -n;
+	}
+	while (n > 9)
+	{
+		n = n / 10;
+		i++;
+	}
 	return (i);
 }
 
-int is_correct_spec(const char *s)
+int		ft_putnbr_i(int nbr)
 {
+	int n;
 	int i;
 
 	i = 0;
-	if (!s)
-		return (0);
-	if (s[i] == '%')
-		i++;
-	while (s[i])
+	n = nbr;
+	if (nbr < 0)
 	{
-		if (is_correct_type(s[i]))
-			return (1);
+		n = -n;
+		ft_putchar('-');
 		i++;
 	}
-	return (0);
-}
-
-int	ft_putstr(const char *str)
-{
-	int i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
+	if (n > 9)
+		i += ft_putnbr_i(n / 10);
+	ft_putchar(n % 10 + '0');
+	i++;
 	return (i);
 }

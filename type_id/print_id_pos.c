@@ -6,14 +6,11 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 17:51:35 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:38:00 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-//A remettre au propre - passer en arg plutot que de faire pleins de var
-//Harmoniser
 
 int		print_width_and_precision_pos(t_format *format, int number, char print)
 {
@@ -23,7 +20,7 @@ int		print_width_and_precision_pos(t_format *format, int number, char print)
 
 	precision_to_print = format->precision - n_size_i(number);
 	if (format->precision > n_size_i(number))
-		width_to_print = format->width - precision_to_print - n_size_i(number);//Si le resultat est positif
+		width_to_print = format->width - precision_to_print - n_size_i(number);
 	else
 		width_to_print = format->width - n_size_i(number);
 	i = 0;
@@ -45,7 +42,7 @@ int		reverse_print_width_and_precision_pos(t_format *format, int number, char pr
 
 	precision_to_print = format->precision - n_size_i(number);
 	if (format->precision > n_size_i(number))
-		width_to_print = format->width - precision_to_print - n_size_i(number);//Si le resultat est positif
+		width_to_print = format->width - precision_to_print - n_size_i(number);
 	else
 		width_to_print = format->width - n_size_i(number);
 	i = 0;
@@ -106,7 +103,7 @@ int 	print_pos_justify(t_format *format, int number, char print)
 	else if (format->flags.precision == false && format->flags.width == false)
 	{
 		ft_putnbr_i(number);
-		i += n_size_i(number);//a revoir pour mettre au propre ?
+		i += n_size_i(number);
 	}
 	return (i);
 }

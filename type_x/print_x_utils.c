@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:45:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 13:55:22 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:09:03 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int		ft_putnbr_u_base(unsigned int nbr, char *base)
 	return (i);
 }
 
-//revoir les noms des fonctions et leur emplacement
 int		count_nbr_u_base(unsigned int nbr, char *base)
 {
 	long			nb;
@@ -83,7 +82,6 @@ int		print_zero_pad_then_number_precision_x(t_format * format, unsigned int numb
 	i += print_x_time(print, precision_to_print);
 	if (number > 0)
 		i += ft_putnbr_u_base(number, base);
-	//i += number == 0 ? 0 : n_size_u(number);
 	return (i);
 }
 
@@ -93,7 +91,6 @@ int		print_width_and_precision_pos_x(t_format *format, unsigned int number, char
 	int width_to_print;
 	int precision_to_print;
 
-	//Ces conditions reviennent souvent on pourrait peut etre refaire une fonction
 	precision_to_print = (number > 0) ? format->precision - count_nbr_u_base(number, base) : format->precision;
 	if (format->precision > count_nbr_u_base(number, base) && number > 0)
 		width_to_print = format->width - precision_to_print - count_nbr_u_base(number, base);//Si le resultat est positif
@@ -121,7 +118,7 @@ int		reverse_print_width_and_precision_pos_x(t_format *format, int number, char 
 
 	precision_to_print = (number > 0) ? format->precision - count_nbr_u_base(number, base) : format->precision;
 	if (format->precision > count_nbr_u_base(number, base) && number > 0)
-		width_to_print = format->width - precision_to_print - count_nbr_u_base(number, base);//Je pourrais modifier le retour de cette fonction pour simplifier
+		width_to_print = format->width - precision_to_print - count_nbr_u_base(number, base);
 	else if (number == 0)
 		width_to_print = format->width - precision_to_print;
 	else

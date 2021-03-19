@@ -6,12 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 16:34:24 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 12:23:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:09:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
+//mettre dans les fichiers utils ?
 int		print_pad_pc(t_format *spec, const char *str)
 {
 	int		nb_pad;

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:26:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 13:28:56 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:09:48 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		n_size_u(unsigned int n)
 	return ((int)i);
 }
 
-void	ft_putnbr_u(unsigned int nbr)//Le calcul est pas top
+void	ft_putnbr_u(unsigned int nbr)
 {
 	unsigned int n;
 
@@ -53,14 +53,12 @@ int		reverse_print_width_and_precision_pos_u(t_format *format, int number, char 
 
 	precision_to_print = (number > 0) ? format->precision - n_size_u(number) : format->precision;
 	if (format->precision > n_size_u(number) && number > 0)
-		width_to_print = format->width - precision_to_print - n_size_u(number);//Je pourrais modifier le retour de cette fonction pour simplifier
+		width_to_print = format->width - precision_to_print - n_size_u(number);
 	else if (number == 0)
 		width_to_print = format->width - precision_to_print;
 	else
 		width_to_print = format->width - n_size_u(number);
 	i = 0;
-	//printf("\nPrecision : %i\n", precision_to_print);
-	//printf("\nWidth : %i\n", width_to_print);
 	i += print_x_time('0', precision_to_print);
 	if (number > 0)
 	{

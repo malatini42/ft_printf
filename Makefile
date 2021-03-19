@@ -6,19 +6,18 @@
 #    By: malatini <malatini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/04 08:34:15 by malatini          #+#    #+#              #
-#    Updated: 2021/03/18 14:09:59 by malatini         ###   ########.fr        #
+#    Updated: 2021/03/19 15:10:54 by malatini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	./main/ft_printf.c \
 		./struct/fill_struct_values.c \
 		./struct/get_struct_values.c \
+		./utils/utils0.c \
 		./utils/utils1.c \
 		./utils/utils2.c \
-		./utils/utils3.c \
-		./utils/itoa.c \
+		./utils/utils_to_delete.c \
 		./star/star.c \
-		./utils/utils5_print.c \
 		./print/print_all.c \
 		./type_pc/type_pc.c \
 		./type_pc/print_pc_utils.c \

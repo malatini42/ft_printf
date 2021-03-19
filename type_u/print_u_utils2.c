@@ -6,13 +6,12 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:51:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 10:07:09 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:08:32 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-//A faire - en reprenant celle des int
 int		print_zero_pad_then_number_precision_u(t_format * format, unsigned int number, char print)
 {
 	int i;
@@ -34,17 +33,15 @@ int		print_zero_pad_then_number_precision_u(t_format * format, unsigned int numb
 	return (i);
 }
 
-//La mettre a cote de la reverse pour ne pas les confondre ?
 int		print_width_and_precision_pos_u(t_format *format, unsigned int number, char print)
 {
 	int i;
 	int width_to_print;
 	int precision_to_print;
 
-	//Ces conditions reviennent souvent on pourrait peut etre refaire une fonction
 	precision_to_print = (number > 0) ? format->precision - n_size_u(number) : format->precision;
 	if (format->precision > n_size_u(number) && number > 0)
-		width_to_print = format->width - precision_to_print - n_size_u(number);//Si le resultat est positif
+		width_to_print = format->width - precision_to_print - n_size_u(number);
 	else if (number == 0)
 		width_to_print = format->width - precision_to_print;
 	else

@@ -6,14 +6,12 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:52:24 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 14:17:24 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 15:46:28 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-//faire une fonction pour determiner la width en eviter les ternaires ?
-//toujours utilisee ?
 int		print_pad_then_number(t_format *format, int number)
 {
 	int		i;
@@ -69,7 +67,7 @@ int		print_zero_pad_then_number_precision_i(t_format *format, int number, char p
 
 	i = 0;
 	num = number;
-	if (number < 0)//|| format->flags.zero_pad == true
+	if (number < 0)
 	{
 		ft_putchar('-');
 		num = -number;
@@ -101,7 +99,7 @@ int		print_zero_pad_true_width(int number, char print, int w_to_print)
 		num = -number;
 	}
 	i += print_x_time(print, w_to_print);
-	ft_putnbr_i(num);//revoir le putnbr pour qu il fasse 2 en 1?
+	ft_putnbr_i(num);
 	i += n_size_i(num);
 	return (i);
 }
