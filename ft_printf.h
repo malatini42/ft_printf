@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 09:05:00 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:15:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,8 @@ char		c_padding_to_print(t_format *format);
 
 int			diff_width_for_pc(t_format *format);
 int			diff_width_for_s(t_format *format, const char *str);
-int			diff_width_any_type(t_format *spec, const char *str);
-int			print_pad_pc(t_format *spec, const char *str);
+int			diff_width_any_type(t_format *spec, const char *str, va_list arg_ptr);
+int			print_pad_pc(t_format *spec, const char *str, va_list arg_ptr);
 char		*ft_strdup_until_type(const char *s1);
 int			ft_putstr_limit(const char *str, int precision, int witdh, char to_print);
 //bool		justify_left_s(const char *str, t_format *format);
@@ -148,19 +148,19 @@ void		fill_struct(const char *str, t_format *format);
 */
 //type_pc
 
-void		print_pc( const char *str, t_format *spec);
+void		print_pc( const char *str, t_format *spec, va_list arg_ptr);
 
 //type_s
 
 void		print_s(t_format *format, va_list arg_ptr);
-int			print_pad_s(t_format *spec, const char *str);
+int			print_pad_s(t_format *spec, const char *str, va_list arg_ptr);
 int			print_pad_null_s_no_left(t_format *spec, int max_precision);
 void		print_null_s(t_format *format);
 int			redirect_no_justify_left(t_format *format, char print);
 
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);
-int			len_with_precision(const char *str, t_format *spec);
+int			len_with_precision(const char *str, t_format *spec, va_list arg_ptr);
 int			width_precision_null_left(t_format *format);
 
 //type_id

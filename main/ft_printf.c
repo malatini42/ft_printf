@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 09:51:06 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:16:16 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		print_type(const char *str, t_format *spec, va_list arg_ptr)
 	int type;
 	type = spec->type;
 	if (type == PC)
-		print_pc(str, spec);
+		print_pc(str, spec, arg_ptr);
 	else if (type == S)
 		print_s(spec, arg_ptr);
 	else if (type == ID)

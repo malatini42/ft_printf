@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 10:17:16 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:14:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	print_s(t_format *format, va_list arg_ptr)
 	}
 	i = 0;
 	if (format->flags.justify_left == 0)
-		i += print_pad_s(format, s);
+		i += print_pad_s(format, s, arg_ptr);
 	i += ft_putstr_precision(s, format);//Le nom ne va pas du tout il y a cafouillage
 	if (format->flags.justify_left == 1)
-		i += print_pad_s(format, s);
+		i += print_pad_s(format, s, arg_ptr);
 	format->printed_chars += i;
 }

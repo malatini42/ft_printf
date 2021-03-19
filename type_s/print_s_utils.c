@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 10:22:32 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:18:25 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,19 +76,26 @@ int		ft_putstr_precision(char *str, t_format *spec)
 	return (i);
 }
 
-int		len_with_precision(const char *str, t_format *spec)
+int		len_with_precision(const char *str, t_format *spec, va_list arg_ptr)
 {
-	int i;
-	int precision;
+	int 	i;
+	int 	precision;
+	char	*arg;
 
 	if (!str && !spec)
 		return (0);
+	if (found_star(str) > 0)
+		arg = va_arg(arg_ptr, char *);
 	precision = spec->precision;
 	if (precision == 0 && spec->flags.precision == true)
 		return (0);
 	i = 0;
 	if (!str)
 		return (0);
+	if (spec->precision < 0 && spec->flags.width == false)
+	{
+		return (ft_putstr(arg));
+	}
 	while (str[i])
 	{
 		if (i >= precision && precision != 0)
