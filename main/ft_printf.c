@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 15:49:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 11:16:16 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:23:26 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,13 @@ int		parse(const char *format, va_list arg_ptr)
 	t_format	*spec;
 	int			len;
 	int			printed_chars;
+	int			star;
 
 	len = 0;
 	spec = ft_initialize_struct();
 	fill_struct(format, spec);
-	if (found_star(format) > 0)
-		handle_star(format, spec, arg_ptr);
+	if ((star = found_star(format)) > 0)
+		handle_star(format, spec, arg_ptr, star);
 	print_type(format, spec, arg_ptr);
 	printed_chars = spec->printed_chars;
 	return (printed_chars);
@@ -33,7 +34,7 @@ int		print_type(const char *str, t_format *spec, va_list arg_ptr)
 	int type;
 	type = spec->type;
 	if (type == PC)
-		print_pc(str, spec, arg_ptr);
+		print_pc(str, spec);
 	else if (type == S)
 		print_s(spec, arg_ptr);
 	else if (type == ID)

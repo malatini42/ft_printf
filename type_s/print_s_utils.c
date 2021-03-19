@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 11:18:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 14:13:11 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,15 @@ int		ft_putstr_precision(char *str, t_format *spec)
 	return (i);
 }
 
-int		len_with_precision(const char *str, t_format *spec, va_list arg_ptr)
+int		len_with_precision(const char *str, t_format *spec)
 {
 	int 	i;
 	int 	precision;
-	char	*arg;
+	char 	to_print;
 
+	to_print = c_padding_to_print(spec);
 	if (!str && !spec)
 		return (0);
-	if (found_star(str) > 0)
-		arg = va_arg(arg_ptr, char *);
 	precision = spec->precision;
 	if (precision == 0 && spec->flags.precision == true)
 		return (0);
@@ -94,12 +93,27 @@ int		len_with_precision(const char *str, t_format *spec, va_list arg_ptr)
 		return (0);
 	if (spec->precision < 0 && spec->flags.width == false)
 	{
-		return (ft_putstr(arg));
+		ft_putstr(str);
+		i += ft_strlen(str);
+		spec->printed_chars += i;
+		//printf("Test : %i\n", i += ft_strlen(str));
+		//Pb de retour ??
+		return (i);
 	}
 	while (str[i])
 	{
 		if (i >= precision && precision != 0)
+		{
+			if (spec->precision < 0 && spec->width < 0)
+			{
+				ft_putstr(str);
+				i += ft_strlen(str);
+				i += print_x_time(to_print, -spec->width - ft_strlen(str));
+				spec->printed_chars += i;
+				//printf("Le resultat est : %i\n", i);
+			}
 			return (i);
+		}
 		i++;
 	}
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:40:30 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 10:13:51 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:13:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,12 @@ int		is_after_star(const char *str, char c)
 }
 
 //a remettre au propre
-int		handle_star(const char *str, t_format *format, va_list arg_ptr)
+int		handle_star(const char *str, t_format *format, va_list arg_ptr, int star)
 {
-	int star;
 	int arg;
 
 	arg = va_arg(arg_ptr, int);
 	//je repasse dans une boucle pour tester alors que je devrais l envoyer directement dans l argument
-	star = found_star(str);
 	if (star > 0)
 		format->flags.star = true;
 	if (star == 1 && is_after_star(str, '.') == 1)
@@ -79,6 +77,7 @@ int		handle_star(const char *str, t_format *format, va_list arg_ptr)
 		format->width = arg;
 		format->flags.width = true;
 	}
+	//Ca va poser des pb ! doit etre gere ailleurs ?
 	else if (star == 2)
 	{
 		format->width = arg;

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:12:09 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 11:06:54 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:21:01 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int		ft_put_pad_0_precision(t_format *format)
 }
 
 //Probleme d organisation des fonctions
-int		print_pad_s(t_format *spec, const char *str, va_list arg_ptr)
+int		print_pad_s(t_format *spec, const char *str)
 {
 	int		nb_pad;
 	char	to_print;
 	int		i;
 
-	nb_pad = diff_width_any_type(spec, str, arg_ptr);
+	nb_pad = diff_width_any_type(spec, str);
 	to_print = c_padding_to_print(spec);
 	i = 0;
 	while (nb_pad > 0)

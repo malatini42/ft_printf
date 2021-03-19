@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:20:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 11:05:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 12:20:24 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ char	c_padding_to_print(t_format *format)
 	return (to_print);
 }
 
-int		diff_width_any_type(t_format *spec, const char *str, va_list arg_ptr)
+int		diff_width_any_type(t_format *spec, const char *str)
 {
 	int	diff_width;
 
 	diff_width = 0;
 	if (spec->type == S && str)
-		diff_width = spec->width - len_with_precision(str, spec, arg_ptr);
+		diff_width = spec->width - len_with_precision(str, spec);
 	else if (spec->type == S && !str)
 	{
 		diff_width = spec->width - 6;
