@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 15:56:49 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:00:19 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 
 typedef	struct	s_flags
 {
-	bool justify_left;
+	bool justify_right;
 	bool zero_pad;
 	bool precision;
 	bool width;
@@ -75,6 +75,7 @@ typedef struct	s_format
 /*
 ** UTILS - a mettre séparément plus tard
 */
+//refaire le tour de toutes les fonctions
 
 int			found_char(const char *str, char c);
 int			is_correct_type(char c);
@@ -136,7 +137,7 @@ int			get_type(const char *format);
 ** fill_struct.c
 */
 
-bool		justify_left(const char *str, t_format *format);
+bool		justify_right(const char *str, t_format *format);
 bool		zero_pad(const char *str, t_format *format);
 int			fill_width(const char *str, t_format *format);
 int			fill_precision(const char *str, t_format *format);

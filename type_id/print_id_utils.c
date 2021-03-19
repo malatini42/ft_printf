@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:52:24 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 15:46:28 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:08:38 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int		print_pad_then_number(t_format *format, int number)
 	to_print = c_padding_to_print(format);
 	width_to_print = (format->width > n_size_i(number)) ? format->width - n_size_i(number) : 0;
 	i += print_x_time(to_print, width_to_print);
-	ft_putnbr_i(number);
-	i += n_size_i(number);
+	i += ft_putnbr_i(number);
 	return (i);
 }
 
@@ -49,12 +48,9 @@ int		print_zero_pad_then_number_width(t_format *format, int number, char print)
 		print = '0';
 	}
 	i += print_x_time(print, width_to_print);
-	ft_putnbr_i(num);
-	i += n_size_i(num);
+	i += ft_putnbr_i(num);
 	if (format->flags.precision == false && format->flags.width == true && format->width < 0 && number > 0)
-	{
 		i += print_x_time(print, -format->width -len);
-	}
 	return (i);
 }
 
@@ -81,8 +77,7 @@ int		print_zero_pad_then_number_precision_i(t_format *format, int number, char p
 		print = '0';
 	}
 	i += print_x_time(print, precision_to_print);
-	ft_putnbr_i(num);
-	i += n_size_i(num);
+	i += ft_putnbr_i(num);
 	return (i);
 }
 
@@ -99,7 +94,6 @@ int		print_zero_pad_true_width(int number, char print, int w_to_print)
 		num = -number;
 	}
 	i += print_x_time(print, w_to_print);
-	ft_putnbr_i(num);
-	i += n_size_i(num);
+	i += ft_putnbr_i(num);
 	return (i);
 }

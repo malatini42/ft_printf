@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   star.c                                             :+:      :+:    :+:   */
+/*   utils5.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/13 14:40:30 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 17:37:31 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/19 18:03:45 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/19 18:10:02 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,41 @@ int		handle_star(const char *str, t_format *format, va_list arg_ptr, int star)
 		format->flags.precision = true;
 	}
 	return (1);
+}
+
+char	which_x_type(const char *format)
+{
+	int i;
+
+	if (!format)
+		return (0);
+	i = 0;
+	if (format[i] == '%')
+		i++;
+	while (!(is_correct_type(format[i])) && format[i])
+		i++;
+	if (format[i] == 'x')
+		return ('x');
+	else if (format[i] == 'X')
+		return ('X');
+	return (0);
+}
+
+//revoir s il y a besoin du static
+int		ft_putnbr_u_base(unsigned int nbr, char *base)
+{
+	long			nb;
+	int				temp;
+	int 			base_len;
+	static int		i;
+
+	nb = nbr;
+	base_len = 16;
+	i = 0;
+	if (base_len - 1 < nb)
+		ft_putnbr_u_base(nb / base_len, base);
+	temp = base[(int)(nb % base_len)];
+	write(1, &temp, 1);
+	i++;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:26:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 15:09:48 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:49:35 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		reverse_print_width_and_precision_pos_u(t_format *format, int number, char 
 	i += print_x_time('0', precision_to_print);
 	if (number > 0)
 	{
-		ft_putnbr_u(number);
+		ft_putnbr_u(number);//changer le retour de celle-ci pour ne faire qu une ligne
 		i += n_size_u(number);
 	}
 	i += print_x_time(print, width_to_print);
@@ -123,7 +123,7 @@ int		print_pos_u_number(t_format *format, unsigned int number)
 
 	i = 0;
 	print = c_padding_to_print(format);
-	if (format->flags.justify_left == 0)
+	if (format->flags.justify_right == 0)
 		i += print_pos_u_no_justify(format, number);
 	else
 		i += print_pos_u_justify(format, number, print);

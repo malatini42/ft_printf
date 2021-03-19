@@ -6,13 +6,11 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 15:58:43 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 18:02:59 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-//revoir la fonction silent putnbr ?
 
 int	ft_putchar(char c)
 {

@@ -6,21 +6,20 @@
 #    By: malatini <malatini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/04 08:34:15 by malatini          #+#    #+#              #
-#    Updated: 2021/03/19 15:10:54 by malatini         ###   ########.fr        #
+#    Updated: 2021/03/19 18:11:09 by malatini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	./main/ft_printf.c \
-		./struct/fill_struct_values.c \
-		./struct/get_struct_values.c \
+SRCS =	./ft_printf.c \
 		./utils/utils0.c \
 		./utils/utils1.c \
 		./utils/utils2.c \
+		./utils/utils3.c \
+		./utils/utils4.c \
+		./utils/utils5.c \
+		./utils/utils6.c \
 		./utils/utils_to_delete.c \
-		./star/star.c \
-		./print/print_all.c \
 		./type_pc/type_pc.c \
-		./type_pc/print_pc_utils.c \
 		./type_s/type_s.c \
 		./type_s/print_s_utils.c \
 		./type_s/print_s_utils2.c \
@@ -34,7 +33,6 @@ SRCS =	./main/ft_printf.c \
 		./type_u/print_u_utils.c \
 		./type_u/print_u_utils2.c \
 		./type_x/type_x.c \
-		./type_x/print_x_utils.c \
 		./type_p/type_p.c \
 		./type_c/type_c.c \
 

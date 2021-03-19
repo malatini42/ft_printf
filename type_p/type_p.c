@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:47:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 13:59:26 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:51:11 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		handle_null_pointer(t_format *format, unsigned long long pointer)
 	(void)format;
 	to_print = c_padding_to_print(format);
 	width = (pointer != 0 || format->precision == 0) ?  format->width - 2 : format->width;//Cette condition est inutile voir fausse ?
-	if (format->flags.justify_left == 0 && format->flags.precision == false && format->flags.width == true)
+	if (format->flags.justify_right == 0 && format->flags.precision == false && format->flags.width == true)
 		i += print_x_time(to_print, format->width - 3);
 	else if (format->flags.precision == true && format->precision == 0)
 	{
@@ -105,11 +105,7 @@ int		print_width_and_precision_pos_p(t_format *format, unsigned long long pointe
 
 	precision_to_print = (pointer > 0) ? format->precision - count_nbr_u_base(pointer, base) : format->precision;
 	if (format->precision > count_nbr_u_base(pointer, base) && pointer > 0)
-		width_to_print = format->width - precision_to_print - count_nbr_u_base(pointer, base);//Si le resultat est positif
-	/*
-	else if (pointer == 0)
-		width_to_print = format->width - precision_to_print;
-	*/
+		width_to_print = format->width - precision_to_print - count_nbr_u_base(pointer, base);
 	else
 		width_to_print = format->width - count_nbr_u_base(pointer, base) - 2;
 	i = 0;
@@ -119,12 +115,9 @@ int		print_width_and_precision_pos_p(t_format *format, unsigned long long pointe
 		i += ft_putstr("0x");
 	i += print_x_time(print, width_to_print);
 	i += print_x_time('0', precision_to_print);//?
-	/*if (pointer > 0)
-	{*/
 	if (format->width > format->precision)
 		i += ft_putstr("0x");
 	i += ft_putnbr_p_base(pointer, base);
-	//}
 	return (i);
 }
 
@@ -186,7 +179,7 @@ int		print_pos_p_number(t_format *format, unsigned long long pointer)
 	i = 0;
 	base = "0123456789abcdef";
 	print = c_padding_to_print(format);
-	if (format->flags.justify_left == 0)
+	if (format->flags.justify_right == 0)
 		i += print_pos_p_no_justify(format, pointer);
 	else
 		i += print_pos_p_justify(format, pointer, base);

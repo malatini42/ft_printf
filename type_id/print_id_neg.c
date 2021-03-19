@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 16:01:23 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:43:43 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		print_width_and_precision_neg(t_format *format, int number, char print)
 		i += ft_putchar('-');
 	i += print_x_time('0', precision_to_print);
 	i += ft_putnbr_i(-number);
-	//i += n_size_i(-number);
 	return (i);
 }
 
@@ -51,7 +50,6 @@ int		reverse_print_width_and_precision_neg(t_format *format, int number, char pr
 		i += ft_putchar('-');
 	i += print_x_time('0', precision_to_print);
 	i += ft_putnbr_i(-number);
-	//i += n_size_i(-number);
 	i += print_x_time(print, width_to_print);
 	return (i);
 }
@@ -151,9 +149,9 @@ int		print_neg_number(t_format *format, int number)
 	i = 0;
 	len = 0;
 	char_to_print = c_padding_to_print(format);
-	if (format->flags.justify_left == false)
+	if (format->flags.justify_right == false)
 		i += print_neg_no_justify(format, number, char_to_print);
-	else if (format->flags.justify_left == true)
+	else if (format->flags.justify_right == true)
 		i += print_neg_justify(format, number, char_to_print);
 	return (i);
 }

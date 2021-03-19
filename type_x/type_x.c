@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 13:31:53 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:50:16 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int 	print_pos_x_justify(t_format *format, unsigned int number, char x)
 	width_to_print = (format->width > count_nbr_u_base(number, base)) ? format->width - count_nbr_u_base(number, base) : 0;
 	if (format->flags.precision == false && format->flags.width == true)
 	{
-		i += ft_putnbr_u_base(number, base);
+		i += ft_putnbr_u_base(number, base);//changer le retour de celle-ci pour ne faire qu une ligne
 		i += print_x_time(to_print, width_to_print);
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
@@ -48,7 +48,6 @@ int 	print_pos_x_no_justify(t_format *format, unsigned int number, char x)
 	char_to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == false)
 		i += ft_putnbr_u_base(number, base);
-	/* revoir toutes les fonctions */
 	else if (format->flags.precision == false && format->flags.width == true)
 		i += print_zero_pad_then_number_width_x(format, number, char_to_print, base);
 	else if (format->flags.precision == true && format->flags.width == false)
@@ -65,7 +64,7 @@ int		print_pos_x_number(t_format *format, unsigned int number, char x)
 
 	i = 0;
 	print = c_padding_to_print(format);
-	if (format->flags.justify_left == 0)
+	if (format->flags.justify_right == 0)
 		i += print_pos_x_no_justify(format, number, x);
 	else
 		i += print_pos_x_justify(format, number, x);

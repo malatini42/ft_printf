@@ -6,12 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:12:09 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 12:21:01 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:47:49 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
+//revoir si elles sont toutes utilisees ?
 int		ft_putstr_limit(const char *str, int precision, int width, char print)
 {
 	int 	i;

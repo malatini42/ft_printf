@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 14:13:11 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:48:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ int		len_with_precision(const char *str, t_format *spec)
 		ft_putstr(str);
 		i += ft_strlen(str);
 		spec->printed_chars += i;
-		//printf("Test : %i\n", i += ft_strlen(str));
-		//Pb de retour ??
 		return (i);
 	}
 	while (str[i])
@@ -107,10 +105,9 @@ int		len_with_precision(const char *str, t_format *spec)
 			if (spec->precision < 0 && spec->width < 0)
 			{
 				ft_putstr(str);
-				i += ft_strlen(str);
+				i += ft_strlen(str);//le retour de putstr peut marcher ?
 				i += print_x_time(to_print, -spec->width - ft_strlen(str));
 				spec->printed_chars += i;
-				//printf("Le resultat est : %i\n", i);
 			}
 			return (i);
 		}

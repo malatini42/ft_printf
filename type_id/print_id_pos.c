@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 15:38:00 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 17:45:02 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		print_width_and_precision_pos(t_format *format, int number, char print)
 		print = ' ';
 	i += print_x_time(print, width_to_print);
 	i += print_x_time('0', precision_to_print);
-	ft_putnbr_i(number);
-	i += n_size_i(number);
+	i += ft_putnbr_i(number);
+	//i += n_size_i(number);
 	return (i);
 }
 
@@ -47,8 +47,8 @@ int		reverse_print_width_and_precision_pos(t_format *format, int number, char pr
 		width_to_print = format->width - n_size_i(number);
 	i = 0;
 	i += print_x_time('0', precision_to_print);
-	ft_putnbr_i(number);
-	i += n_size_i(number);
+	i += ft_putnbr_i(number);
+	//i += n_size_i(number);
 	i += print_x_time(print, width_to_print);
 	return (i);
 }
@@ -66,8 +66,8 @@ int 	print_pos_no_justify(t_format *format, int number)
 	char_to_print = c_padding_to_print(format);
 	if (format->flags.precision == false && format->flags.width == false)
 	{
-		ft_putnbr_i(number);
-		i += n_size_i(number);
+		i += ft_putnbr_i(number);
+		//i += n_size_i(number);
 	}
 	else if (format->flags.precision == false && format->flags.width == true)
 		i += print_zero_pad_then_number_width(format, number, char_to_print);
@@ -94,16 +94,16 @@ int 	print_pos_justify(t_format *format, int number, char print)
 	width_to_print = (format->width > n_size_i(number)) ? format->width - n_size_i(number) : 0;
 	if (format->flags.precision == false && format->flags.width == true)
 	{
-		ft_putnbr_i(number);
-		i += n_size_i(number);
+		i += ft_putnbr_i(number);
+		//i += n_size_i(number);
 		i += print_x_time(print, width_to_print);
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
 		i += reverse_print_width_and_precision_pos(format, number, to_print);
 	else if (format->flags.precision == false && format->flags.width == false)
 	{
-		ft_putnbr_i(number);
-		i += n_size_i(number);
+		i += ft_putnbr_i(number);
+		//i += n_size_i(number);
 	}
 	return (i);
 }
@@ -115,7 +115,7 @@ int		print_pos_number(t_format *format, int number)
 
 	i = 0;
 	print = c_padding_to_print(format);
-	if (format->flags.justify_left == 0)
+	if (format->flags.justify_right == 0)
 		i += print_pos_no_justify(format, number);
 	else
 		i += print_pos_justify(format, number, print);
