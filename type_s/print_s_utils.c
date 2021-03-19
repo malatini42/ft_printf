@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:39:57 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:37:57 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,16 @@ int		ft_putstr_precision(char *str, t_format *spec)
 {
 	int i;
 	int precision;
+	int len;
 
-	if (!str && !spec)
-		return (0);
 	precision = spec->precision;
+	len = ft_strlen(str);
 	if (precision == 0 && spec->flags.precision == true)
 		return (0);
 	if (!str)
 		return (0);
 	i = 0;
-	while (str[i])
+	while (i < len)
 	{
 		if (i >= precision && precision != 0)
 			return (i);

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:40:30 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 21:46:00 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:50:17 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 int		found_star(const char *str)
 {
 	int i;
-	int found;
+	int star;
 
 	i = 1;
-	found = 0;
+	star = 0;
 	while (str[i])
 	{
-		if (is_correct_type(str[i]))
-			return (0);
-		if (str[i] == '*')
-			return (1);
+		if (str[i] == '*' && str[i])
+			++star;
+		if (is_correct_type(str[i]) && str[i])
+			return (star);
 		i++;
 	}
 	return (-1);
@@ -56,16 +56,27 @@ int		handle_star(const char *str, t_format *format, va_list arg_ptr)
 
 	arg = va_arg(arg_ptr, int);
 	star = found_star(str);
-	if (star == 1 && is_after_star(str, '.'))
+	if (star > 0)
+		format->flags.star = true;
+	if (star > 0 && is_after_star(str, '.') == 1)
 	{
 		format->width = arg;
-		format->flags.star = true;
-
+		format->flags.width = true;
 	}
-	else if (star == 1 && !(is_after_star(str, '.')))
+	else if (star > 0 && !(is_after_star(str, '.')) && found_char(str, '.') > 0)
 	{
 		format->precision = arg;
-		format->flags.star = true;
+		format->flags.precision = true;
 	}
-	return (star);
+	else if (star > 0 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
+	{
+		format->width = arg;
+		format->flags.width = true;
+	}
+	else if (star > 0 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
+	{
+		format->width = arg;
+		format->flags.width = true;
+	}
+	return (1);
 }

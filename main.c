@@ -6,14 +6,16 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 21:46:31 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:52:04 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_printf.h"
 
+//tester pour une tres longue de caracteres
 int main(void)
 {
-	ft_printf("%%-d 42 == %-d" , "blabla");
+	ft_printf("%%-i -42 == %-i\n", -42);
+	printf("%%-i -42 == %-i\n", -42);
 	return (0);
 }

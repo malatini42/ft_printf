@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 21:44:41 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:05:00 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,27 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
+
+//Ajouts a changer
+#include <stdarg.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+#include <pthread.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <strings.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <limits.h>
+#include <signal.h>
+#include <sys/wait.h>
+#include <time.h>
+#include <float.h>
+#include <termios.h>
 
 # define ID 1
 # define U 2

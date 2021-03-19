@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/18 17:49:00 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:58:15 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,12 @@ int 	print_neg_justify(t_format *format, int number, char print)
 	i = 0;
 	width_to_print = (format->width > n_size_i(number)) ? format->width - n_size_i(number) : 0;
 	to_print = c_padding_to_print(format);
+	//Pas tres propre
+	if (number == -2147483648)
+	{
+		i += ft_putstr("-2147483648");
+		return (i);
+	}
 	if (format->flags.precision == false && format->flags.width == true)
 	{
 		ft_putnbr_i(number);
@@ -124,12 +130,14 @@ int 	print_neg_justify(t_format *format, int number, char print)
 	else if (format->flags.precision == true && format->flags.width == true)
 	{
 		if (format->precision == 0)
-		{
 			i += print_x_time(to_print, format->width);
-		}
-		else 
+		else
 			i += reverse_print_width_and_precision_neg(format, number, to_print);
-		
+	}
+	else if (format->flags.precision == false && format->flags.precision == false && format->type == ID)//pb avec le type ?
+	{
+		ft_putnbr_i(number);
+		i += n_size_i(number);
 	}
 	return (i);
 }
