@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 10:12:09 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:38:14 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:18:54 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		ft_put_pad_0_precision(t_format *format)
 	return (format->width);
 }
 
+//Probleme d organisation des fonctions
 int		print_pad_s(t_format *spec, const char *str)
 {
 	int		nb_pad;

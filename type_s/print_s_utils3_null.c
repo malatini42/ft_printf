@@ -6,12 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 15:14:14 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:08:24 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:18:16 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
+//changer les noms - revoir les fonctions
 int		redirect_no_justify_left(t_format *format, char print)
 {
 	int	max_precision;

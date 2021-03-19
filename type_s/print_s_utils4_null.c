@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 15:15:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/15 17:40:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:12:05 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		width_precision_null_left(t_format *format)
 	return (i);
 }
 
+//refaire le nom des fonctions et reorganiser
 int		print_pad_null_s_justify_left(t_format *spec)
 {
 	int 	i;
@@ -47,6 +48,7 @@ int		print_pad_null_s_justify_left(t_format *spec)
 	len_null = 6;
 	nb_pad = 0;
 	to_print = c_padding_to_print(spec);
+	//devrait etre gere dans la fonction sur les chaines null ?
 	if (spec->width < len_null && spec->flags.precision == false)
 		i += ft_putstr("(null)");
 	else if (spec->flags.precision == true && spec->flags.width == true)

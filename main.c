@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 09:52:04 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:12:36 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //tester pour une tres longue de caracteres
 int main(void)
 {
-	ft_printf("%%-i -42 == %-i\n", -42);
-	printf("%%-i -42 == %-i\n", -42);
+	ft_printf("%*s\n", -32, "abc");
+	printf("%*s\n", -32, "abc");
 	return (0);
 }

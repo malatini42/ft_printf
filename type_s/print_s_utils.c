@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/14 10:41:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 09:37:57 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:22:32 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,17 @@ int		diff_width_for_s(t_format *format, const char *str)
 	return (diff_width);
 }
 
-
+//Renommer cette fonction qui devrait servir aussi pour la width
 int		ft_putstr_precision(char *str, t_format *spec)
 {
-	int i;
-	int precision;
-	int len;
+	int 	i;
+	int 	precision;
+	int 	len;
+	char	to_print;
 
 	precision = spec->precision;
 	len = ft_strlen(str);
+	to_print = c_padding_to_print(spec);
 	if (precision == 0 && spec->flags.precision == true)
 		return (0);
 	if (!str)
@@ -69,6 +71,8 @@ int		ft_putstr_precision(char *str, t_format *spec)
 		ft_putchar(str[i]);
 		i++;
 	}
+	if (spec->flags.width == true && spec->width < 0)
+		i += print_x_time(to_print, -spec->width - len);
 	return (i);
 }
 

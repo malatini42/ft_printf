@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 14:40:30 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 09:50:17 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/19 10:13:51 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,35 +48,44 @@ int		is_after_star(const char *str, char c)
 	return (0);
 }
 
-//a refaire car on a eu des soucis
+//a remettre au propre
 int		handle_star(const char *str, t_format *format, va_list arg_ptr)
 {
 	int star;
 	int arg;
 
 	arg = va_arg(arg_ptr, int);
+	//je repasse dans une boucle pour tester alors que je devrais l envoyer directement dans l argument
 	star = found_star(str);
 	if (star > 0)
 		format->flags.star = true;
-	if (star > 0 && is_after_star(str, '.') == 1)
+	if (star == 1 && is_after_star(str, '.') == 1)
 	{
 		format->width = arg;
 		format->flags.width = true;
 	}
-	else if (star > 0 && !(is_after_star(str, '.')) && found_char(str, '.') > 0)
+	else if (star == 1 && !(is_after_star(str, '.')) && found_char(str, '.') > 0)
 	{
 		format->precision = arg;
 		format->flags.precision = true;
 	}
-	else if (star > 0 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
+	else if (star == 1 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
 	{
 		format->width = arg;
 		format->flags.width = true;
 	}
-	else if (star > 0 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
+	else if (star == 1 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
 	{
 		format->width = arg;
 		format->flags.width = true;
+	}
+	else if (star == 2)
+	{
+		format->width = arg;
+		format->flags.width = true;
+		arg = va_arg(arg_ptr, int);
+		format->precision = arg;
+		format->flags.precision = true;
 	}
 	return (1);
 }
