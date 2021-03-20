@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:10:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 18:10:47 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:16:58 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		count_nbr_u_base(unsigned int nbr, char *base)
 {
 	long			nb;
 	int				temp;
-	int 			base_len;
+	int				base_len;
 	static int		i;
 
 	nb = nbr;
@@ -29,82 +29,78 @@ int		count_nbr_u_base(unsigned int nbr, char *base)
 	return (i);
 }
 
-int		print_zero_pad_then_number_precision_x(t_format * format, unsigned int number, char print, char *base)
+int		zero_pad_precision_x(t_format *f, unsigned int n, char p, char *b)
 {
 	int i;
 	int len;
 	int precision_to_print;
 
 	i = 0;
-	len = (number == 0) ? 0 : count_nbr_u_base(number, base);
-	precision_to_print = format->precision - len;
-	if ((unsigned int)format->precision >=number)
+	len = (n == 0) ? 0 : count_nbr_u_base(n, b);
+	precision_to_print = f->precision - len;
+	if ((unsigned int)f->precision >= n)
 	{
-		format->flags.zero_pad = true;
-		print = '0';
+		f->flags.zero_pad = true;
+		p = '0';
 	}
-	i += print_x_time(print, precision_to_print);
-	if (number > 0)
-		i += ft_putnbr_u_base(number, base);
+	i += print_x_time(p, precision_to_print);
+	if (n > 0)
+		i += ft_putnbr_u_base(n, b);
 	return (i);
 }
 
-int		print_width_and_precision_pos_x(t_format *format, unsigned int number, char print, char *base)
+int		width_precision_pos_x(t_format *f, unsigned int n, char p, char *b)
 {
 	int i;
-	int width_to_print;
-	int precision_to_print;
+	int w_to_print;
+	int p_to_print;
 
-	precision_to_print = (number > 0) ? format->precision - count_nbr_u_base(number, base) : format->precision;
-	if (format->precision > count_nbr_u_base(number, base) && number > 0)
-		width_to_print = format->width - precision_to_print - count_nbr_u_base(number, base);//Si le resultat est positif
-	else if (number == 0)
-		width_to_print = format->width - precision_to_print;
+	p_to_print = (n > 0) ? f->precision - count_nbr_u_base(n, b) : f->precision;
+	if (f->precision > count_nbr_u_base(n, b) && n > 0)
+		w_to_print = f->width - p_to_print - count_nbr_u_base(n, b);
+	else if (n == 0)
+		w_to_print = f->width - p_to_print;
 	else
-		width_to_print = format->width - count_nbr_u_base(number, base);
+		w_to_print = f->width - count_nbr_u_base(n, b);
 	i = 0;
-	if (format->flags.zero_pad == true)
-		print = ' ';
-	i += print_x_time(print, width_to_print);
-	i += print_x_time('0', precision_to_print);
-	if (number > 0)
-		i += ft_putnbr_u_base(number, base);
+	if (f->flags.zero_pad == true)
+		p = ' ';
+	i += print_x_time(p, w_to_print);
+	i += print_x_time('0', p_to_print);
+	if (n > 0)
+		i += ft_putnbr_u_base(n, b);
 	return (i);
 }
 
-int		reverse_print_width_and_precision_pos_x(t_format *format, int number, char print, char *base)
+int		r_width_precision_pos_x(t_format *f, int n, char p, char *b)
 {
 	int i;
-	int width_to_print;
-	int precision_to_print;
+	int w_to_print;
+	int p_to_print;
 
-	precision_to_print = (number > 0) ? format->precision - count_nbr_u_base(number, base) : format->precision;
-	if (format->precision > count_nbr_u_base(number, base) && number > 0)
-		width_to_print = format->width - precision_to_print - count_nbr_u_base(number, base);
-	else if (number == 0)
-		width_to_print = format->width - precision_to_print;
+	p_to_print = (n > 0) ? f->precision - count_nbr_u_base(n, b) : f->precision;
+	if (f->precision > count_nbr_u_base(n, b) && n > 0)
+		w_to_print = f->width - p_to_print - count_nbr_u_base(n, b);
+	else if (n == 0)
+		w_to_print = f->width - p_to_print;
 	else
-		width_to_print = format->width - count_nbr_u_base(number, base);
+		w_to_print = f->width - count_nbr_u_base(n, b);
 	i = 0;
-	i += print_x_time('0', precision_to_print);
-	if (number > 0)
-		i += ft_putnbr_u_base(number, base);
-	i += print_x_time(print, width_to_print);
+	i += print_x_time('0', p_to_print);
+	if (n > 0)
+		i += ft_putnbr_u_base(n, b);
+	i += print_x_time(p, w_to_print);
 	return (i);
 }
 
-int		print_zero_pad_then_number_width_x(t_format *format, unsigned int number, char print, char *base)
+int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b)
 {
 	int i;
 	int len;
-	int width_to_print;
-	int num;
 
 	i = 0;
-	num = number;
-	len = count_nbr_u_base(number, base);
-	width_to_print = format->width - len;
-	i += print_x_time(print, width_to_print);
-	i += ft_putnbr_u_base(number, base);
+	len = count_nbr_u_base(n, b);
+	i += print_x_time(p, f->width - len);
+	i += ft_putnbr_u_base(n, b);
 	return (i);
 }

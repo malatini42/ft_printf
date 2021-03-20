@@ -6,13 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:03:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 18:10:02 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 08:59:07 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		found_star(const char *str)
+int		found_star(const char *str, t_format *format)
 {
 	int i;
 	int star;
@@ -22,7 +22,10 @@ int		found_star(const char *str)
 	while (str[i])
 	{
 		if (str[i] == '*' && str[i])
+		{
 			++star;
+			format->flags.star = true;
+		}
 		if (is_correct_type(str[i]) && str[i])
 			return (star);
 		i++;
@@ -30,7 +33,7 @@ int		found_star(const char *str)
 	return (-1);
 }
 
-int		is_after_star(const char *str, char c)
+int		after_star(const char *str, char c)
 {
 	int i;
 
@@ -48,41 +51,29 @@ int		is_after_star(const char *str, char c)
 	return (0);
 }
 
-//a remettre au propre - pb de 25 lignes + longueur
-int		handle_star(const char *str, t_format *format, va_list arg_ptr, int star)
+int		handle_star(const char *str, t_format *f, va_list arg_ptr, int star)
 {
-	int arg;
-
-	arg = va_arg(arg_ptr, int);
-	if (star > 0)
-		format->flags.star = true;
-	if (star == 1 && is_after_star(str, '.') == 1)
+	if (star == 1)
 	{
-		format->width = arg;
-		format->flags.width = true;
-	}
-	else if (star == 1 && !(is_after_star(str, '.')) && found_char(str, '.') > 0)
-	{
-		format->precision = arg;
-		format->flags.precision = true;
-	}
-	else if (star == 1 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
-	{
-		format->width = arg;
-		format->flags.width = true;
-	}
-	else if (star == 1 && !(is_after_star(str, '.')) && !(found_char(str, '.') > 0))
-	{
-		format->width = arg;
-		format->flags.width = true;
+		if ((after_star(str, '.') == 1) && (f->flags.width = true))
+			f->width = va_arg(arg_ptr, int);
+		else if (!(after_star(str, '.')) && found_char(str, '.') > 0)
+		{
+			f->precision = va_arg(arg_ptr, int);
+			f->flags.precision = true;
+		}
+		else if (!(after_star(str, '.')) && !(found_char(str, '.') > 0))
+		{
+			f->width = va_arg(arg_ptr, int);
+			f->flags.width = true;
+		}
 	}
 	else if (star == 2)
 	{
-		format->width = arg;
-		format->flags.width = true;
-		arg = va_arg(arg_ptr, int);
-		format->precision = arg;
-		format->flags.precision = true;
+		f->width = va_arg(arg_ptr, int);
+		f->flags.width = true;
+		f->precision = va_arg(arg_ptr, int);
+		f->flags.precision = true;
 	}
 	return (1);
 }
@@ -105,13 +96,12 @@ char	which_x_type(const char *format)
 	return (0);
 }
 
-//revoir s il y a besoin du static
 int		ft_putnbr_u_base(unsigned int nbr, char *base)
 {
-	long			nb;
-	int				temp;
-	int 			base_len;
-	static int		i;
+	long		nb;
+	int			temp;
+	int			base_len;
+	static int	i;
 
 	nb = nbr;
 	base_len = 16;

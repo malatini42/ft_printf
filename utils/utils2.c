@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:20:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 17:38:33 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 08:29:31 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		count_total_pc(const char *str)
 	return (count);
 }
 
-int			found_char_until_type(const char *str, char c)
+int		found_char_until_type(const char *str, char c)
 {
 	int i;
 

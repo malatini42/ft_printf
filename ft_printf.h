@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 18:00:19 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:14:58 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ int			is_correct_spec(const char *s);//revoir si cette fonction est utilisable?
 int			ft_putstr(const char *str);
 int			find_next_correct_type_no_pc(const char *str);
 int			count_total_pc(const char *str);
-int			found_star(const char *str);
-int			is_after_star(const char *str, char c);
-int			handle_star(const char *str, t_format *format, va_list arg_ptr, int star);
+int			found_star(const char *str, t_format *format);
+int			after_star(const char *str, char c);
+int			handle_star(const char *str, t_format *f, va_list arg_ptr, int star);
 char		*ft_strcpy(char *dst, const char *src);
 //No "pc" pour no %
 int			found_char_until_type(const char *str, char c);
@@ -204,7 +204,7 @@ void	ft_putnbr_u(unsigned int nbr);
 int		print_pos_u_number(t_format *format, unsigned int number);
 int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
 int 	print_pos_u_no_justify(t_format *format, unsigned int number);
-int		print_zero_pad_then_number_precision_u(t_format * format, unsigned int number, char char_to_print);
+int		print_zero_pad_then_number_precision_u(t_format *f, unsigned int number, char char_to_print);
 int		print_width_and_precision_pos_u(t_format *format, unsigned int number, char print);
 int		reverse_print_width_and_precision_pos_u(t_format *format, int number, char print);
 int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
@@ -216,12 +216,18 @@ int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
 void		print_x(const char *str, t_format *format, va_list arg_ptr);
 int			ft_putnbr_u_base(unsigned int nbr, char *base);
 int 		print_pos_x_no_justify(t_format *format, unsigned int number, char x);
-int			print_zero_pad_then_number_width_x(t_format *format, unsigned int number, char print, char *base);
+//Celle ci
+int			print_zero_pad_then_number_width_x(t_format *f, unsigned int n, char p, char *b);
+//devient
+int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b);
 int			count_nbr_u_base(unsigned int nbr, char *base);
 int 		print_pos_x_justify(t_format *format, unsigned int number, char x);
-int			print_zero_pad_then_number_precision_x(t_format * format, unsigned int number, char print, char *base);
-int			print_width_and_precision_pos_x(t_format *format, unsigned int number, char print, char *base);
-int			reverse_print_width_and_precision_pos_x(t_format *format, int number, char print, char *base);
+int			zero_pad_precision_x(t_format *f, unsigned int n, char p, char *b);
+int			width_precision_pos_x(t_format *f, unsigned int n, char p, char *b);
+//Celle ci
+int			reverse_print_width_and_precision_pos_x(t_format *f, int n, char p, char *b);
+//devient celle la
+int			r_width_precision_pos_x(t_format *f, int n, char p, char *b);
 int			handle_null_pointer(t_format *format, unsigned long long pointer);
 //+ faire un putnbr_u
 
@@ -230,7 +236,7 @@ int			handle_null_pointer(t_format *format, unsigned long long pointer);
 void	print_p(const char *str, t_format *format, va_list arg_ptr);
 int		print_pos_p_number(t_format *format, unsigned long long pointer);
 int 	print_pos_p_no_justify(t_format *format, unsigned long long pointer);
-int		print_width_and_precision_pos_x(t_format *format, unsigned int number, char print, char *base);
+int		print_width_and_precision_pos_x(t_format *f, unsigned int n, char print, char *base);
 int		print_zero_pad_then_number_precision_p(t_format * format, unsigned long long pointer, char print, char *base);
 int		ft_putnbr_p_base(unsigned long long nbr, char *base);
 int		print_zero_pad_then_number_width_p(t_format *format, unsigned long long pointer, char print, char *base);

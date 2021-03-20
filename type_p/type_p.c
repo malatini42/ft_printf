@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:47:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 17:51:11 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 08:33:12 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int		ft_putnbr_p_base(unsigned long long nbr, char *base)
 	return (i);
 }
 
-
 int		print_zero_pad_then_number_width_p(t_format *format, unsigned long long pointer, char print, char *base)
 {
 	int i;
@@ -45,31 +44,6 @@ int		print_zero_pad_then_number_width_p(t_format *format, unsigned long long poi
 	i += print_x_time(print, width_to_print);
 	i += ft_putstr("0x");
 	i += ft_putnbr_p_base(pointer, base);
-	return (i);
-}
-
-int		handle_null_pointer(t_format *format, unsigned long long pointer)
-{
-	int 	i;
-	char 	to_print;
-	int 	width;
-
-	i = 0;
-	(void)format;
-	to_print = c_padding_to_print(format);
-	width = (pointer != 0 || format->precision == 0) ?  format->width - 2 : format->width;//Cette condition est inutile voir fausse ?
-	if (format->flags.justify_right == 0 && format->flags.precision == false && format->flags.width == true)
-		i += print_x_time(to_print, format->width - 3);
-	else if (format->flags.precision == true && format->precision == 0)
-	{
-		if (format->flags.width == true)//format->flags.justify_left == false - revoir conditions
-			i += print_x_time(to_print, width);
-		i += ft_putstr("0x");
-		return (i);
-	}
-	i += ft_putstr("0x0");
-	if (format->flags.precision == true && format->precision != 0)
-		i += print_x_time('0', format->precision - 1);
 	return (i);
 }
 

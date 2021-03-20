@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 17:50:16 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:15:33 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int 	print_pos_x_justify(t_format *format, unsigned int number, char x)
 		i += print_x_time(to_print, width_to_print);
 	}
 	else if (format->flags.precision == true && format->flags.width == true)
-		i += reverse_print_width_and_precision_pos_x(format, number, to_print, base);
+		i += r_width_precision_pos_x(format, number, to_print, base);
 	return (i);
 }
 
@@ -49,11 +49,11 @@ int 	print_pos_x_no_justify(t_format *format, unsigned int number, char x)
 	if (format->flags.precision == false && format->flags.width == false)
 		i += ft_putnbr_u_base(number, base);
 	else if (format->flags.precision == false && format->flags.width == true)
-		i += print_zero_pad_then_number_width_x(format, number, char_to_print, base);
+		i += zero_pad_width_x(format, number, char_to_print, base);
 	else if (format->flags.precision == true && format->flags.width == false)
-		i += print_zero_pad_then_number_precision_x(format, number, '0', base);
+		i += zero_pad_precision_x(format, number, '0', base);
 	else if (format->flags.precision == true && format->flags.width == true)
-		i += print_width_and_precision_pos_x(format, number, char_to_print, base);
+		i += width_precision_pos_x(format, number, char_to_print, base);
 	return (i);
 }
 

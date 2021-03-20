@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 18:02:59 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 08:28:29 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	found_char(const char *str, char c)
 	return (0);
 }
 
-int		n_size_i(int n)
+int	n_size_i(int n)
 {
 	int i;
 
@@ -63,7 +63,7 @@ int		n_size_i(int n)
 	return (i);
 }
 
-int		ft_putnbr_i(int nbr)
+int	ft_putnbr_i(int nbr)
 {
 	int n;
 	int i;

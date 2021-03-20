@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 18:03:21 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 08:39:16 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,29 +20,10 @@ int		diff_width_any_type(t_format *spec, const char *str)
 	if (spec->type == S && str)
 		diff_width = spec->width - len_with_precision(str, spec);
 	else if (spec->type == S && !str)
-		diff_width = spec->width - 6;//attention ?
+		diff_width = spec->width - 6;
 	else if (spec->precision == 0 && spec->type == PC)
 		diff_width = spec->width - 1;
 	return (diff_width);
-}
-
-//utilise ?? a "rationaliser" ?
-int		print_pad_pc(t_format *spec, const char *str)
-{
-	int		nb_pad;
-	char	to_print;
-	int		i;
-
-	nb_pad = diff_width_any_type(spec, str);
-	to_print = c_padding_to_print(spec);
-	i = 0;
-	while (nb_pad > 0)
-	{
-		ft_putchar(to_print);
-		i++;
-		nb_pad--;
-	}
-	return (i);
 }
 
 int		get_width(const char *str, t_format *format)
@@ -69,19 +50,17 @@ int		get_width(const char *str, t_format *format)
 
 int		get_precision(const char *str, t_format *format)
 {
-	int precision;
-	int i;
-	bool found;
+	int		precision;
+	int		i;
 
 	precision = 0;
-	found = false;
 	i = 1;
 	while (str[i])
 	{
 		if (str[i] == '.')
 		{
 			format->flags.precision = true;
-			break;
+			break ;
 		}
 		if (is_correct_type(str[i]))
 			return (precision);
@@ -123,4 +102,29 @@ int		get_type(const char *format)
 	else if (format[i] == 'p')
 		return (P);
 	return (0);
+}
+
+int		handle_null_pointer(t_format *f, unsigned long long pointer)
+{
+	int		i;
+	char	to_print;
+	int		width;
+
+	i = 0;
+	to_print = c_padding_to_print(f);
+	width = (pointer != 0 || f->precision == 0) ? f->width - 2 : f->width;
+	if (f->flags.justify_right == 0 && f->flags.precision == false &&
+			f->flags.width == true)
+		i += print_x_time(to_print, f->width - 3);
+	else if (f->flags.precision == true && f->precision == 0)
+	{
+		if (f->flags.width == true)
+			i += print_x_time(to_print, width);
+		i += ft_putstr("0x");
+		return (i);
+	}
+	i += ft_putstr("0x0");
+	if (f->flags.precision == true && f->precision != 0)
+		i += print_x_time('0', f->precision - 1);
+	return (i);
 }

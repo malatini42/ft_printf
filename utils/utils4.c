@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:58:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 17:58:35 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 08:40:43 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ t_format	*ft_initialize_struct(void)
 	format->flags.precision = false;
 	format->flags.star = false;
 	format->width = 0;
-	format->precision  = 0;
+	format->precision = 0;
 	format->type = 0;
 	format->printed_chars = 0;
 	return (format);
 }
 
-bool	justify_right(const char *str, t_format *format)
+bool		justify_right(const char *str, t_format *format)
 {
 	bool	dash;
 	int		max;
@@ -50,7 +50,7 @@ bool	justify_right(const char *str, t_format *format)
 	return (dash);
 }
 
-bool	zero_pad(const char *str, t_format *format)
+bool		zero_pad(const char *str, t_format *format)
 {
 	int	i;
 
@@ -76,7 +76,7 @@ bool	zero_pad(const char *str, t_format *format)
 	return (false);
 }
 
-int		fill_type(const char *str, t_format *format)
+int			fill_type(const char *str, t_format *format)
 {
 	int	type;
 
@@ -87,7 +87,7 @@ int		fill_type(const char *str, t_format *format)
 	return (type);
 }
 
-void	fill_struct(const char *str, t_format *format)
+void		fill_struct(const char *str, t_format *format)
 {
 	if (!str && !format)
 		return ;
