@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:23:14 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 17:54:29 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 19:11:00 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		width_precision_u(t_format *f, unsigned int n, char c)
 	}
 	return (i);
 }
+
 int 	u_no_justify(t_format *f, unsigned int n)
 {
 	int i;

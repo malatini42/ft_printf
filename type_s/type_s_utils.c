@@ -1,18 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils7.c                                           :+:      :+:    :+:   */
+/*   type_s_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/20 12:06:31 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 18:10:08 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/20 18:52:02 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/20 19:14:05 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		ft_putstr_limit(const char *s, int precision, int w, char c)
+int		ft_putstr_precision(char *str, t_format *f)
+{
+	int 	i;
+	int 	precision;
+	int 	len;
+	char	to_print;
+
+	precision = f->precision;
+	len = ft_strlen(str);
+	to_print = c_padding_to_print(f);
+	if (precision == 0 && f->flags.precision == true)
+		return (0);
+	if (!str)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		if (i >= precision && precision != 0)
+			return (i);
+		ft_putchar(str[i]);
+		i++;
+	}
+	if (f->flags.width == true && f->width < 0)
+		i += print_x_time(to_print, -f->width - len);
+	return (i);
+}
+
+int		ft_putstr_limit(const char *s, int preci, int w, char c)
 {
 	int 	i;
 	int		len;
@@ -20,12 +47,12 @@ int		ft_putstr_limit(const char *s, int precision, int w, char c)
 	i = 0;
 	len = 0;
 	if (w > 0)
-		len += print_x_time(c, w - precision);
-	if (precision > 0)
+		len += print_x_time(c, w - preci);
+	if (preci > 0)
 	{
-		while (i < precision && i < 6)
+		while (i < preci && i < 6)
 		{
-			if (i >= precision)
+			if (i >= preci)
 				return (i);
 			ft_putchar(s[i]);
 			i++;
@@ -78,47 +105,18 @@ int		zero_pad_width(t_format *f, int n, char c)
 	return (i);
 }
 
-int		r_width_precision_u(t_format *f, int n, char c)
+int	len_until_end_format(const char *s)
 {
 	int i;
-	int w_to_print;
-	int p_to_print;
 
-	p_to_print = (n > 0) ? f->precision - n_size_u(n) : f->precision;
-	if (f->precision > n_size_u(n) && n > 0)
-		w_to_print = f->width - p_to_print - n_size_u(n);
-	else if (n == 0)
-		w_to_print = f->width - p_to_print;
-	else
-		w_to_print = f->width - n_size_u(n);
-	i = 0;
-	i += print_x_time('0', p_to_print);
-	if (n > 0)
+	i = 1;
+	if (!s)
+		return (0);
+	while (s[i])
 	{
-		ft_putnbr_u(n);
-		i += n_size_u(n);
+		if (is_correct_type(s[i]))
+			return (i);
+		i++;
 	}
-	i += print_x_time(c, w_to_print);
-	return (i);
-}
-
-int		zero_pad_precision_u(t_format *f, unsigned int n, char print)
-{
-	int i;
-	int len;
-	int p_to_print;
-
-	i = 0;
-	len = (n == 0) ? 0 : n_size_u(n);
-	p_to_print = f->precision - len;
-	if ((unsigned int)f->precision >= n)
-	{
-		f->flags.zero_pad = true;
-		print = '0';
-	}
-	i += print_x_time(print, p_to_print);
-	if (n > 0)
-		ft_putnbr_u(n);
-	i += n == 0 ? 0 : n_size_u(n);
-	return (i);
+	return (0);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils6.c                                           :+:      :+:    :+:   */
+/*   type_x_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/19 18:10:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 17:48:00 by malatini         ###   ########.fr       */
+/*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/20 18:50:34 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,37 +68,4 @@ int		handle_null_pointer(t_format *f, unsigned long long p)
 	if (f->flags.precision == true && f->precision != 0)
 		i += print_x_time('0', f->precision - 1);
 	return (i);
-}
-
-int		n_size_u(unsigned int n)
-{
-	unsigned i;
-
-	i = 1;
-	if (n < 0)
-	{
-		i++;
-		n = -n;
-	}
-	while (n > 9)
-	{
-		n = n / 10;
-		i++;
-	}
-	return ((int)i);
-}
-
-void	ft_putnbr_u(unsigned int nbr)
-{
-	unsigned int n;
-
-	n = nbr;
-	if (nbr < 0)
-	{
-		n = -n;
-		ft_putchar('-');
-	}
-	if (n > 9)
-		ft_putnbr_i(n / 10);
-	ft_putchar(n % 10 + '0');
 }

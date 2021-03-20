@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:03:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 17:50:01 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 19:06:25 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,40 +76,4 @@ int		handle_star(const char *str, t_format *f, va_list arg, int star)
 		f->flags.precision = true;
 	}
 	return (1);
-}
-
-char	which_x_type(const char *f)
-{
-	int i;
-
-	if (!f)
-		return (0);
-	i = 0;
-	if (f[i] == '%')
-		i++;
-	while (!(is_correct_type(f[i])) && f[i])
-		i++;
-	if (f[i] == 'x')
-		return ('x');
-	else if (f[i] == 'X')
-		return ('X');
-	return (0);
-}
-
-int		ft_putnbr_u_base(unsigned int n, char *base)
-{
-	long		nb;
-	int			temp;
-	int			base_len;
-	static int	i;
-
-	nb = n;
-	base_len = 16;
-	i = 0;
-	if (base_len - 1 < nb)
-		ft_putnbr_u_base(nb / base_len, base);
-	temp = base[(int)(nb % base_len)];
-	write(1, &temp, 1);
-	i++;
-	return (i);
 }

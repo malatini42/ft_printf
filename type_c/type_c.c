@@ -6,79 +6,79 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:01:20 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 17:54:14 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 18:03:39 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	print_null_c(t_format *format)
+int	print_null_c(t_format *f)
 {
 	int 	max_precision;
 	int 	i;
 	char	to_print;
 
-	max_precision = format->precision;
-	to_print = c_padding_to_print(format);
+	max_precision = f->precision;
+	to_print = c_padding_to_print(f);
 	i = 0;
-	if (format->flags.width == true && format->flags.justify_right == false)
-		i += print_x_time(' ', format->width - 1);
+	if (f->flags.width == true && f->flags.justify_right == false)
+		i += print_x_time(' ', f->width - 1);
 	i += write(1, "\0", 1);
-	if (format->flags.width == true && format->flags.justify_right == true)
-		i += print_x_time(' ', format->width - 1);
-	format->printed_chars += i;
+	if (f->flags.width == true && f->flags.justify_right == true)
+		i += print_x_time(' ', f->width - 1);
+	f->printed_chars += i;
 	return (i);
 }
 
-int		print_c_no_justify(t_format *format, char c)
+int		print_c_no_justify(t_format *f, char c)
 {
 	int		i;
 	char	to_print;
 
 	i = 0;
-	to_print = c_padding_to_print(format);
-	if (format->flags.precision == false && format->flags.width == false)
+	to_print = c_padding_to_print(f);
+	if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putchar(c);
-	else if (format->flags.precision == false && format->flags.width == true)
+	else if (f->flags.precision == false && f->flags.width == true)
 	{
-		i += print_x_time(to_print, format->width -1);
+		i += print_x_time(to_print, f->width -1);
 		i += ft_putchar(c);
 	}
 	return (i);
 }
 
-int		print_c_justify(t_format *format, char c)
+int		print_c_justify(t_format *f, char c)
 {
 	int		i;
 	char	to_print;
 
 	i = 0;
-	to_print = c_padding_to_print(format);
-	if (format->flags.precision == false && format->flags.width == false)
+	to_print = c_padding_to_print(f);
+	if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putchar(c);
-	else if (format->flags.precision == false && format->flags.width == true)
+	else if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putchar(c);
-		i += print_x_time(to_print, format->width -1);
+		i += print_x_time(to_print, f->width -1);
 	}
 	return (i);
 }
 
-void	print_c(t_format *format, va_list arg_ptr)
+void	print_c(t_format *f, va_list arg)
 {
 	char	c;
 	int		i;
 
-	c = va_arg(arg_ptr, int);
+	c = va_arg(arg, int);
 	i = 0;
 	if (!c)
 	{
-		print_null_c(format);
+		print_null_c(f);
 		return ;
 	}
-	if (format->flags.justify_right == 0)
-		i += print_c_no_justify(format, c);
-	else if (format->flags.justify_right == 1)
-		i += print_c_justify(format, c);
-	format->printed_chars += i;
+	if (f->flags.justify_right == 0)
+		i += print_c_no_justify(f, c);
+	else if (f->flags.justify_right == 1)
+		i += print_c_justify(f, c);
+	f->printed_chars += i;
 }

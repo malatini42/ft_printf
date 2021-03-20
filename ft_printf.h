@@ -6,14 +6,9 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 12:30:55 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:05:52 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//Reprendre tous les retours en int pour en faire des ssize_t ?
-//On peut aussi faire plusieurs fichiers .h à la fin pour que ce soit + propre
-//Remettre le nom des parametres au propre, ne pas mettre toutes les fonctions
-//je crois que j ai confondu la droite et la gauche ! a changer "justify right"
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
@@ -24,27 +19,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdbool.h>
-
-//Ajouts a changer
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <string.h>
-#include <pthread.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <strings.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <limits.h>
-#include <signal.h>
-#include <sys/wait.h>
-#include <time.h>
-#include <float.h>
-#include <termios.h>
 
 # define ID 1
 # define U 2
@@ -69,186 +43,206 @@ typedef struct	s_format
 	int width;
 	int	precision;
 	int	type;
-	int printed_chars;//revoir cette partie / j'ai laisse tombé?
+	int printed_chars;
 }				t_format;
 
 /*
-** UTILS - a mettre séparément plus tard
+** utils to delete
 */
-//refaire le tour de toutes les fonctions
 
-int			found_char(const char *str, char c);
-int			is_correct_type(char c);
-int			ft_isdigit(int c);
+void		printstruct(t_format format);
+
+/*
+** utils0.c 
+*/
+
 int			ft_putchar(char c);
+int			ft_isdigit(int c);
+int			found_char(const char *str, char c);
+int			n_size_i(int n);
 int			ft_putnbr_i(int nbr);
-int			ft_strlen(const char *s);
 
-int			is_correct_spec(const char *s);//revoir si cette fonction est utilisable?
+/*
+** utils1.c 
+*/
+
+int			is_correct_type(char c);
+int			ft_strlen(const char *s);
+int			is_correct_spec(const char *s);
 int			ft_putstr(const char *str);
-int			find_next_correct_type_no_pc(const char *str);
-int			count_total_pc(const char *str);
-int			found_star(const char *str, t_format *format);
-int			after_star(const char *str, char c);
-int			handle_star(const char *str, t_format *f, va_list arg_ptr, int star);
-char		*ft_strcpy(char *dst, const char *src);
-//No "pc" pour no %
-int			found_char_until_type(const char *str, char c);
-int			len_until_end_format(const char *str);
 char		c_padding_to_print(t_format *format);
 
-int			diff_width_for_pc(t_format *format);
-int			diff_width_for_s(t_format *format, const char *str);
-int			diff_width_any_type(t_format *spec, const char *str);
-int			print_pad_pc(t_format *spec, const char *str);
-char		*ft_strdup_until_type(const char *s1);
-int			ft_putstr_limit(const char *str, int precision, int witdh, char to_print);
-//bool		justify_left_s(const char *str, t_format *format);
+/*
+** utils2.c 
+*/
+
+int			found_char_until_type(const char *str, char c);
 char		*ft_strdup(const char *s1);
-int			ft_put_pad_0_precision(t_format *format);
-int			print_pad_null_s_justify_left(t_format *spec);
 int			print_x_time(char c, int x);
-//Celle ci devient
-
+int			len_with_precision(const char *str, t_format *spec);
 char		which_x_type(const char *format);
-int			is_correct_type(char c);
-//int			ft_putstr_width(const char *str, int width);
 
 /*
-** ft_printf.c
+** utils3.c 
 */
 
-int		print_type(const char *str, t_format *spec, va_list arg_ptr);//doublons??
-int			ft_printf(const char *format, ...);
-int			parse(const char *format, va_list arg_ptr);
-/*
-** struct.c
-*/
-
-t_format	*ft_initialize_struct(void);
-
-/*
-** get_struct_values.c - a revoir
-*/
-
+int			diff_width_any_type(t_format *spec, const char *str);
 int			get_width(const char *str, t_format *format);
 int			get_precision(const char *str, t_format *format);
 int			get_type(const char *format);
+int			count_nbr_u_base(unsigned int nbr, char *base);
 
 /*
-** fill_struct.c
+** utils4.c 
 */
 
+t_format	*ft_initialize_struct(void);
 bool		justify_right(const char *str, t_format *format);
 bool		zero_pad(const char *str, t_format *format);
-int			fill_width(const char *str, t_format *format);
-int			fill_precision(const char *str, t_format *format);
 int			fill_type(const char *str, t_format *format);
 void		fill_struct(const char *str, t_format *format);
 
 /*
-** manage_type.c a revoir (autres fonctions dans fichiers separes)
+** utils5.c 
 */
-//type_pc
 
-void		print_pc( const char *str, t_format *spec);
+int			found_star(const char *str, t_format *format);
+int			after_star(const char *str, char c);
+int			handle_star(const char *str, t_format *f, va_list arg_ptr, int star);
 
-//type_s
 
-void		print_s(t_format *format, va_list arg_ptr);
-int			print_pad_s(t_format *spec, const char *str);
-//int			print_pad_null_s_no_left(t_format *spec, int max_precision);
-void		print_null_s(t_format *format);
-int		no_justify_left(t_format *format, char print);
-int		null_s_justify(t_format *spec);
-int		null_s_no_justify(t_format *spec, char print);
+/*
+** type_x.c 
+*/
 
-//print_s_utils
-int			ft_putstr_precision(char *str, t_format *spec);
-int			len_with_precision(const char *str, t_format *spec);
-int			width_precision_null_left(t_format *format);
+int		width_precision_pos_x(t_format *f, unsigned int n, char p, char *b);
+int		zero_pad_precision_x(t_format *f, unsigned int n, char p, char *b);
+int		pos_x_justify(t_format *f, unsigned int number, char x);
+int		pos_x_no_justify(t_format *f, unsigned int number, char x);
+void	print_x(const char *str, t_format *format, va_list arg_ptr);
 
-//type_id
+/*
+** type_x_utils.c 
+*/
 
-void		print_id(t_format *format, va_list arg_ptr);
+int		r_width_precision_pos_x(t_format *f, int n, char p, char *b);
+int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b);
+int		handle_null_pointer(t_format *f, unsigned long long p);
 
-//itoa - remettre au propre
-int			n_size_i(int n);
-char		*create_string(char *str, long nb, long length, long sign);
-char		*ft_itoa(int n);
+/*
+** type_u.c 
+*/
 
-int			print_pos_number(t_format *format, int number);
-int 		print_pos_no_justify(t_format *format, int number);
-int 		print_pos_justify(t_format *format, int number, char print);
+int		width_precision_u(t_format *f, unsigned int n, char c);
+int 	u_no_justify(t_format *f, unsigned int n);
+int 	u_justify(t_format *f, unsigned int n, char c);
+int		u_number(t_format *f, unsigned int n);
+void	print_u(t_format *f, va_list arg);
 
-int			print_neg_number(t_format *format, int number);
-int 		print_neg_no_justify(t_format *format, int number, char print);
-int 		print_neg_justify(t_format *format, int number, char print);
+/*
+** type_u_utils.c 
+*/
 
-//print_id utils
-
-int			print_pad_then_number(t_format *format, int number);
-//Celle-ci - a supprimer
-int			print_zero_pad_then_number_width(t_format *format, int number, char print);
-//Devient
-int		zero_pad_width(t_format *format, int number, char print);
-
-int			print_zero_pad_then_number_precision_i(t_format *format, int number, char print);
-int			print_zero_pad_true_width(int number, char print, int w_to_print);
-int			print_width_and_precision_pos(t_format *format, int number, char print);
-int			print_width_and_precision_neg(t_format *format, int number, char print);
-int			reverse_print_width_and_precision_neg(t_format *format, int number, char print);
-int			reverse_print_width_and_precision_pos(t_format *format, int number, char print);
-//test
-
-//type-u
-
-void	print_u(t_format *format, va_list arg_ptr);
-int		zero_pad_precision_u(t_format * f, unsigned int n, char print);
-
-void		printstruct(t_format format);
-//a revoir
+int		r_width_precision_u(t_format *f, int n, char c);
+int		zero_pad_precision_u(t_format *f, unsigned int n, char print);
 int		n_size_u(unsigned int n);
 void	ft_putnbr_u(unsigned int nbr);
-int		u_number(t_format *format, unsigned int number);
-int 	u_justify(t_format *format, unsigned int number, char print);
-int 	u_no_justify(t_format *format, unsigned int number);
-//int		zero_pad_precision_u(t_format *f, unsigned int n, char print);
-int		width_precision_u(t_format *f, unsigned int n, char print);
-//Celle ci devient
-//int		reverse_print_width_and_precision_pos_u(t_format *format, int number, char print);
-//celle ci :
-int		r_width_precision_u(t_format *f, int n, char print);
-int 	pos_u_justify(t_format *format, unsigned int number, char print);
-//int		print_zero_pad_then_number_width_u(t_format *format, unsigned int number, char print);
-//a faire
-//int print_pos_u_number(format, number);
+int		ft_putnbr_u_base(unsigned int n, char *base);
 
-//type x
-void		print_x(const char *str, t_format *format, va_list arg_ptr);
-int			ft_putnbr_u_base(unsigned int nbr, char *base);
-int			zero_pad_width_x(t_format *f, unsigned int n, char p, char *b);
-int			count_nbr_u_base(unsigned int nbr, char *base);
-int			width_precision_pos_x(t_format *f, unsigned int n, char p, char *b);
-int			r_width_precision_pos_x(t_format *f, int n, char p, char *b);
-int			handle_null_pointer(t_format *format, unsigned long long pointer);
-//+ faire un putnbr_u
+/*
+** type_s.c 
+*/
 
-//type_p
+int		print_pad_s(t_format *f, const char *str);
+void	print_null_s(t_format *f);
+void	print_s(t_format *f, va_list arg);
 
-void	print_p(const char *str, t_format *format, va_list arg_ptr);
-int		print_pos_p_number(t_format *format, unsigned long long pointer);
-int 	print_pos_p_no_justify(t_format *format, unsigned long long pointer);
-int		print_width_and_precision_pos_x(t_format *f, unsigned int n, char print, char *base);
-int		print_zero_pad_then_number_precision_p(t_format * format, unsigned long long pointer, char print, char *base);
+/*
+** type_s_utils.c 
+*/
+
+int		ft_putstr_precision(char *str, t_format *f);
+int		ft_putstr_limit(const char *s, int preci, int w, char c);
+int		ft_put_pad_0_precision(t_format *f);
+int		zero_pad_width(t_format *f, int n, char c);
+int		len_until_end_format(const char *s);
+
+/*
+** type_s_null.c 
+*/
+
+int		null_s_width_no_justify(t_format *f, int precision);
+int		null_s_no_justify(t_format *f, char c);
+int		width_precision_null_left(t_format *f);
+int		null_s_justify(t_format *f);
+
+/*
+** type_pc.c 
+*/
+
+int		count_total_pc(const char *str);
+int		print_pad_pc(t_format *f, const char *str);
+void	print_pc(const char *str, t_format *f);
+
+/*
+** type_p.c 
+*/
+
 int		ft_putnbr_p_base(unsigned long long nbr, char *base);
-int		print_zero_pad_then_number_width_p(t_format *format, unsigned long long pointer, char print, char *base);
-int		print_c_justify(t_format *format, char c);
+int		print_zero_pad_then_number_width_p(t_format *f, unsigned long long ptr, char c, char *b);
+int		print_zero_pad_then_number_precision_p(t_format *f, unsigned long long ptr, char c, char *b);
+int		print_width_and_precision_pos_p(t_format *f, unsigned long long ptr, char c, char *b);
+int 	print_pos_p_no_justify(t_format *f, unsigned long long ptr);
+//int		print_pos_p_number(t_format *f, unsigned long long ptr);
+void	print_p(const char *str, t_format *f, va_list arg);
 
-//type c
+/*
+** type_id.c 
+*/
 
-void	print_c(t_format *format, va_list arg_ptr);
-int		print_null_c(t_format *format);
-int		print_c_no_justify(t_format *format, char c);
+int		print_pad_then_number(t_format *f, int n);
+int		print_zero_pad_then_number_width(t_format *f, int n, char c);
+int		print_zero_pad_then_number_precision_i(t_format *f, int n, char c);
+int		print_zero_pad_true_width(int n, char c, int w_to_print);
+void	print_id(t_format *f, va_list arg);
+
+/*
+** type_id_utils.c 
+*/
+
+int		print_pad_then_number(t_format *f, int n);
+int		print_zero_pad_then_number_precision_i(t_format *f, int n, char c);
+int		print_zero_pad_true_width(int n, char c, int w_to_print);
+
+/*
+** type_id_pos.c 
+*/
+
+int		print_width_and_precision_pos(t_format *f, int n, char c);
+int		reverse_print_width_and_precision_pos(t_format *f, int n, char c);
+int 	print_pos_no_justify(t_format *f, int n);
+int 	print_pos_justify(t_format *f, int n, char c);
+int		print_pos_number(t_format *f, int n);
+
+/*
+** type_id_neg.c 
+*/
+
+int		print_width_and_precision_neg(t_format *f, int n, char c);
+int		reverse_print_width_and_precision_neg(t_format *f, int n, char p);
+int 	print_neg_no_justify(t_format *f, int n, char c);
+int 	print_neg_justify(t_format *f, int n, char c);
+int		print_neg_number(t_format *f, int n);
+
+/*
+** type_c.c 
+*/
+
+int		print_null_c(t_format *f);
+int		print_c_no_justify(t_format *f, char c);
+int		print_c_justify(t_format *f, char c);
+void	print_c(t_format *f, va_list arg);
+
+int		ft_printf(const char *format, ...);
 
 #endif
