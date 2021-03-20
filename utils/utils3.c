@@ -6,32 +6,32 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 11:44:04 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 17:52:10 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		diff_width_any_type(t_format *spec, const char *str)
+int		diff_width_any_type(t_format *f, const char *str)
 {
 	int	diff_width;
 
 	diff_width = 0;
-	if (spec->type == S && str)
-		diff_width = spec->width - len_with_precision(str, spec);
-	else if (spec->type == S && !str)
-		diff_width = spec->width - 6;
-	else if (spec->precision == 0 && spec->type == PC)
-		diff_width = spec->width - 1;
+	if (f->type == S && str)
+		diff_width = f->width - len_with_precision(str, f);
+	else if (f->type == S && !str)
+		diff_width = f->width - 6;
+	else if (f->precision == 0 && f->type == PC)
+		diff_width = f->width - 1;
 	return (diff_width);
 }
 
-int		get_width(const char *str, t_format *format)
+int		get_width(const char *str, t_format *f)
 {
 	int width;
 	int i;
 
-	if (!str && !format)
+	if (!str && !f)
 		return (false);
 	width = 0;
 	i = 1;
@@ -42,13 +42,13 @@ int		get_width(const char *str, t_format *format)
 		width = width * 10 + str[i] - '0';
 		i++;
 	}
-	format->width = width;
+	f->width = width;
 	if (width != 0)
-		format->flags.width = true;
+		f->flags.width = true;
 	return (width);
 }
 
-int		get_precision(const char *str, t_format *format)
+int		get_precision(const char *str, t_format *f)
 {
 	int		precision;
 	int		i;
@@ -59,7 +59,7 @@ int		get_precision(const char *str, t_format *format)
 	{
 		if (str[i] == '.')
 		{
-			format->flags.precision = true;
+			f->flags.precision = true;
 			break ;
 		}
 		if (is_correct_type(str[i]))
@@ -72,34 +72,34 @@ int		get_precision(const char *str, t_format *format)
 		precision = precision * 10 + str[i] - '0';
 		i++;
 	}
-	format->precision = precision;
+	f->precision = precision;
 	return (precision);
 }
 
-int		get_type(const char *format)
+int		get_type(const char *f)
 {
 	int i;
 
-	if (!format)
+	if (!f)
 		return (0);
 	i = 0;
-	if (format[i] == '%')
+	if (f[i] == '%')
 		i++;
-	while (!(is_correct_type(format[i])) && format[i])
+	while (!(is_correct_type(f[i])) && f[i])
 		i++;
-	if (format[i] == 'i' || format[i] == 'd')
+	if (f[i] == 'i' || f[i] == 'd')
 		return (ID);
-	else if (format[i] == 'u')
+	else if (f[i] == 'u')
 		return (U);
-	else if (format[i] == 'c')
+	else if (f[i] == 'c')
 		return (C);
-	else if (format[i] == 's')
+	else if (f[i] == 's')
 		return (S);
-	else if (format[i] == '%')
+	else if (f[i] == '%')
 		return (PC);
-	else if (format[i] == 'x' || format[i] == 'X')
+	else if (f[i] == 'x' || f[i] == 'X')
 		return (H);
-	else if (format[i] == 'p')
+	else if (f[i] == 'p')
 		return (P);
 	return (0);
 }

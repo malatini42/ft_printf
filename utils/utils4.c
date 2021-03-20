@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:58:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 08:40:43 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 17:51:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ t_format	*ft_initialize_struct(void)
 	return (format);
 }
 
-bool		justify_right(const char *str, t_format *format)
+bool		justify_right(const char *str, t_format *f)
 {
 	bool	dash;
 	int		max;
 	int		len;
 
-	if (!str && !format)
+	if (!str && !f)
 		return (false);
 	dash = false;
 	max = found_char(str, '-');
@@ -44,31 +44,31 @@ bool		justify_right(const char *str, t_format *format)
 	if (max && max <= len)
 	{
 		dash = true;
-		format->flags.justify_right = true;
-		format->flags.zero_pad = false;
+		f->flags.justify_right = true;
+		f->flags.zero_pad = false;
 	}
 	return (dash);
 }
 
-bool		zero_pad(const char *str, t_format *format)
+bool		zero_pad(const char *str, t_format *f)
 {
 	int	i;
 
-	if (!str && !format)
+	if (!str && !f)
 		return (false);
 	i = 0;
 	if (found_char_until_type(str, '-') != 0)
 	{
-		format->flags.zero_pad = false;
-		format->flags.justify_right = true;
+		f->flags.zero_pad = false;
+		f->flags.justify_right = true;
 		return (false);
 	}
 	else
 	{
 		if (str[1] == '0')
 		{
-			format->flags.zero_pad = true;
-			format->flags.justify_right = false;
+			f->flags.zero_pad = true;
+			f->flags.justify_right = false;
 			return (true);
 		}
 	}
@@ -76,24 +76,24 @@ bool		zero_pad(const char *str, t_format *format)
 	return (false);
 }
 
-int			fill_type(const char *str, t_format *format)
+int			fill_type(const char *str, t_format *f)
 {
 	int	type;
 
-	if (!str && !format)
+	if (!str && !f)
 		return (false);
 	type = get_type(str);
-	format->type = type;
+	f->type = type;
 	return (type);
 }
 
-void		fill_struct(const char *str, t_format *format)
+void		fill_struct(const char *str, t_format *f)
 {
-	if (!str && !format)
+	if (!str && !f)
 		return ;
-	fill_type(str, format);
-	zero_pad(str, format);
-	justify_right(str, format);
-	get_width(str, format);
-	get_precision(str, format);
+	fill_type(str, f);
+	zero_pad(str, f);
+	justify_right(str, f);
+	get_width(str, f);
+	get_precision(str, f);
 }

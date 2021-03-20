@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:10:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 11:47:23 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 17:48:00 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b)
 	return (i);
 }
 
-int		handle_null_pointer(t_format *f, unsigned long long pointer)
+int		handle_null_pointer(t_format *f, unsigned long long p)
 {
 	int		i;
 	char	to_print;
@@ -53,7 +53,7 @@ int		handle_null_pointer(t_format *f, unsigned long long pointer)
 
 	i = 0;
 	to_print = c_padding_to_print(f);
-	width = (pointer != 0 || f->precision == 0) ? f->width - 2 : f->width;
+	width = (p != 0 || f->precision == 0) ? f->width - 2 : f->width;
 	if (f->flags.justify_right == 0 && f->flags.precision == false &&
 			f->flags.width == true)
 		i += print_x_time(to_print, f->width - 3);
