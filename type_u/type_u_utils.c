@@ -1,0 +1,109 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   type_u_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
+/*   Updated: 2021/03/20 18:49:49 by malatini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../ft_printf.h"
+
+int		r_width_precision_u(t_format *f, int n, char c)
+{
+	int i;
+	int w_to_print;
+	int p_to_print;
+
+	p_to_print = (n > 0) ? f->precision - n_size_u(n) : f->precision;
+	if (f->precision > n_size_u(n) && n > 0)
+		w_to_print = f->width - p_to_print - n_size_u(n);
+	else if (n == 0)
+		w_to_print = f->width - p_to_print;
+	else
+		w_to_print = f->width - n_size_u(n);
+	i = 0;
+	i += print_x_time('0', p_to_print);
+	if (n > 0)
+	{
+		ft_putnbr_u(n);
+		i += n_size_u(n);
+	}
+	i += print_x_time(c, w_to_print);
+	return (i);
+}
+
+int		zero_pad_precision_u(t_format *f, unsigned int n, char print)
+{
+	int i;
+	int len;
+	int p_to_print;
+
+	i = 0;
+	len = (n == 0) ? 0 : n_size_u(n);
+	p_to_print = f->precision - len;
+	if ((unsigned int)f->precision >= n)
+	{
+		f->flags.zero_pad = true;
+		print = '0';
+	}
+	i += print_x_time(print, p_to_print);
+	if (n > 0)
+		ft_putnbr_u(n);
+	i += n == 0 ? 0 : n_size_u(n);
+	return (i);
+}
+
+int		n_size_u(unsigned int n)
+{
+	unsigned i;
+
+	i = 1;
+	if (n < 0)
+	{
+		i++;
+		n = -n;
+	}
+	while (n > 9)
+	{
+		n = n / 10;
+		i++;
+	}
+	return ((int)i);
+}
+
+void	ft_putnbr_u(unsigned int nbr)
+{
+	unsigned int n;
+
+	n = nbr;
+	if (nbr < 0)
+	{
+		n = -n;
+		ft_putchar('-');
+	}
+	if (n > 9)
+		ft_putnbr_i(n / 10);
+	ft_putchar(n % 10 + '0');
+}
+
+int		ft_putnbr_u_base(unsigned int n, char *base)
+{
+	long		nb;
+	int			temp;
+	int			base_len;
+	static int	i;
+
+	nb = n;
+	base_len = 16;
+	i = 0;
+	if (base_len - 1 < nb)
+		ft_putnbr_u_base(nb / base_len, base);
+	temp = base[(int)(nb % base_len)];
+	write(1, &temp, 1);
+	i++;
+	return (i);
+}

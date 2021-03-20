@@ -6,13 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:23:14 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 12:14:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 17:54:29 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		width_precision_u(t_format *f, unsigned int n, char print)
+int		width_precision_u(t_format *f, unsigned int n, char c)
 {
 	int i;
 	int w_to_print;
@@ -27,8 +27,8 @@ int		width_precision_u(t_format *f, unsigned int n, char print)
 		w_to_print = f->width - n_size_u(n);
 	i = 0;
 	if (f->flags.zero_pad == true)
-		print = ' ';
-	i += print_x_time(print, w_to_print);
+		c = ' ';
+	i += print_x_time(c, w_to_print);
 	i += print_x_time('0', p_to_print);
 	if (n > 0)
 	{
@@ -45,7 +45,7 @@ int 	u_no_justify(t_format *f, unsigned int n)
 	if (f->flags.precision == false && f->flags.width == false)
 	{
 		ft_putnbr_u(n);
-		i += n_size_u(n);//a mettre ensemble
+		i += n_size_u(n);
 	}
 	else if (f->flags.precision == false && f->flags.width == true)
 		i += zero_pad_width(f, n, c_padding_to_print(f));
@@ -56,7 +56,7 @@ int 	u_no_justify(t_format *f, unsigned int n)
 	return (i);
 }
 
-int 	u_justify(t_format *f, unsigned int n, char print)
+int 	u_justify(t_format *f, unsigned int n, char c)
 {
 	int 	i;
 	int		w_to_print;
@@ -66,35 +66,35 @@ int 	u_justify(t_format *f, unsigned int n, char print)
 	if (f->flags.precision == false && f->flags.width == true)
 	{
 		ft_putnbr_u(n);
-		i += n_size_u(n);//A mettre ensemble
-		i += print_x_time(print, w_to_print);
+		i += n_size_u(n);
+		i += print_x_time(c, w_to_print);
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
 		i += r_width_precision_u(f, n, c_padding_to_print(f));
 	return (i);
 }
 
-int		u_number(t_format *format, unsigned int number)
+int		u_number(t_format *f, unsigned int n)
 {
 	int 	i;
 	char 	print;
 
 	i = 0;
-	print = c_padding_to_print(format);
-	if (format->flags.justify_right == 0)
-		i += u_no_justify(format, number);
+	print = c_padding_to_print(f);
+	if (f->flags.justify_right == 0)
+		i += u_no_justify(f, n);
 	else
-		i += u_justify(format, number, print);
+		i += u_justify(f, n, print);
 	return (i);
 }
 
-void	print_u(t_format *format, va_list arg_ptr)
+void	print_u(t_format *f, va_list arg)
 {
 	unsigned int number;
 	int i;
 
 	i = 0;
-	number = va_arg(arg_ptr, unsigned int);
-	i += u_number(format, number);
-	format->printed_chars += i;
+	number = va_arg(arg, unsigned int);
+	i += u_number(f, number);
+	f->printed_chars += i;
 }
