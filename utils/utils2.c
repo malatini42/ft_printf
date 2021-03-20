@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/10 21:20:56 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 18:53:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:20:54 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,38 +63,26 @@ int		print_x_time(char c, int x)
 	return (i);
 }
 
-//a re-racourcir
-int		len_with_precision(const char *str, t_format *f)
+int		len_with_precision(const char *s, t_format *f)
 {
-	int 	i;
-	int 	precision;
-	char 	to_print;
+	int	i;
 
-	to_print = c_padding_to_print(f);
-	if (!str && !f)
-		return (0);
-	precision = f->precision;
-	if (precision == 0 && f->flags.precision == true)
+	if ((!s && !f) || (f->precision == 0 && f->flags.precision == true))
 		return (0);
 	i = 0;
-	if (!str)
-		return (0);
 	if (f->precision < 0 && f->flags.width == false)
 	{
-		ft_putstr(str);
-		i += ft_strlen(str);
-		f->printed_chars += i;
-		return (i);
+		f->printed_chars += ft_putstr(s);
 	}
-	while (str[i])
+	while (s[i])
 	{
-		if (i >= precision && precision != 0)
+		if (i >= f->precision && f->precision != 0)
 		{
 			if (f->precision < 0 && f->width < 0)
 			{
-				ft_putstr(str);
-				i += ft_strlen(str);
-				i += print_x_time(to_print, -f->width - ft_strlen(str));
+				i += ft_putstr(s);
+				i += print_x_time(c_padding_to_print(f),
+					-f->width - ft_strlen(s));
 				f->printed_chars += i;
 			}
 			return (i);
