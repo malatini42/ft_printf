@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 17:47:12 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:30:17 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	print_null_s(t_format *format)
 	to_print = c_padding_to_print(format);
 	i = 0;
 	if (format->flags.justify_right == false)
-		i += redirect_no_justify_left(format, to_print);//changer le nom
+		i += null_s_no_justify(format, to_print);//changer le nom
 	else if (format->flags.justify_right == true)//harmoniser les noms ?
-		i += print_pad_null_s_justify_left(format);
+		i += null_s_justify(format);
 	format->printed_chars += i;
 }
 

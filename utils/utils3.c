@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 08:39:16 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 11:44:04 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,27 +104,19 @@ int		get_type(const char *format)
 	return (0);
 }
 
-int		handle_null_pointer(t_format *f, unsigned long long pointer)
+int		count_nbr_u_base(unsigned int nbr, char *base)
 {
-	int		i;
-	char	to_print;
-	int		width;
+	long			nb;
+	int				temp;
+	int				base_len;
+	static int		i;
 
+	nb = nbr;
+	base_len = 16;
 	i = 0;
-	to_print = c_padding_to_print(f);
-	width = (pointer != 0 || f->precision == 0) ? f->width - 2 : f->width;
-	if (f->flags.justify_right == 0 && f->flags.precision == false &&
-			f->flags.width == true)
-		i += print_x_time(to_print, f->width - 3);
-	else if (f->flags.precision == true && f->precision == 0)
-	{
-		if (f->flags.width == true)
-			i += print_x_time(to_print, width);
-		i += ft_putstr("0x");
-		return (i);
-	}
-	i += ft_putstr("0x0");
-	if (f->flags.precision == true && f->precision != 0)
-		i += print_x_time('0', f->precision - 1);
+	if (base_len - 1 < nb)
+		count_nbr_u_base(nb / base_len, base);
+	temp = base[(int)(nb % base_len)];
+	i++;
 	return (i);
 }

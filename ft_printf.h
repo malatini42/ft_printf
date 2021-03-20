@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 11:14:58 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:30:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,8 @@ char		*ft_strdup(const char *s1);
 int			ft_put_pad_0_precision(t_format *format);
 int			print_pad_null_s_justify_left(t_format *spec);
 int			print_x_time(char c, int x);
+//Celle ci devient
+
 char		which_x_type(const char *format);
 int			is_correct_type(char c);
 //int			ft_putstr_width(const char *str, int width);
@@ -155,9 +157,11 @@ void		print_pc( const char *str, t_format *spec);
 
 void		print_s(t_format *format, va_list arg_ptr);
 int			print_pad_s(t_format *spec, const char *str);
-int			print_pad_null_s_no_left(t_format *spec, int max_precision);
+//int			print_pad_null_s_no_left(t_format *spec, int max_precision);
 void		print_null_s(t_format *format);
-int			redirect_no_justify_left(t_format *format, char print);
+int		no_justify_left(t_format *format, char print);
+int		null_s_justify(t_format *spec);
+int		null_s_no_justify(t_format *spec, char print);
 
 //print_s_utils
 int			ft_putstr_precision(char *str, t_format *spec);
@@ -184,7 +188,11 @@ int 		print_neg_justify(t_format *format, int number, char print);
 //print_id utils
 
 int			print_pad_then_number(t_format *format, int number);
+//Celle-ci - a supprimer
 int			print_zero_pad_then_number_width(t_format *format, int number, char print);
+//Devient
+int		zero_pad_width(t_format *format, int number, char print);
+
 int			print_zero_pad_then_number_precision_i(t_format *format, int number, char print);
 int			print_zero_pad_true_width(int number, char print, int w_to_print);
 int			print_width_and_precision_pos(t_format *format, int number, char print);
@@ -196,18 +204,22 @@ int			reverse_print_width_and_precision_pos(t_format *format, int number, char p
 //type-u
 
 void	print_u(t_format *format, va_list arg_ptr);
+int		zero_pad_precision_u(t_format * f, unsigned int n, char print);
 
 void		printstruct(t_format format);
 //a revoir
 int		n_size_u(unsigned int n);
 void	ft_putnbr_u(unsigned int nbr);
-int		print_pos_u_number(t_format *format, unsigned int number);
-int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
-int 	print_pos_u_no_justify(t_format *format, unsigned int number);
-int		print_zero_pad_then_number_precision_u(t_format *f, unsigned int number, char char_to_print);
-int		print_width_and_precision_pos_u(t_format *format, unsigned int number, char print);
-int		reverse_print_width_and_precision_pos_u(t_format *format, int number, char print);
-int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
+int		u_number(t_format *format, unsigned int number);
+int 	u_justify(t_format *format, unsigned int number, char print);
+int 	u_no_justify(t_format *format, unsigned int number);
+//int		zero_pad_precision_u(t_format *f, unsigned int n, char print);
+int		width_precision_u(t_format *f, unsigned int n, char print);
+//Celle ci devient
+//int		reverse_print_width_and_precision_pos_u(t_format *format, int number, char print);
+//celle ci :
+int		r_width_precision_u(t_format *f, int n, char print);
+int 	pos_u_justify(t_format *format, unsigned int number, char print);
 //int		print_zero_pad_then_number_width_u(t_format *format, unsigned int number, char print);
 //a faire
 //int print_pos_u_number(format, number);
@@ -215,18 +227,9 @@ int 	print_pos_u_justify(t_format *format, unsigned int number, char print);
 //type x
 void		print_x(const char *str, t_format *format, va_list arg_ptr);
 int			ft_putnbr_u_base(unsigned int nbr, char *base);
-int 		print_pos_x_no_justify(t_format *format, unsigned int number, char x);
-//Celle ci
-int			print_zero_pad_then_number_width_x(t_format *f, unsigned int n, char p, char *b);
-//devient
-int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b);
+int			zero_pad_width_x(t_format *f, unsigned int n, char p, char *b);
 int			count_nbr_u_base(unsigned int nbr, char *base);
-int 		print_pos_x_justify(t_format *format, unsigned int number, char x);
-int			zero_pad_precision_x(t_format *f, unsigned int n, char p, char *b);
 int			width_precision_pos_x(t_format *f, unsigned int n, char p, char *b);
-//Celle ci
-int			reverse_print_width_and_precision_pos_x(t_format *f, int n, char p, char *b);
-//devient celle la
 int			r_width_precision_pos_x(t_format *f, int n, char p, char *b);
 int			handle_null_pointer(t_format *format, unsigned long long pointer);
 //+ faire un putnbr_u

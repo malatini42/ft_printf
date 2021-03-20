@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 15:15:38 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/19 10:12:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 12:28:43 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		width_precision_null_left(t_format *format)
 }
 
 //refaire le nom des fonctions et reorganiser
-int		print_pad_null_s_justify_left(t_format *spec)
+int		null_s_justify(t_format *spec)
 {
 	int 	i;
 	int		nb_pad;
