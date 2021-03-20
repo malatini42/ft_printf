@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:42:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 21:29:59 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:54:42 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,35 +97,6 @@ int		zero_pad_width(t_format *f, int n, char c)
 	return (i);
 }
 
-/*
-int		zero_pad_width_i(t_format *f, int n, char c)
-{
-	int i;
-	int w_to_print;
-	int num;
-
-	i = 0;
-	num = n;
-	if (n < 0 && f->flags.zero_pad == true)
-	{
-		ft_putchar('-');
-		num = -n;
-	}
-	w_to_print = f->width - n_size_i(num);
-	if ((int)f->width > -num && num < 0)
-	{
-		f->flags.zero_pad = true;
-		c = '0';
-	}
-	i += print_x_time(c, w_to_print);
-	i += ft_putnbr_i(num);
-	if (f->flags.precision == false && f->flags.width == true
-		&& f->width < 0 && n > 0)
-		i += print_x_time(c, -f->width - n_size_i(num));
-	return (i);
-}
-*/
-
 void	print_id(t_format *f, va_list arg)
 {
 	int n;
@@ -136,6 +107,11 @@ void	print_id(t_format *f, va_list arg)
 	if (n > 0)
 		i += pos_number(f, (unsigned int)n);
 	else
-		i += neg_number(f, n);
+	{
+		if (f->flags.justify_right == false)
+			i += neg_no_justify(f, n, c_padding_to_print(f));
+		else if (f->flags.justify_right == true)
+			i += neg_justify(f, n, c_padding_to_print(f));
+	}
 	f->printed_chars += i;
 }
