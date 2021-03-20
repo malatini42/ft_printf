@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 18:49:49 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:31:50 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int		r_width_precision_u(t_format *f, int n, char c)
 	return (i);
 }
 
-int		zero_pad_precision_u(t_format *f, unsigned int n, char print)
+int		zero_pad_precision_u(t_format *f, unsigned int n, char c)
 {
 	int i;
 	int len;
@@ -48,9 +48,9 @@ int		zero_pad_precision_u(t_format *f, unsigned int n, char print)
 	if ((unsigned int)f->precision >= n)
 	{
 		f->flags.zero_pad = true;
-		print = '0';
+		c = '0';
 	}
-	i += print_x_time(print, p_to_print);
+	i += print_x_time(c, p_to_print);
 	if (n > 0)
 		ft_putnbr_u(n);
 	i += n == 0 ? 0 : n_size_u(n);
@@ -75,22 +75,22 @@ int		n_size_u(unsigned int n)
 	return ((int)i);
 }
 
-void	ft_putnbr_u(unsigned int nbr)
+void	ft_putnbr_u(unsigned int n)
 {
-	unsigned int n;
+	unsigned int nb;
 
-	n = nbr;
-	if (nbr < 0)
+	nb = n;
+	if (n < 0)
 	{
-		n = -n;
+		nb = -n;
 		ft_putchar('-');
 	}
-	if (n > 9)
-		ft_putnbr_i(n / 10);
-	ft_putchar(n % 10 + '0');
+	if (nb > 9)
+		ft_putnbr_i(nb / 10);
+	ft_putchar(nb % 10 + '0');
 }
 
-int		ft_putnbr_u_base(unsigned int n, char *base)
+int		ft_putnbr_u_base(unsigned int n, char *b)
 {
 	long		nb;
 	int			temp;
@@ -101,8 +101,8 @@ int		ft_putnbr_u_base(unsigned int n, char *base)
 	base_len = 16;
 	i = 0;
 	if (base_len - 1 < nb)
-		ft_putnbr_u_base(nb / base_len, base);
-	temp = base[(int)(nb % base_len)];
+		ft_putnbr_u_base(nb / base_len, b);
+	temp = b[(int)(nb % base_len)];
 	write(1, &temp, 1);
 	i++;
 	return (i);

@@ -6,19 +6,17 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:01:20 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 18:03:39 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:56:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	print_null_c(t_format *f)
+int		print_null_c(t_format *f)
 {
-	int 	max_precision;
-	int 	i;
+	int		i;
 	char	to_print;
 
-	max_precision = f->precision;
 	to_print = c_padding_to_print(f);
 	i = 0;
 	if (f->flags.width == true && f->flags.justify_right == false)
@@ -41,7 +39,7 @@ int		print_c_no_justify(t_format *f, char c)
 		i += ft_putchar(c);
 	else if (f->flags.precision == false && f->flags.width == true)
 	{
-		i += print_x_time(to_print, f->width -1);
+		i += print_x_time(to_print, f->width - 1);
 		i += ft_putchar(c);
 	}
 	return (i);
@@ -59,7 +57,7 @@ int		print_c_justify(t_format *f, char c)
 	else if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putchar(c);
-		i += print_x_time(to_print, f->width -1);
+		i += print_x_time(to_print, f->width - 1);
 	}
 	return (i);
 }

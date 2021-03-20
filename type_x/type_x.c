@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 19:10:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:23:34 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		zero_pad_precision_x(t_format *f, unsigned int n, char p, char *b)
 	return (i);
 }
 
-int		pos_x_justify(t_format *f, unsigned int number, char x)
+int		pos_x_justify(t_format *f, unsigned int n, char x)
 {
 	int		i;
 	int		w_to_print;
@@ -65,19 +65,19 @@ int		pos_x_justify(t_format *f, unsigned int number, char x)
 	i = 0;
 	to_print = c_padding_to_print(f);
 	base = (x == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
-	w_to_print = (f->width > count_nbr_u_base(number, base)) ?
-		f->width - count_nbr_u_base(number, base) : 0;
+	w_to_print = (f->width > count_nbr_u_base(n, base)) ?
+		f->width - count_nbr_u_base(n, base) : 0;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
-		i += ft_putnbr_u_base(number, base);
+		i += ft_putnbr_u_base(n, base);
 		i += print_x_time(to_print, w_to_print);
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
-		i += r_width_precision_pos_x(f, number, to_print, base);
+		i += r_width_precision_pos_x(f, n, to_print, base);
 	return (i);
 }
 
-int		pos_x_no_justify(t_format *f, unsigned int number, char x)
+int		pos_x_no_justify(t_format *f, unsigned int n, char x)
 {
 	int		i;
 	char	c_to_print;
@@ -87,28 +87,28 @@ int		pos_x_no_justify(t_format *f, unsigned int number, char x)
 	base = (x == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
 	c_to_print = c_padding_to_print(f);
 	if (f->flags.precision == false && f->flags.width == false)
-		i += ft_putnbr_u_base(number, base);
+		i += ft_putnbr_u_base(n, base);
 	else if (f->flags.precision == false && f->flags.width == true)
-		i += zero_pad_width_x(f, number, c_to_print, base);
+		i += zero_pad_width_x(f, n, c_to_print, base);
 	else if (f->flags.precision == true && f->flags.width == false)
-		i += zero_pad_precision_x(f, number, '0', base);
+		i += zero_pad_precision_x(f, n, '0', base);
 	else if (f->flags.precision == true && f->flags.width == true)
-		i += width_precision_pos_x(f, number, c_to_print, base);
+		i += width_precision_pos_x(f, n, c_to_print, base);
 	return (i);
 }
 
-void	print_x(const char *str, t_format *format, va_list arg_ptr)
+void	print_x(const char *str, t_format *f, va_list arg)
 {
 	int		i;
 	char	print;
-	int		number;
+	int		n;
 
 	i = 0;
-	number = va_arg(arg_ptr, unsigned int);
-	print = c_padding_to_print(format);
-	if (format->flags.justify_right == 0)
-		i += pos_x_no_justify(format, number, which_x_type(str));
+	n = va_arg(arg, unsigned int);
+	print = c_padding_to_print(f);
+	if (f->flags.justify_right == 0)
+		i += pos_x_no_justify(f, n, which_x_type(str));
 	else
-		i += pos_x_justify(format, number, which_x_type(str));
-	format->printed_chars += i;
+		i += pos_x_justify(f, n, which_x_type(str));
+	f->printed_chars += i;
 }

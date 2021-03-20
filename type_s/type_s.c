@@ -6,19 +6,19 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 18:11:14 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:28:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		print_pad_s(t_format *f, const char *str)
+int		print_pad_s(t_format *f, const char *s)
 {
 	int		nb_pad;
 	char	to_print;
 	int		i;
 
-	nb_pad = diff_width_any_type(f, str);
+	nb_pad = diff_width_any_type(f, s);
 	to_print = c_padding_to_print(f);
 	i = 0;
 	while (nb_pad > 0)
@@ -32,10 +32,10 @@ int		print_pad_s(t_format *f, const char *str)
 
 void	print_null_s(t_format *f)
 {
-	int max_precision;
-	int i;
-	int	width;
-	char to_print;
+	int		max_precision;
+	int		i;
+	int		width;
+	char	to_print;
 
 	max_precision = f->precision;
 	width = f->width;
@@ -51,7 +51,7 @@ void	print_null_s(t_format *f)
 void	print_s(t_format *f, va_list arg)
 {
 	int		i;
-	char 	*s;
+	char	*s;
 
 	s = va_arg(arg, char *);
 	if (!s)

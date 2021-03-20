@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_id_pos.c                                     :+:      :+:    :+:   */
+/*   type_id_pos.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 18:33:41 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:22:04 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		print_width_and_precision_pos(t_format *f, int n, char c)
+int		width_precision_pos(t_format *f, int n, char c)
 {
 	int i;
 	int w_to_print;
@@ -32,7 +32,7 @@ int		print_width_and_precision_pos(t_format *f, int n, char c)
 	return (i);
 }
 
-int		reverse_print_width_and_precision_pos(t_format *f, int n, char c)
+int		r_width_precision_pos(t_format *f, int n, char c)
 {
 	int i;
 	int w_to_print;
@@ -50,36 +50,32 @@ int		reverse_print_width_and_precision_pos(t_format *f, int n, char c)
 	return (i);
 }
 
-int 	print_pos_no_justify(t_format *f, int n)
+int		pos_no_justify(t_format *f, int n)
 {
 	int i;
-	int len;
-	int w_to_print;
 	int c_to_print;
 
 	i = 0;
-	len = 0;
-	w_to_print = 0;
 	c_to_print = c_padding_to_print(f);
 	if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putnbr_i(n);
 	else if (f->flags.precision == false && f->flags.width == true)
-		i += print_zero_pad_then_number_width(f, n, c_to_print);
+		i += zero_pad_width(f, n, c_to_print);
 	else if (f->flags.precision == true && f->flags.width == false)
-		i += print_zero_pad_then_number_precision_i(f, n, c_to_print);
+		i += zero_pad_precision_i(f, n, c_to_print);
 	else if (f->flags.precision == false && f->flags.width == true)
 	{
 		f->flags.zero_pad = true;
-		i += print_zero_pad_then_number_width(f, n, c_to_print);
+		i += zero_pad_width(f, n, c_to_print);
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
-			i += print_width_and_precision_pos(f, n, c_to_print);
+		i += width_precision_pos(f, n, c_to_print);
 	return (i);
 }
 
-int 	print_pos_justify(t_format *f, int n, char c)
+int		pos_justify(t_format *f, int n, char c)
 {
-	int 	i;
+	int		i;
 	int		w_to_print;
 	char	to_print;
 
@@ -92,20 +88,20 @@ int 	print_pos_justify(t_format *f, int n, char c)
 		i += print_x_time(c, w_to_print);
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
-		i += reverse_print_width_and_precision_pos(f, n, to_print);
+		i += r_width_precision_pos(f, n, to_print);
 	else if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putnbr_i(n);
 	return (i);
 }
 
-int		print_pos_number(t_format *f, int n)
+int		pos_number(t_format *f, int n)
 {
-	int 	i;
+	int	i;
 
 	i = 0;
 	if (f->flags.justify_right == 0)
-		i += print_pos_no_justify(f, n);
+		i += pos_no_justify(f, n);
 	else
-		i += print_pos_justify(f, n, c_padding_to_print(f));
+		i += pos_justify(f, n, c_padding_to_print(f));
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 20:05:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 21:29:57 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,9 @@ void	print_s(t_format *f, va_list arg);
 int		ft_putstr_precision(char *str, t_format *f);
 int		ft_putstr_limit(const char *s, int preci, int w, char c);
 int		ft_put_pad_0_precision(t_format *f);
-int		zero_pad_width(t_format *f, int n, char c);
+//a mettre ailleurs ?
+//int		zero_pad_width_i(t_format *f, int n, char c);
+//
 int		len_until_end_format(const char *s);
 
 /*
@@ -188,51 +190,48 @@ void	print_pc(const char *str, t_format *f);
 ** type_p.c 
 */
 
-int		ft_putnbr_p_base(unsigned long long nbr, char *base);
-int		print_zero_pad_then_number_width_p(t_format *f, unsigned long long ptr, char c, char *b);
-int		print_zero_pad_then_number_precision_p(t_format *f, unsigned long long ptr, char c, char *b);
-int		print_width_and_precision_pos_p(t_format *f, unsigned long long ptr, char c, char *b);
-int 	print_pos_p_no_justify(t_format *f, unsigned long long ptr);
-//int		print_pos_p_number(t_format *f, unsigned long long ptr);
+int		zero_pad_precision_p(t_format *f, unsigned long long ptr, char c, char *b);
+int		width_precision_p_p(t_format *f, unsigned long long ptr, char c, char *b);
+int 	pos_p_no_justify(t_format *f, unsigned long long ptr);
+int		pos_p_justify(t_format *f, unsigned long long p, char *b);
 void	print_p(const char *str, t_format *f, va_list arg);
+
+/*
+** type_p_utils.c 
+*/
+
+int		ft_putnbr_p_base(unsigned long long n, char *b);
+int		zero_pad_width_p(t_format *f, unsigned long long ptr, char c, char *b);
 
 /*
 ** type_id.c 
 */
 
-int		print_pad_then_number(t_format *f, int n);
-int		print_zero_pad_then_number_width(t_format *f, int n, char c);
-int		print_zero_pad_then_number_precision_i(t_format *f, int n, char c);
-int		print_zero_pad_true_width(int n, char c, int w_to_print);
+int		zero_pad_width(t_format *f, int n, char c);
+int		zero_pad_precision_i(t_format *f, int n, char c);
 void	print_id(t_format *f, va_list arg);
-
-/*
-** type_id_utils.c 
-*/
-
 int		print_pad_then_number(t_format *f, int n);
-int		print_zero_pad_then_number_precision_i(t_format *f, int n, char c);
-int		print_zero_pad_true_width(int n, char c, int w_to_print);
+int		zero_pad_true_width(int n, char c, int w_to_print);
 
 /*
 ** type_id_pos.c 
 */
 
-int		print_width_and_precision_pos(t_format *f, int n, char c);
-int		reverse_print_width_and_precision_pos(t_format *f, int n, char c);
-int 	print_pos_no_justify(t_format *f, int n);
-int 	print_pos_justify(t_format *f, int n, char c);
-int		print_pos_number(t_format *f, int n);
+int		width_precision_pos(t_format *f, int n, char c);
+int		r_width_precision_pos(t_format *f, int n, char c);
+int 	pos_no_justify(t_format *f, int n);
+int 	pos_justify(t_format *f, int n, char c);
+int		pos_number(t_format *f, int n);
 
 /*
 ** type_id_neg.c 
 */
 
-int		print_width_and_precision_neg(t_format *f, int n, char c);
-int		reverse_print_width_and_precision_neg(t_format *f, int n, char p);
-int 	print_neg_no_justify(t_format *f, int n, char c);
-int 	print_neg_justify(t_format *f, int n, char c);
-int		print_neg_number(t_format *f, int n);
+int		width_precision_neg(t_format *f, int n, char c);
+int		r_print_width_precision_neg(t_format *f, int n, char p);
+int 	neg_no_justify(t_format *f, int n, char c);
+int 	neg_justify(t_format *f, int n, char c);
+int		neg_number(t_format *f, int n);
 
 /*
 ** type_c.c 
@@ -242,7 +241,6 @@ int		print_null_c(t_format *f);
 int		print_c_no_justify(t_format *f, char c);
 int		print_c_justify(t_format *f, char c);
 void	print_c(t_format *f, va_list arg);
-
 int		ft_printf(const char *format, ...);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:06:11 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 18:11:23 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:32:52 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		null_s_width_no_justify(t_format *f, int precision)
+int		null_s_width_no_justify(t_format *f, int preci)
 {
 	int		nb_pad;
 	int		i;
@@ -22,7 +22,7 @@ int		null_s_width_no_justify(t_format *f, int precision)
 	l_null = 6;
 	nb_pad = 0;
 	if (f->flags.precision == true)
-		nb_pad = f->width - precision;
+		nb_pad = f->width - preci;
 	else if (f->flags.width == true)
 		nb_pad = (f->width - l_null >= 0) ? f->width - l_null : 0;
 	if (nb_pad < 0)
@@ -39,21 +39,19 @@ int		null_s_width_no_justify(t_format *f, int precision)
 
 int		null_s_no_justify(t_format *f, char c)
 {
-	int	max_precision;
 	int i;
 
 	i = 0;
-	max_precision = f->precision;
 	if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putstr("(null)");
 	else if (f->flags.precision == false && f->flags.width == true)
-		i += null_s_width_no_justify(f, max_precision);
+		i += null_s_width_no_justify(f, f->precision);
 	else if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putstr("(null)");
-	else if (f->flags.precision == true && max_precision == 0)
+	else if (f->flags.precision == true && f->precision == 0)
 		i += ft_put_pad_0_precision(f);
-	else if (f->flags.precision == true && max_precision != 0)
-		i += ft_putstr_limit("(null)", max_precision, f->width, c);
+	else if (f->flags.precision == true && f->precision != 0)
+		i += ft_putstr_limit("(null)", f->precision, f->width, c);
 	return (i);
 }
 
@@ -76,13 +74,13 @@ int		width_precision_null_left(t_format *f)
 		i++;
 	}
 	i += print_x_time(to_print, w_to_print);
-	free (n);
+	free(n);
 	return (i);
 }
 
 int		null_s_justify(t_format *f)
 {
-	int 	i;
+	int		i;
 	int		nb_pad;
 	char	to_print;
 	int		len_null;

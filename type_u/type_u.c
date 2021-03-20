@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:23:14 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 19:11:00 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:26:46 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		width_precision_u(t_format *f, unsigned int n, char c)
 	return (i);
 }
 
-int 	u_no_justify(t_format *f, unsigned int n)
+int		u_no_justify(t_format *f, unsigned int n)
 {
 	int i;
 
@@ -57,10 +57,10 @@ int 	u_no_justify(t_format *f, unsigned int n)
 	return (i);
 }
 
-int 	u_justify(t_format *f, unsigned int n, char c)
+int		u_justify(t_format *f, unsigned int n, char c)
 {
-	int 	i;
-	int		w_to_print;
+	int	i;
+	int	w_to_print;
 
 	i = 0;
 	w_to_print = (f->width > n_size_u(n)) ? f->width - n_size_u(n) : 0;
@@ -77,8 +77,8 @@ int 	u_justify(t_format *f, unsigned int n, char c)
 
 int		u_number(t_format *f, unsigned int n)
 {
-	int 	i;
-	char 	print;
+	int		i;
+	char	print;
 
 	i = 0;
 	print = c_padding_to_print(f);
@@ -91,11 +91,11 @@ int		u_number(t_format *f, unsigned int n)
 
 void	print_u(t_format *f, va_list arg)
 {
-	unsigned int number;
-	int i;
+	unsigned int	n;
+	int				i;
 
 	i = 0;
-	number = va_arg(arg, unsigned int);
-	i += u_number(f, number);
+	n = va_arg(arg, unsigned int);
+	i += u_number(f, n);
 	f->printed_chars += i;
 }
