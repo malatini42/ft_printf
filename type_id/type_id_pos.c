@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 21:22:04 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 10:39:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int		pos_justify(t_format *f, int n, char c)
 	else if (f->flags.precision == true && f->flags.width == true)
 		i += r_width_precision_pos(f, n, to_print);
 	else if (f->flags.precision == false && f->flags.width == false)
+		i += ft_putnbr_i(n);
+	else if (f->flags.precision == true && f->flags.width == false)
 		i += ft_putnbr_i(n);
 	return (i);
 }
