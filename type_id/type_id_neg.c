@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 16:15:44 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 16:41:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,21 @@ int		width_precision_neg(t_format *f, int n, char c)
 	int w_to_print;
 	int p_to_print;
 
-	if (f->precision < 0)
-		f->precision = 0;
-	if (f->width < 0)
-		w_to_print = -f->width;
 	p_to_print = f->precision - n_size_i(-n);
 	if (f->precision > n_size_i(-n))
 		w_to_print = f->width - p_to_print - n_size_i(n);
 	else
 		w_to_print = f->width - n_size_i(n);
+	if (f->precision < 0 && f->width > 0 && n == 0)
+	{
+		p_to_print = f->width - n_size_i(n);
+		w_to_print = 0;
+	}
+	else if (f->precision < 0 && f->width < 0)
+	{
+		f->precision = 0;
+		w_to_print = -f->width;
+	}
 	i = 0;
 	if (f->flags.zero_pad == true)
 		c = ' ';
