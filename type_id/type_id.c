@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:42:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 10:09:45 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:09:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		zero_pad_precision_i(t_format *f, int n, char c)
 		i++;
 	}
 	p_to_print = f->precision - n_size_i(num);
-	if (f->precision > num)
+	if (f->precision > n_size_i(num))
 	{
 		f->flags.zero_pad = true;
 		c = '0';
