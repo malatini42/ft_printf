@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 11:33:45 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 11:39:49 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,20 @@ int		width_precision_neg(t_format *f, int n, char c)
 int		r_print_width_precision_neg(t_format *f, int n, char p)
 {
 	int i;
-	int width_to_print;
-	int precision_to_print;
+	int w_to_print;
+	int p_to_print;
 
-	precision_to_print = f->precision - n_size_i(-n);
+	p_to_print = f->precision - n_size_i(-n);
 	if (f->precision > n_size_i(-n))
-		width_to_print = f->width - precision_to_print - n_size_i(n);
+		w_to_print = f->width - p_to_print - n_size_i(n);
 	else
-		width_to_print = f->width - n_size_i(n);
+		w_to_print = f->width - n_size_i(n);
 	i = 0;
 	if (n != 0)
 		i += ft_putchar('-');
-	i += print_x_time('0', precision_to_print);
+	i += print_x_time('0', p_to_print);
 	i += ft_putnbr_i(-n);
-	i += print_x_time(p, width_to_print);
+	i += print_x_time(p, w_to_print);
 	return (i);
 }
 
@@ -140,7 +140,7 @@ int		neg_justify(t_format *f, int n, char c)
 	}
 	else if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putnbr_i(n);
-	else if (f->flags.precision == true && f->flags.width == false && n != 0)
+	else if (f->flags.precision == true && f->flags.width == false && f->flags.precision > 0)
 		i += ft_putnbr_i(n);
 	return (i);
 }
