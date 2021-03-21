@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 10:17:44 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 10:24:35 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		neg_no_justify(t_format *f, int n, char c)
 	{
 		if (f->precision != 0)//f->flags.precision == true &&
 			i += zero_pad_precision_i(f, n, c);
-		else if (f->precision == 0 && f->flags.zero_pad == true)
+		else if (f->precision == 0 && f->flags.zero_pad == true && n != 0)
 			i += ft_putnbr_i(n);
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
