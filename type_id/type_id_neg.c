@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 14:03:06 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:05:40 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		neg_width(t_format *f, int n, int i, char c)
 {
 	if (f->flags.zero_pad == true)
 	{
-		if (f->width < 0)
+		if (f->width <= 0)
 		{
 			i += ft_putnbr_i(n);
 			i += print_x_time(' ', -f->width - n_size_i(n));

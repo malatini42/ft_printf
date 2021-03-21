@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 13:34:40 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:04:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	int		a = -4;
+	int		a = 0;
 	int		b = 0;
 	char	c = 'a';
 	int		d = 2147483647;
@@ -36,8 +36,8 @@ int main(void)
 	char	*t = "0x12345678";
 	char	*u = "-0";
 
-	printf("\nLe mien : %i\n", ft_printf("%-*i, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d", a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d));
-	printf("\nLe vrai : %i\n", printf("%-*i, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d, %-*d", a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d));
+	printf("\nLe mien : %i\n", ft_printf("%0*i, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d", a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d));
+	printf("\nLe vrai : %i\n", printf("%0*i, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d, %0*d", a, i, a, j, a, k, a, l, a, m, a, c, a, e, a, d));
 	//printf("%i\n", ft_printf("%.0i\n", -12345678));
 	//ft_putnbr_i(0);
 	/*
