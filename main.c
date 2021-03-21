@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 11:49:43 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 11:51:46 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int main(void)
 
 	//printf("%i\n", ft_printf("%.0i\n", -12345678));
 	//ft_putnbr_i(0);
-	printf("%i\n", ft_printf("%-.i, %-.d, %-.d, %-.d, %-.d, %-.d, %-.d, %-.d", i, j, k, l, m, c, e, d));
-	printf("%i\n", printf("%-.i, %-.d, %-.d, %-.d, %-.d, %-.d, %-.d, %-.d", i, j, k, l, m, c, e, d));
+	printf("%i\n", ft_printf("%-.1i, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d", i, j, k, l, m, c, e, d));
+	printf("%i\n", printf("%-.1i, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d", i, j, k, l, m, c, e, d));
 	//printf("%i\n", printf("%0.i\n", -12345678));
 	//printf("%.*s\n", -3, "hello");
 	return (0);
