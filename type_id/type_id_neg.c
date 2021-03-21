@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 13:10:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 14:03:06 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,13 @@ int		neg_justify(t_format *f, int n, char c)
 	int	w_to_print;
 
 	i = 0;
-	w_to_print = (f->width > n_size_i(n)) ? f->width - n_size_i(n) : 0;
+	w_to_print = f->width;
+	if (w_to_print <= 0 && (w_to_print < n_size_i(n)))
+		w_to_print = -(f->width) - n_size_i(n);
+	else if (f->width > 0)
+	{
+		w_to_print = (f->width > n_size_i(n)) ? f->width - n_size_i(n) : 0;
+	}
 	if (n == -2147483648)
 		i += ft_putstr("-2147483648");
 	else if (f->flags.precision == false && f->flags.width == true)
