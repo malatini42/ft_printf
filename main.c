@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 11:51:46 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 13:08:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,17 @@ int main(void)
 	char	*t = "0x12345678";
 	char	*u = "-0";
 
+	printf("\nLe mien : %i\n", ft_printf("%*i\n", a, -12));
+	printf("\nLe vrai : %i\n", printf("%*i\n", a, -12));
 	//printf("%i\n", ft_printf("%.0i\n", -12345678));
 	//ft_putnbr_i(0);
-	printf("%i\n", ft_printf("%-.1i, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d", i, j, k, l, m, c, e, d));
-	printf("%i\n", printf("%-.1i, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d, %-.1d", i, j, k, l, m, c, e, d));
+	/*
+	while (a < 5)
+	{
+
+		a++;
+	}
+	*/
 	//printf("%i\n", printf("%0.i\n", -12345678));
 	//printf("%.*s\n", -3, "hello");
 	return (0);

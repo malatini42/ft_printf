@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:03:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 19:06:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/21 13:27:21 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,22 @@ int		after_star(const char *str, char c)
 	return (0);
 }
 
+// a remettre a la norme
 int		handle_star(const char *str, t_format *f, va_list arg, int star)
 {
 	if (star == 1)
 	{
-		if ((after_star(str, '.') == 1) && (f->flags.width = true))
+		if (after_star(str, '.') == 1 && found_char(str, '.') > 0)
+		{
 			f->width = va_arg(arg, int);
+			if (f->width < 0 && f->flags.justify_right == false)
+			{
+				f->width = -f->width;
+				f->flags.justify_right = true;
+				f->flags.zero_pad = false;
+			}
+			f->flags.width = true;
+		}
 		else if (!(after_star(str, '.')) && found_char(str, '.') > 0)
 		{
 			f->precision = va_arg(arg, int);
@@ -65,6 +75,12 @@ int		handle_star(const char *str, t_format *f, va_list arg, int star)
 		else if (!(after_star(str, '.')) && !(found_char(str, '.') > 0))
 		{
 			f->width = va_arg(arg, int);
+			if (f->width < 0 && f->flags.justify_right == false)
+			{
+				f->width = -f->width;
+				f->flags.justify_right = true;
+				f->flags.zero_pad = false;
+			}
 			f->flags.width = true;
 		}
 	}
@@ -72,6 +88,15 @@ int		handle_star(const char *str, t_format *f, va_list arg, int star)
 	{
 		f->width = va_arg(arg, int);
 		f->flags.width = true;
+		if (f->width < 0)
+		{
+			if (f->flags.justify_right == false)
+			{
+				f->flags.justify_right = true;
+				f->flags.zero_pad = false;
+				f->width = -f->width;
+			}
+		}
 		f->precision = va_arg(arg, int);
 		f->flags.precision = true;
 	}
