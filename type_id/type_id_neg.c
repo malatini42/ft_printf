@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/22 11:35:55 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 09:35:59 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,14 @@ int		width_precision_neg(t_format *f, int n, char c)
 		w_to_print = -f->width;
 	}
 	i = 0;
-	if (f->flags.zero_pad == true && f->precision > n && f->flags.zero_pad == true)
+	if (f->flags.zero_pad == true && f->precision > n)//&& f->flags.zero_pad == true
 		c = ' ';
-	i += print_x_time(c, w_to_print);
+	if (f->width > 0 && !(f->flags.zero_pad == true && f->precision < 0 && f->width > n_size_i(n) && n != 0))//&& f->flags.zero_pad == false
+		i += print_x_time(c, w_to_print);
 	if (n != 0)
 		i += ft_putchar('-');
+	if (f->flags.zero_pad == true && f->precision < 0 && f->width > n_size_i(n) && n != 0)
+		i += print_x_time('0', w_to_print);
 	i += print_x_time('0', p_to_print);
 	i += ft_putnbr_i(-n);
 	return (i);
@@ -157,8 +160,16 @@ int		neg_justify(t_format *f, int n, char c)
 		{
 			if (f->width < 0 && n == 0)
 				i += print_x_time(c_padding_to_print(f), -f->width);
+			//attention aux conditions supplementaires auxquelles on avait pas pense
 			else if (n != 0)
+			{
+				/*
+				i += ft_putchar('-');
+				if (f->flags.zero_pad == true && f->width > n_size_i(n))
+					i += print_x_time('0', f->width - n_size_i(n));
+				*/
 				i += ft_putnbr_i(n);
+			}
 			else if (n == 0 && f->width > n)
 				i += print_x_time(c_padding_to_print(f), f->width);
 		}
