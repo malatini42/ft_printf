@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 10:59:45 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 18:46:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	print_s(t_format *f, va_list arg)
 {
 	int		i;
 	char	*s;
+	int		len;
 
 	s = va_arg(arg, char *);
 	if (!s)
@@ -59,11 +60,15 @@ void	print_s(t_format *f, va_list arg)
 		print_null_s(f);
 		return ;
 	}
+	len = ft_strlen(s);
 	i = 0;
 	if (f->flags.justify_right == 0)
 		i += print_pad_s(f, s);
 	if (f->precision >= 0)
 		i += ft_putstr_precision(s, f);
+	//Est-ce que c est bien positionne ici?
+	if (f->precision == 0 && f->flags.precision == true && f->width < 0)
+		i += print_x_time(c_padding_to_print(f), -f->width);// - len 
 	else if (f->precision < 0)
 		i += ft_putstr_neg_precision(s, f);
 	if (f->flags.justify_right == 1)
