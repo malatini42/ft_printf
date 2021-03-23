@@ -6,11 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 08:45:26 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 09:12:40 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+//J' ai un pb avec certains tests pour les pointeurs ?
 
 int		width_precision_pos(t_format *f, int n, char c)
 {
@@ -32,11 +34,11 @@ int		width_precision_pos(t_format *f, int n, char c)
 	i = 0;
 	if (f->flags.zero_pad == true)
 		c = ' ';
-	if (n > 10)
+	if (f->width > n_size_i(n) && f->precision >= 0)//n > 10 &&
 		i += print_x_time(c, w_to_print);
-	else if (n < 10 && n > 0 && f->flags.zero_pad == true && f->precision != 0  && f->precision != 1)
+	else if (f->flags.zero_pad == true && f->precision <= n_size_i(n))//n < 10 && n > 0 &&
 		i += print_x_time('0', w_to_print);
-	else if ((n < 10 && n > 0 && f->flags.zero_pad == false) || (n < 10 && n > 0 && f->flags.zero_pad == true && (f->precision == 0 || f->precision == 1)))
+	else if ((f->flags.zero_pad == false) || (n < 10 && n > 0 && f->flags.zero_pad == true && (f->precision == 0 || f->precision == 1)))//n < 10 && n > 0 &&
 		i += print_x_time(' ', w_to_print);
 	i += print_x_time('0', p_to_print);
 	i += ft_putnbr_i(n);
