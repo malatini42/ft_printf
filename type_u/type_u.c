@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:23:14 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 20:26:46 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:21:30 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		width_precision_u(t_format *f, unsigned int n, char c)
 		c = ' ';
 	i += print_x_time(c, w_to_print);
 	i += print_x_time('0', p_to_print);
-	if (n > 0)
+	if (n != 0)
 	{
 		ft_putnbr_u(n);
 		i += n_size_u(n);
@@ -96,6 +96,7 @@ void	print_u(t_format *f, va_list arg)
 
 	i = 0;
 	n = va_arg(arg, unsigned int);
+	//printf("L'argument est %u\n", n);
 	i += u_number(f, n);
 	f->printed_chars += i;
 }
