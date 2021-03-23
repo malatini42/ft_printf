@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:23:14 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 11:21:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:38:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		u_justify(t_format *f, unsigned int n, char c)
 	w_to_print = (f->width > n_size_u(n)) ? f->width - n_size_u(n) : 0;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
+		//if (n != 0 && f->precision > 0 && f->width > 0)
 		ft_putnbr_u(n);
 		i += n_size_u(n);
 		i += print_x_time(c, w_to_print);
