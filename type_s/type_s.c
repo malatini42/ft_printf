@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 20:28:37 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:59:45 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ void	print_s(t_format *f, va_list arg)
 	i = 0;
 	if (f->flags.justify_right == 0)
 		i += print_pad_s(f, s);
-	i += ft_putstr_precision(s, f);
+	if (f->precision >= 0)
+		i += ft_putstr_precision(s, f);
+	else if (f->precision < 0)
+		i += ft_putstr_neg_precision(s, f);
 	if (f->flags.justify_right == 1)
 		i += print_pad_s(f, s);
 	f->printed_chars += i;

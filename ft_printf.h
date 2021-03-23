@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 10:09:20 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:04:19 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void	print_s(t_format *f, va_list arg);
 */
 
 int		ft_putstr_precision(char *str, t_format *f);
+int		ft_putstr_neg_precision(char *str, t_format *f);
 int		ft_putstr_limit(const char *s, int preci, int w, char c);
 int		ft_put_pad_0_precision(t_format *f);
 //a mettre ailleurs ?

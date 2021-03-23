@@ -6,11 +6,22 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:52:02 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 21:28:02 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 10:54:40 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+int		ft_putstr_neg_precision(char *str, t_format *f)
+{
+	int	i;
+
+	i = 0;
+	(void)f;
+	i += ft_putstr(str);
+	//i += ft_strlen(str);
+	return (i);
+}
 
 int		ft_putstr_precision(char *str, t_format *f)
 {
@@ -29,7 +40,7 @@ int		ft_putstr_precision(char *str, t_format *f)
 	i = 0;
 	while (i < len)
 	{
-		if (i >= precision && precision != 0)
+		if (i >= precision && precision != 0)//&& !(f->precision > 0 && f->flags.width == true
 			return (i);
 		ft_putchar(str[i]);
 		i++;

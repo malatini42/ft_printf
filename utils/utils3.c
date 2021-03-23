@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/21 10:08:32 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:09:09 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int		diff_width_any_type(t_format *f, const char *str)
 	int	diff_width;
 
 	diff_width = 0;
-	if (f->type == S && str)
+	if (f->type == S && str && f->precision >= 0)
 		diff_width = f->width - len_with_precision(str, f);
+	else if (f->type == S && str && f->precision < 0)
+		diff_width = f->width > 0 ? f->width - ft_strlen(str) : -f->width - ft_strlen(str);
 	else if (f->type == S && !str)
 		diff_width = f->width - 6;
 	else if (f->precision == 0 && f->type == PC)
