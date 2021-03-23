@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 11:20:37 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:02:40 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int		r_width_precision_u(t_format *f, int n, char c)
 		w_to_print = f->width - n_size_u(n);
 	i = 0;
 	i += print_x_time('0', p_to_print);
-	//Cette condition est inutile ??
-	if (n != 0)
+	if (n > 0)
 	{
 		ft_putnbr_u(n);
 		i += n_size_u(n);
 	}
+	write(1, "coucou", 6);
 	i += print_x_time(c, w_to_print);
 	return (i);
 }
@@ -52,7 +52,7 @@ int		zero_pad_precision_u(t_format *f, unsigned int n, char c)
 		c = '0';
 	}
 	i += print_x_time(c, p_to_print);
-	if (n != 0)
+	if (n > 0)
 		ft_putnbr_u(n);
 	i += n == 0 ? 0 : n_size_u(n);
 	return (i);
