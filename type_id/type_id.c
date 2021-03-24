@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:42:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 08:22:40 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 13:22:19 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,25 @@ int		zero_pad_true_width(int n, char c, int w_to_print)
 	return (i);
 }
 
-int		zero_pad_width(t_format *f, int n, char c)
+int		zero_pad_width(t_format *f, unsigned int n, char c)
 {
-	int i;
-	int len;
-	int w_to_print;
-	int num;
+	int				i;
+	int 			len;
+	int				w_to_print;
+	unsigned int	num;
 
 	i = 0;
-	if (f->width == 0 && f->flags.width == true && f->flags.precision == false)
+	/*
+	if (f->width == 0 && f->flags.width == true
+		&& f->flags.precision == true && f->type == U)
 	{
 		//a continuer
 		//write(1, "coucou", 6);
-		//i += pos_x_no_justify(f, num, x)
+		ft_putnbr_u(n);
+		i += n_size_u(n);
 		return (i);
 	}
+	*/
 	num = n;
 	if (n < 0 && f->flags.zero_pad == true)
 	{
@@ -94,13 +98,22 @@ int		zero_pad_width(t_format *f, int n, char c)
 	}
 	len = n_size_i(num);
 	w_to_print = f->width - len;
-	if ((int)f->width > -num && num < 0)
+	if ((unsigned int)f->width > -num && num < 0)
 	{
 		f->flags.zero_pad = true;
 		c = '0';
 	}
 	i += print_x_time(c, w_to_print);
+	if (f->width == 0 && f->flags.width == true && f->type == U)
+	{
+		//a continuer
+		//write(1, "coucou", 6);
+		ft_putnbr_u(n);
+		i += n_size_u(n);
+		return (i);
+	}
 	i += ft_putnbr_i(num);
+	//i += n_size_u(num);
 	if (f->flags.precision == false && f->flags.width == true
 		&& f->width < 0 && n > 0)
 		i += print_x_time(c, -f->width - len);

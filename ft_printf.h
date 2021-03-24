@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 11:04:19 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 12:00:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ int		zero_pad_width_p(t_format *f, unsigned long long ptr, char c, char *b);
 ** type_i.c
 */
 
-int		zero_pad_width(t_format *f, int n, char c);
+int		zero_pad_width(t_format *f, unsigned int n, char c);
 int		zero_pad_precision_i(t_format *f, int n, char c);
 void	print_id(t_format *f, va_list arg);
 int		print_pad_then_number(t_format *f, int n);
