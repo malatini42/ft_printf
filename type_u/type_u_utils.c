@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 14:59:34 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 20:38:44 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,6 @@ int		r_width_precision_u(t_format *f, int n, char c)
 	{
 		i += print_x_time(' ', -f->width);
 	}
-	/*
-	if (n_size_i(n) >= f->precision && f->flags.zero_pad == false && f->flags.justify_right == false)
-	{
-		write(1, "coucou", 6);
-		i += print_x_time('0', f->precision - n_size_i(n));
-		ft_putnbr_u(n);
-		i += n_size_u(n);
-		return (i);
-	}
-	*/
-	/*
-	if (f->width == 0 && f->flags.width == true && f->flags.precision == false)
-	{
-		i += ft_putnbr_u_base(n, "0123456789abdef");
-	}
-	*/
 	i += print_x_time(c, w_to_print);
 	return (i);
 }

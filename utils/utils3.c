@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 18:03:14 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 20:07:05 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int		get_type(const char *f)
 }
 
 //cette fonction est problematique ? eviter de l utiliser
+//pas bon du tout !!
 int		count_nbr_u_base(unsigned int nbr, char *base)
 {
 	long			nb;

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 14:30:57 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 20:26:10 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,8 +201,9 @@ void	print_p(const char *str, t_format *f, va_list arg);
 ** type_p_utils.c
 */
 
-int		ft_putnbr_p_base(unsigned long long n, char *b);
+void	ft_putnbr_p_base(unsigned long long n, char *b);
 int		zero_pad_width_p(t_format *f, unsigned long long ptr, char c, char *b);
+int 	count_p_length(unsigned long long n, char *b);
 
 /*
 ** type_i.c

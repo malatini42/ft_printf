@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:47:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 17:17:16 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 20:48:28 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int		zero_pad_precision_p(t_format *f, unsigned long long p, char c, char *b)
 	if (p > 0)
 	{
 		i += ft_putstr("0x");
-		i += ft_putnbr_p_base(p, b);
+		ft_putnbr_p_base(p, b);
+		i += count_p_length(p, b);
 	}
 	return (i);
 }
@@ -57,7 +58,8 @@ int		width_precision_p_p(t_format *f, unsigned long long p, char c, char *b)
 	i += print_x_time('0', p_to_print);
 	if (f->width > f->precision)
 		i += ft_putstr("0x");
-	i += ft_putnbr_p_base(p, b);
+	ft_putnbr_p_base(p, b);
+	i += count_p_length(p, b);
 	return (i);
 }
 
@@ -72,12 +74,14 @@ int		pos_p_no_justify(t_format *f, unsigned long long p)
 	i = 0;
 	len = 0;
 	w_to_print = 0;
+	//je devrais la passer en argument partout
 	base = "0123456789abcdef";
 	c_to_print = c_padding_to_print(f);
 	if (f->flags.precision == false && f->flags.width == false)
 	{
 		i += ft_putstr("0x");
-		i += ft_putnbr_p_base(p, base);
+		ft_putnbr_p_base(p, base);
+		i += count_p_length(p, base);
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
 		i += width_precision_p_p(f, p, c_to_print, base);
@@ -97,24 +101,28 @@ int		pos_p_justify(t_format *f, unsigned long long p, char *b)
 
 	i = 0;
 	to_print = c_padding_to_print(f);
-	len =  n_size_u(p) > 1 ? count_nbr_u_base(p, b) : -1;
+	len = count_nbr_u_base(p, b);//ca ne va pas
 	//count_nbr_u_base plus utilise ?
 	w_to_print = f->width - len - 4;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
-
 		i += ft_putstr("0x");
-		i += ft_putnbr_p_base(p, b);
+		ft_putnbr_p_base(p, b);
+		i += count_p_length(p, b);
 		i += print_x_time(to_print, w_to_print);
 	}
+	/* a refaire 
 	else if (f->flags.precision == true && f->flags.width == true)
-		i += r_width_precision_u(f, p, to_print);
+	{
+		i += r_width_precision_p(f, p, to_print);
+	}
+	*/
 	return (i);
 }
 
 void	print_p(const char *str, t_format *f, va_list arg)
 {
-	void	*ptr;
+	unsigned long long	ptr;
 	int		i;
 	char	x;
 	char	print;
@@ -122,17 +130,17 @@ void	print_p(const char *str, t_format *f, va_list arg)
 
 	i = 0;
 	x = which_x_type(str);
-	ptr = va_arg(arg, void *);
+	ptr = va_arg(arg, unsigned long long);
 	base = "0123456789abcdef";
 	print = c_padding_to_print(f);
 	if (!ptr)
-		i += handle_null_pointer(f, (unsigned long long)ptr);
+		i += handle_null_pointer(f, ptr);
 	else
 	{
 		if (f->flags.justify_right == 0)
-			i += pos_p_no_justify(f, (unsigned long long)ptr);
+			i += pos_p_no_justify(f, ptr);
 		else
-			i += pos_p_justify(f, (unsigned long long)ptr, base);
+			i += pos_p_justify(f, ptr, base);
 	}
 	f->printed_chars += i;
 }
