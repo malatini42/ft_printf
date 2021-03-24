@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:47:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 21:04:25 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 22:00:33 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		width_precision_p_p(t_format *f, unsigned long long p, char c, char *b)
 	int w_to_print;
 	int	p_to_print;
 
+	//a enlever
 	p_to_print = (p > 0) ?
 		f->precision - count_nbr_u_base(p, b) : f->precision;
 	if (f->precision > count_nbr_u_base(p, b) && p > 0)
@@ -101,22 +102,22 @@ int		pos_p_justify(t_format *f, unsigned long long p, char *b)
 
 	i = 0;
 	to_print = c_padding_to_print(f);
-	len = count_nbr_u_base(p, b);//ca ne va pas
+	len = count_p_length(p, b);//ca ne va pas
 	//count_nbr_u_base plus utilise ?
-	w_to_print = f->width - len - 4;
+	w_to_print = f->width - len;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putstr("0x");
 		ft_putnbr_p_base(p, b);
 		i += count_p_length(p, b);
-		i += print_x_time(to_print, w_to_print);
+		i += print_x_time(to_print, w_to_print -2);
 	}
-	/* a refaire 
+	/* a refaire */
 	else if (f->flags.precision == true && f->flags.width == true)
 	{
-		i += r_width_precision_p(f, p, to_print);
+		//write(1, "coucou", 6);
+		i += r_width_precision_p(f, p, to_print, b);
 	}
-	*/
 	return (i);
 }
 
