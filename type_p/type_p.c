@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:47:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 16:35:41 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 17:17:16 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int		pos_p_justify(t_format *f, unsigned long long p, char *b)
 	w_to_print = f->width - len - 4;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
+
 		i += ft_putstr("0x");
 		i += ft_putnbr_p_base(p, b);
 		i += print_x_time(to_print, w_to_print);

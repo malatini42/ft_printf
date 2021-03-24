@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 20:41:42 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 16:43:18 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 18:14:06 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,16 @@ int		zero_pad_width_p(t_format *f, unsigned long long p, char c, char *b)
 	int					w_to_print;
 	unsigned long long	ptr;
 
+
 	i = 0;
 	ptr = p;
-	len =  n_size_u(p) > 1 ? count_nbr_u_base(ptr, b) : -1;
-	w_to_print = f->width - len - 4;
+	//revoir la logique !!! revoir les anciens tests
+	//a refaire
+	len = count_nbr_u_base(ptr, b) + 2;
+	//len = n_size_i(p);
+	w_to_print = f->width - len - 2; //- 4
 	i += print_x_time(c, w_to_print);
+	//Revoir le calcul de la width !!
 	i += ft_putstr("0x");
 	i += ft_putnbr_p_base(ptr, b);
 	return (i);

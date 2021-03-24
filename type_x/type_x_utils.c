@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 16:49:39 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 17:14:04 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,22 +67,22 @@ int		handle_null_pointer(t_format *f, unsigned long long p)
 {
 	int		i;
 	char	to_print;
-	int		w_to_print;
-	int		len;
+	int		width;
+	//int		len;
 
 	i = 0;
 	//write(1, "coucou", 6);
 	to_print = c_padding_to_print(f);
-	len =  n_size_u(p) > 1 ? count_nbr_u_base(p, "0123456789abcdef") : -1;
-	w_to_print = f->width - len - 4;
-	//width = (p != 0 || f->precision == 0) ? f->width - 2 : f->width;
+	//len =  n_size_u(p) > 1 ? count_nbr_u_base(p, "0123456789abcdef") : -1;
+	//w_to_print = f->width - len - 4;
+	width = (p != 0 || f->precision == 0) ? f->width - 2 : f->width;
 	if (f->flags.justify_right == 0 && f->flags.precision == false &&
 			f->flags.width == true)
 		i += print_x_time(to_print, f->width - 3);
 	else if (f->flags.precision == true && f->precision == 0)
 	{
 		if (f->flags.width == true)
-			i += print_x_time(to_print, w_to_print);
+			i += print_x_time(to_print, width);
 		i += ft_putstr("0x");
 		return (i);
 	}

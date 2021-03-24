@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 19:38:22 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 18:03:14 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		diff_width_any_type(t_format *f, const char *str)
 		diff_width = f->width > 0 ? f->width - f->precision : -f->width - f->precision;
 		//printf("%i", diff_width);
 	}
-	
+
 	else if (f->type == S && str && f->precision > 0 && f->width < 0 && len == 1)
 	{
 		diff_width = -f->width - f->precision - 1;
@@ -120,6 +120,7 @@ int		get_type(const char *f)
 	return (0);
 }
 
+//cette fonction est problematique ? eviter de l utiliser
 int		count_nbr_u_base(unsigned int nbr, char *base)
 {
 	long			nb;
