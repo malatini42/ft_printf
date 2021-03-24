@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 14:19:56 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:28:39 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int		r_width_precision_u(t_format *f, int n, char c)
 	else
 		w_to_print = f->width - n_size_u(n);
 	i = 0;
-	i += print_x_time('0', p_to_print);
+	if (n_size_u(n) < 10)
+		i += print_x_time('0', p_to_print);
 	if (n != 0)
 	{
 		ft_putnbr_u(n);

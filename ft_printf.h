@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 12:00:56 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:30:57 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	print_x(const char *str, t_format *format, va_list arg_ptr);
 ** type_x_utils.c
 */
 
-int		r_width_precision_pos_x(t_format *f, int n, char p, char *b);
+int		r_width_precision_pos_x(t_format *f, unsigned int n, char p, char *b);
 int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b);
 int		handle_null_pointer(t_format *f, unsigned long long p);
 

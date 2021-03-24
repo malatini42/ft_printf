@@ -6,13 +6,13 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 14:21:10 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:30:39 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		r_width_precision_pos_x(t_format *f, int n, char p, char *b)
+int		r_width_precision_pos_x(t_format *f, unsigned int n, char p, char *b)
 {
 	int i;
 	int w_to_print;
@@ -26,7 +26,8 @@ int		r_width_precision_pos_x(t_format *f, int n, char p, char *b)
 	else
 		w_to_print = f->width - count_nbr_u_base(n, b);
 	i = 0;
-	i += print_x_time('0', p_to_print);
+	if (n_size_u(n) < 10)
+		i += print_x_time('0', p_to_print);
 	if (n != 0)
 		i += ft_putnbr_u_base(n, b);
 	else if (n == 0 && f->precision < 0)
