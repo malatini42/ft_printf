@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 14:51:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 16:49:39 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		r_width_precision_pos_x(t_format *f, unsigned int n, char p, char *b)
 	}
 	if (n == 0 && f->precision == 0 && f->width < 0)
 	{
+		//modifier w_to_print pour eviter les returns etc
 		i += print_x_time(' ', -f->width);
 		return (i);
 	}
@@ -66,23 +67,33 @@ int		handle_null_pointer(t_format *f, unsigned long long p)
 {
 	int		i;
 	char	to_print;
-	int		width;
+	int		w_to_print;
+	int		len;
 
 	i = 0;
+	//write(1, "coucou", 6);
 	to_print = c_padding_to_print(f);
-	width = (p != 0 || f->precision == 0) ? f->width - 2 : f->width;
+	len =  n_size_u(p) > 1 ? count_nbr_u_base(p, "0123456789abcdef") : -1;
+	w_to_print = f->width - len - 4;
+	//width = (p != 0 || f->precision == 0) ? f->width - 2 : f->width;
 	if (f->flags.justify_right == 0 && f->flags.precision == false &&
 			f->flags.width == true)
 		i += print_x_time(to_print, f->width - 3);
 	else if (f->flags.precision == true && f->precision == 0)
 	{
 		if (f->flags.width == true)
-			i += print_x_time(to_print, width);
+			i += print_x_time(to_print, w_to_print);
 		i += ft_putstr("0x");
 		return (i);
 	}
 	i += ft_putstr("0x0");
 	if (f->flags.precision == true && f->precision != 0)
+	{
 		i += print_x_time('0', f->precision - 1);
+	}
+	if (f->flags.width == true && f->flags.precision == false && f->flags.justify_right == true)
+	{
+		i += print_x_time(c_padding_to_print(f), f->width - 3);
+	}
 	return (i);
 }
