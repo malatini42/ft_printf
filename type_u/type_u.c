@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:23:14 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 14:52:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 15:01:28 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		width_precision_u(t_format *f, unsigned int n, char c)
 	i = 0;
 	if (f->flags.zero_pad == true)
 		c = ' ';
-	if (f->width <= 0 && f->flags.width == true && f->type == U)//
+	if (f->width <= 0 && f->flags.width == true && f->type == U && f->precision < 0)//
 	{
 		ft_putnbr_u(n);
 		i += n_size_u(n);
