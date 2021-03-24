@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:42:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 13:45:53 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 13:54:59 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int		zero_pad_width(t_format *f, unsigned int n, char c)
 		f->flags.zero_pad = true;
 		c = '0';
 	}
-	if (f->width <= n_size_i(n) && f->flags.width == true && f->type == U)
+	if (f->width <= n_size_u(n) && f->flags.width == true && f->type == U)
 	{
 		//a continuer
 		//write(1, "coucou", 6);
