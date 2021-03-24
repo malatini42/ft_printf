@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 20:47:03 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 21:09:07 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int main(void)
 
 	//printf("%i\n", count_p_length(-1, "0123456789abcdef"));
 
-	printf("Le mien : %i\n", ft_printf("%p\n", &a01));
-	printf("Le vrai : %i\n", printf("%p\n", &a01));
+	printf("Le mien : %i\n", ft_printf("%16p\n", &a01));
+	printf("Le vrai : %i\n", printf("%16p\n", &a01));
 /*
 	printf("Le mien : %i\n", ft_printf("%*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",  a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
 	printf("Le vrai : %i\n", printf("%*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",  a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));

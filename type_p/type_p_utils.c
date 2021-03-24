@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 20:41:42 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 20:52:39 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/24 21:10:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		count_p_length(unsigned long long n, char *b)
 	i = 0;
 	base_len = 16;
 	if ((unsigned long long)(base_len - 1) < n)
-		count_p_length(n / base_len, b);
+		i += count_p_length(n / base_len, b);
 	i++;
 	return (i);
 }
@@ -42,7 +42,7 @@ int		count_p_length(unsigned long long n, char *b)
 int		zero_pad_width_p(t_format *f, unsigned long long p, char c, char *b)
 {
 	int	i;
-	int	len;
+	//int	len;
 	int	w_to_print;
 
 
@@ -50,11 +50,11 @@ int		zero_pad_width_p(t_format *f, unsigned long long p, char c, char *b)
 	//revoir la logique !!! revoir les anciens tests
 	//a refaire
 
-	len = 9;
-	w_to_print = f->width - len; //- 4
-	i += print_x_time(c, w_to_print);
+	w_to_print = f->width - count_p_length(p, b); //- 4
+	i += print_x_time(c, w_to_print - 2);
 	//Revoir le calcul de la width !!
 	i += ft_putstr("0x");
 	ft_putnbr_p_base(p, b);
+	i += count_p_length(p, b);
 	return (i);
 }
