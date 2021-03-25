@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 14:03:52 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 08:28:29 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 09:29:20 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,18 @@ int	ft_isdigit(int c)
 int	found_char(const char *str, char c)
 {
 	int i;
+	int len;
 
 	i = 0;
+	len = len_until_end_format(str);
 	if (!c && !str)
 		return (0);
-	while (str[i])
+	while (str[i] && i < len)
 	{
-		if (str[i] == c)
+		if (str[i] == c && str[i] && i < len)
+		{
 			return (i);
+		}
 		i++;
 	}
 	return (0);

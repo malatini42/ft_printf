@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 09:12:40 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 09:36:41 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,13 @@ int		pos_justify(t_format *f, int n, char c)
 	int		i;
 	int		w_to_print;
 	char	to_print;
+	int		p_to_print;
 
 	i = 0;
 	to_print = c_padding_to_print(f);
 	w_to_print = f->width;
+	//w_to_print = f-> width > 0 ? f->width : -f->width;
+	p_to_print = f->precision > 0 ? f->precision - n_size_i(n) : -f->precision - n_size_i(n);
 	if (w_to_print <= 0 && (w_to_print < n_size_i(n)))
 		w_to_print = -(f->width) - n_size_i(n);
 	else if (f->width > 0)
@@ -122,7 +125,11 @@ int		pos_justify(t_format *f, int n, char c)
 	else if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putnbr_i(n);
 	else if (f->flags.precision == true && f->flags.width == false)
+	{
+		if (n_size_i(n) == 1)
+			i += print_x_time('0', p_to_print);
 		i += ft_putnbr_i(n);
+	}
 	return (i);
 }
 
