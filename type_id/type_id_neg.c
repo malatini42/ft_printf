@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 09:15:08 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 09:56:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,10 +138,12 @@ int		neg_justify(t_format *f, int n, char c)
 {
 	int	i;
 	int	w_to_print;
+	int p_to_print;
 
 	i = 0;
 	w_to_print = f->width;
 	//Mon calcule de la width est merdique
+	p_to_print = f->precision > 0 ? f->precision : -f->precision;
 	if (w_to_print <= 0 && (w_to_print < n_size_i(n)))
 		w_to_print = -(f->width) - n_size_i(n);
 	else if (f->width > 0)
@@ -175,7 +177,18 @@ int		neg_justify(t_format *f, int n, char c)
 			i += r_print_width_precision_neg(f, n, c_padding_to_print(f));
 	}
 	else if (f->flags.precision == true && f->flags.width == false && (n != 0 || f->precision > 0))//&& f->flags.precision > 0
+	{
+		//write(1, "coucou", 6);
+		/* Quelle est la condition ?
+		*/
+		if (f->precision > n_size_i(n) && n != 0)
+		{
+			i += ft_putchar('-');
+			n = -n;
+		}
+		i += print_x_time('0', p_to_print - n_size_i(n));
 		i += ft_putnbr_i(n);
+	}
 	else if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putnbr_i(n);
 	return (i);

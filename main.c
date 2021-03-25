@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:45:36 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 09:11:04 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 09:54:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,12 @@ int main(void)
 
 	//printf("%i\n", count_p_length(-1, "0123456789abcdef"));
 /*
-	printf("Le mien : %i\n", ft_printf("%-00000-----*i",18, 8));
-	printf("Le vrai : %i\n", printf("%-00000-----*i", 18, 8));
+	printf("Le mien : %i\n", ft_printf("%---0.*d",12, -12));
+	printf("Le vrai : %i\n", printf("%---0.*d", 12, -12));
 */
 
-	printf("Le mien : %i\n", ft_printf("%-00000-----*i, %---0.*d, %0-0-0-0-0.*d, %-0-0-0-0-.*d, %-----.*d",  a, i, a, i, a, i, a, i, a, i));
-	printf("Le vrai : %i\n", printf("%-00000-----*i, %---0.*d, %0-0-0-0-0.*d, %-0-0-0-0-.*d, %-----.*d",  a, i, a, i, a, i, a, i, a, i));
-
+	printf("Le mien : %i\n", ft_printf("%-00000-----*i, %---0.*d, %0-0-0-0-0.*d, %-0-0-0-0-.*d, %-----.*d",  a, l, a, l, a, l, a, l, a, l));
+	printf("Le vrai : %i\n", printf("%-00000-----*i, %---0.*d, %0-0-0-0-0.*d, %-0-0-0-0-.*d, %-----.*d",  a, l, a, l, a, l, a, l, a, l));
 /*
 	printf("Le mien : %i\n", ft_printf("%*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",  a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
 	printf("Le vrai : %i\n", printf("%*p, %*x, %*p, %*x, %*p, %*x, %*p, %*x",  a, (void *)209590960, a, 209590960, a, (void *)207038912, a, 207038912, a, (void *)1, a, 1, a, NULL, a, 0));
