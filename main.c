@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:16:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 16:55:45 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 18:52:27 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	int		a = -2;
+	//int		a = -2;
 	int		b = 4;
 	char	c = 'a';
 	int		d = 2147483647;
@@ -22,14 +22,14 @@ int main(void)
 	int		f = 42;
 	int		g = 25;
 	int		h = 4200;
-	int		i = 8;
-	int		j = -12;
+	//int		i = 8;
+	//int		j = -12;
 	int		k = 123456789;
 	int		l = 0;
 	int		m = -12345678;
 	char	*n = "abcdefghijklmnop";
 	char	*o = "-a";
-	char	*p = "-12";
+	//char	*p = "-12";
 	char	*q = "0";
 	char	*r = "%%";
 	//char	*s = "-2147483648";
@@ -37,8 +37,11 @@ int main(void)
 	char	*u = "-0";
 	
 	//char s[3] = "0";
-	char *s = NULL;
-	printf("Le mien : %i\n", ft_printf("%7.10s\n", s));
-	printf("Le vrai : %i\n", printf("%7.10s\n", s));
+	char a = 'a';
+	char *p = NULL;
+	int i = 42;
+	int j = -42;
+	printf("Le mien : %i\n", ft_printf("%-16.*s\n", 8, NULL));
+	printf("Le vrai : %i\n", printf("%-16.*s\n", 8, NULL));
 	return (0);
 }

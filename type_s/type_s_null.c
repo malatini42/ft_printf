@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:06:11 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 17:00:31 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 18:58:14 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,21 @@ int		width_precision_null_left(t_format *f)
 {
 	int		len;
 	int		w_to_print;
-	char	to_print;
+	//char	to_print;
 	int		i;
 	char	*n;
 
-	len = f->precision;
+	len = f->precision >= 0 ? f->precision : 6;
 	w_to_print = len < 6 ? f->width - len : f->width - 6;
+//w_to_print = f->width > 6 ? f->width - len : 0;
 	i = 0;
 	n = ft_strdup("(null)");
-	to_print = c_padding_to_print(f);
-	while (i < 6 && i < f->precision)
+	while (i < len && i < 6)
 	{
 		ft_putchar(n[i]);
 		i++;
 	}
-	i += print_x_time(to_print, w_to_print);
+	i += print_x_time(c_padding_to_print(f), w_to_print);
 	free(n);
 	return (i);
 }

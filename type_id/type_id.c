@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:42:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 13:54:59 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:32:00 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int		zero_pad_precision_i(t_format *f, int n, char c)
 	int p_to_print;
 	int num;
 
-	//write(1, "coucou\n", 6);
 	i = 0;
 	num = n;
 	p_to_print = 0;
@@ -94,8 +93,6 @@ int		zero_pad_width(t_format *f, unsigned int n, char c)
 	}
 	if (f->width <= n_size_u(n) && f->flags.width == true && f->type == U)
 	{
-		//a continuer
-		//write(1, "coucou", 6);
 		ft_putnbr_u(n);
 		i += n_size_u(n);
 		return (i);

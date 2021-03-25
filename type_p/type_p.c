@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:47:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 22:00:33 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:57:11 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int		width_precision_p_p(t_format *f, unsigned long long p, char c, char *b)
 	int	p_to_print;
 
 	//a enlever
-	p_to_print = (p > 0) ?
+	p_to_print = (f->precision != 0 && p > 0) ?
 		f->precision - count_nbr_u_base(p, b) : f->precision;
 	if (f->precision > count_nbr_u_base(p, b) && p > 0)
 		w_to_print = f->width - p_to_print - count_nbr_u_base(p, b);
 	else
-		w_to_print = f->width - count_nbr_u_base(p, b) - 2;
+		w_to_print = f->width - count_p_length(p, b) - 2;
 	i = 0;
 	if (f->flags.zero_pad == true)
 		c = ' ';
@@ -57,7 +57,7 @@ int		width_precision_p_p(t_format *f, unsigned long long p, char c, char *b)
 		i += ft_putstr("0x");
 	i += print_x_time(c, w_to_print);
 	i += print_x_time('0', p_to_print);
-	if (f->width > f->precision)
+	if (f->width >= f->precision)
 		i += ft_putstr("0x");
 	ft_putnbr_p_base(p, b);
 	i += count_p_length(p, b);
@@ -104,7 +104,7 @@ int		pos_p_justify(t_format *f, unsigned long long p, char *b)
 	to_print = c_padding_to_print(f);
 	len = count_p_length(p, b);//ca ne va pas
 	//count_nbr_u_base plus utilise ?
-	w_to_print = f->width - len;
+	w_to_print = f->width > 0 ? f->width - len : - f->width - len;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putstr("0x");
@@ -117,6 +117,12 @@ int		pos_p_justify(t_format *f, unsigned long long p, char *b)
 	{
 		//write(1, "coucou", 6);
 		i += r_width_precision_p(f, p, to_print, b);
+	}
+	else if (f->precision == 0 && f->flags.width == false)
+	{
+		i += ft_putstr("0x");
+		ft_putnbr_p_base(p, b);
+		i += count_p_length(p, b);
 	}
 	return (i);
 }

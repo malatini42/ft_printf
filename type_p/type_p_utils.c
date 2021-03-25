@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 20:41:42 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 21:14:09 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:57:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		r_width_precision_p(t_format *f, unsigned long long p, char c, char *b)
 
 
 	i = 0;
-	w_to_print = f->width - count_p_length(p, b);
+	w_to_print = f->width > 0 ? f->width - count_p_length(p, b) : -f->width - count_p_length(p, b);
 	i += ft_putstr("0x");
 	ft_putnbr_p_base(p, b);
 	i += print_x_time(c, w_to_print - 2);

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:52:02 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 17:06:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:09:01 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		ft_putstr_limit(const char *s, int preci, int w, char c, t_format *f)
 	if (w > 0 && preci > ft_strlen(s))
 		j += print_x_time(c, a_width - len);
 	else if (w > 0 && preci <= ft_strlen(s))
-		i += print_x_time(c, a_width -  preci);
+		j += print_x_time(c, a_width -  preci);
 	if (preci > 0)
 	{
 		while (i < preci && i < 6)
