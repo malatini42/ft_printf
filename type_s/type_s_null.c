@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:06:11 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 18:58:14 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:27:09 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int		null_s_width_no_justify(t_format *f, int preci)
 	i = 0;
 	l_null = 6;
 	nb_pad = 0;
+	//write(1, "coucou", 6);
 	if (f->flags.precision == true)
-		nb_pad = f->width - preci;
+		nb_pad = f->width - preci;//: 0
 	else if (f->flags.width == true)
 		nb_pad = (f->width - l_null >= 0) ? f->width - l_null : 0;
 	if (nb_pad < 0)
@@ -52,6 +53,8 @@ int		null_s_no_justify(t_format *f, char c)
 		i += ft_put_pad_0_precision(f);
 	else if (f->flags.precision == true && f->precision != 0)
 		i += ft_putstr_limit("(null)", f->precision, f->width, c, f);
+	else if (f->flags.precision == true && f->width == false)
+		i += ft_putstr("(null)");
 	return (i);
 }
 
@@ -59,13 +62,13 @@ int		width_precision_null_left(t_format *f)
 {
 	int		len;
 	int		w_to_print;
-	//char	to_print;
 	int		i;
 	char	*n;
+	int		a_width;
 
 	len = f->precision >= 0 ? f->precision : 6;
-	w_to_print = len < 6 ? f->width - len : f->width - 6;
-//w_to_print = f->width > 6 ? f->width - len : 0;
+	a_width = f->width > 0 ? f->width : - f->width;
+	w_to_print = len < 6 ? a_width - len : a_width - 6;
 	i = 0;
 	n = ft_strdup("(null)");
 	while (i < len && i < 6)
@@ -91,14 +94,22 @@ int		null_s_justify(t_format *f)
 	to_print = c_padding_to_print(f);
 	if (f->width < len_null && f->flags.precision == false)
 		i += ft_putstr("(null)");
-	else if (f->flags.precision == true && f->flags.width == true)
+	else if (f->flags.precision == true && f->flags.width == true)//&& f->width >= 0
 		i += width_precision_null_left(f);
+	/*
 	else if (f->flags.precision == true && f->flags.width == false)
 		i += print_x_time(to_print, f->width);
-	else if (f->width > len_null && f->flags.precision == false)
+	*/
+	else if (f->width >= len_null && f->flags.precision == false)
 	{
 		i += ft_putstr("(null)");
 		i += print_x_time(to_print, f->width - len_null);
 	}
+	else if (f->flags.precision == true && f->flags.width == false && f->precision != 0)
+		i += ft_putstr_limit("(null)", f->precision, 0, to_print, f);
+	else if (f->flags.precision == true && f->flags.width == true && f->width < 0 && f->precision == 0)
+		i += print_x_time(to_print, -f->width);
+	else if (f->flags.precision == true && f->flags.width == true && f->width < 0 && f->precision < 0)
+		i += ft_putstr("(null)");
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:52:02 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 17:09:01 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:22:28 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,19 @@ int		ft_putstr_limit(const char *s, int preci, int w, char c, t_format *f)
 	int	len;
 	int a_width;
 	int j;
-	(void)w;//a enlever
 
+	//write(1, "coucou", 6);
+	//preci = preci < 0 ? 6 : preci;
 	i = 0;
 	j = 0;
 	len = s ? ft_strlen(s) : 6;
 	a_width = f->width > 0 ? f->width : -f->width;
-	if (w > 0 && preci > ft_strlen(s))
+	if (w > 0 && preci > ft_strlen(s) && preci > 0)
 		j += print_x_time(c, a_width - len);
-	else if (w > 0 && preci <= ft_strlen(s))
+	else if (w > 0 && preci <= ft_strlen(s) && preci > 0)
 		j += print_x_time(c, a_width -  preci);
+	else if (w > 0 && preci < 0)
+		j += print_x_time(c, a_width - len);
 	if (preci > 0)
 	{
 		while (i < preci && i < 6)
