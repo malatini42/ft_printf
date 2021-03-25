@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 20:01:38 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 20:04:47 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,14 @@ int		r_width_precision_pos(t_format *f, int n, char c)
 	int i;
 	int w_to_print;
 	int p_to_print;
+	int a_width;
 
-	p_to_print = f->precision - n_size_i(n);
+	p_to_print = f->precision > 0 ? f->precision - n_size_i(n) : f->precision - n_size_i(n);
+	a_width = f->width > 0 ? f->width : -f->width; 
 	if (f->precision > n_size_i(n))
-		w_to_print = f->width - p_to_print - n_size_i(n);
+		w_to_print = a_width - p_to_print - n_size_i(n);
 	else
-		w_to_print = f->width - n_size_i(n);
+		w_to_print = a_width - n_size_i(n);
 	if (f->precision <= 0)
 	{
 		p_to_print = 0;
