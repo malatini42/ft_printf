@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:34 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 09:56:23 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 19:58:50 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,14 @@ int		r_print_width_precision_neg(t_format *f, int n, char p)
 	int i;
 	int w_to_print;
 	int p_to_print;
+	int a_width;
 
 	p_to_print = f->precision - n_size_i(-n);
+	a_width = f->width > 0 ? f->width : -f->width;
 	if (f->precision > n_size_i(-n))
-		w_to_print = f->width - p_to_print - n_size_i(n);
+		w_to_print = a_width - p_to_print - n_size_i(n);
 	else
-		w_to_print = f->width - n_size_i(n);
+		w_to_print = a_width - n_size_i(n);
 	if (f->precision < 0)
 	{
 		f->precision = 0;
@@ -94,12 +96,18 @@ int		r_print_width_precision_neg(t_format *f, int n, char p)
 			w_to_print = -f->width - n_size_i(n);
 	}
 	i = 0;
+	/*
+	if (n == 0 && f->width < 0)
+		i += print_x_time(c_padding_to_print(f), -f->width);
+	*/
 	if (n != 0)
 		i += ft_putchar('-');
 	i += print_x_time('0', p_to_print);
 	i += ft_putnbr_i(-n);
+	/*
 	if (f->precision == 1 && f->width < -1 && n == 0)
 		w_to_print = 1;
+	*/
 	i += print_x_time(p, w_to_print);
 	return (i);
 }
@@ -142,7 +150,6 @@ int		neg_justify(t_format *f, int n, char c)
 
 	i = 0;
 	w_to_print = f->width;
-	//Mon calcule de la width est merdique
 	p_to_print = f->precision > 0 ? f->precision : -f->precision;
 	if (w_to_print <= 0 && (w_to_print < n_size_i(n)))
 		w_to_print = -(f->width) - n_size_i(n);
@@ -150,7 +157,6 @@ int		neg_justify(t_format *f, int n, char c)
 	{
 		w_to_print = (f->width > n_size_i(n)) ? f->width - n_size_i(n) : 0;
 	}
-	//w_to_print = f->width >= 0 ? w_to_print : -w_to_print;
 	if (n == -2147483648)
 		i += ft_putstr("-2147483648");
 	else if (f->flags.precision == false && f->flags.width == true)
@@ -169,6 +175,10 @@ int		neg_justify(t_format *f, int n, char c)
 				i += ft_putnbr_i(n);
 				if (f->width > n_size_i(n))
 					i += print_x_time(c_padding_to_print(f), f->width - n_size_i(n));
+				else if (f->width < 0)
+				{
+					i += print_x_time(c_padding_to_print(f), (-f->width - n_size_i(n)));
+				}
 			}
 			else if (n == 0 && f->width > n)
 				i += print_x_time(c_padding_to_print(f), f->width);
@@ -178,18 +188,21 @@ int		neg_justify(t_format *f, int n, char c)
 	}
 	else if (f->flags.precision == true && f->flags.width == false && (n != 0 || f->precision > 0))//&& f->flags.precision > 0
 	{
-		//write(1, "coucou", 6);
-		/* Quelle est la condition ?
-		*/
-		if (f->precision > n_size_i(n) && n != 0)
+		if (f->precision >= n_size_i(n) && n != 0 && f->precision > 0)
 		{
 			i += ft_putchar('-');
 			n = -n;
 		}
-		i += print_x_time('0', p_to_print - n_size_i(n));
+		if (f->precision > 0)
+			i += print_x_time('0', p_to_print - n_size_i(n));
 		i += ft_putnbr_i(n);
 	}
 	else if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putnbr_i(n);
+	else if (f->flags.precision == true && f->flags.width == false && n == 0)
+	{
+		if (f->precision < 0)
+			i += ft_putchar('0');
+	}
 	return (i);
 }
