@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 21:13:34 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:26:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		printstruct(t_format format);
 ** utils0.c
 */
 
-int			ft_putchar(char c);
+int			ft_putchar(int c);
 int			ft_isdigit(int c);
 int			found_char(const char *str, char c);
 int			n_size_i(int n);
@@ -241,8 +241,8 @@ int		neg_number(t_format *f, int n);
 */
 
 int		print_null_c(t_format *f);
-int		print_c_no_justify(t_format *f, char c);
-int		print_c_justify(t_format *f, char c);
+int		print_c_no_justify(t_format *f, int c);
+int		print_c_justify(t_format *f, int c);
 void	print_c(t_format *f, va_list arg);
 int		ft_printf(const char *format, ...);
 

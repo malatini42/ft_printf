@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:01:20 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 08:57:19 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 11:26:54 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		print_null_c(t_format *f)
 	return (i);
 }
 
-int		print_c_no_justify(t_format *f, char c)
+int		print_c_no_justify(t_format *f, int c)
 {
 	int		i;
 	char	to_print;
@@ -42,10 +42,20 @@ int		print_c_no_justify(t_format *f, char c)
 		i += print_x_time(to_print, f->width - 1);
 		i += ft_putchar(c);
 	}
+	//a remettre au propre
+	else if (f->flags.precision == true && f->flags.width == true && f->precision == 0)
+	{
+		i += print_x_time(to_print, f->width - 1);
+		i += ft_putchar(c);
+	}
+	else if (f->flags.precision == true && f->flags.width == false)
+	{
+		i += ft_putchar(c);
+	}
 	return (i);
 }
 
-int		print_c_justify(t_format *f, char c)
+int		print_c_justify(t_format *f, int c)
 {
 	int		i;
 	char	to_print;
@@ -53,21 +63,31 @@ int		print_c_justify(t_format *f, char c)
 
 	i = 0;
 	to_print = c_padding_to_print(f);
-	w_to_print = f->width > 0 ? f->width - 1 : -f->width -1;
+	w_to_print = f->width > 0 ? f->width : -f->width;
 	if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putchar(c);
 	else if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putchar(c);
-		i += print_x_time(to_print, w_to_print);
+		i += print_x_time(to_print, w_to_print - 1);
+	}
+	//a remettre au propre
+	else if (f->flags.precision == true && f->flags.width == true && f->precision == 0)
+	{
+		i += ft_putchar(c);
+		i += print_x_time(to_print, w_to_print -1);
+	}
+	else if (f->flags.precision == true && f->flags.width == false)
+	{
+		i += ft_putchar(c);
 	}
 	return (i);
 }
 
 void	print_c(t_format *f, va_list arg)
 {
-	char	c;
-	int		i;
+	int	c;
+	int	i;
 
 	c = va_arg(arg, int);
 	i = 0;
