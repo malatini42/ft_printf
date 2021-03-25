@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:52:02 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 19:19:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:06:52 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int		ft_putstr_neg_precision(char *str, t_format *f)
 	i = 0;
 	(void)f;
 	i += ft_putstr(str);
-	//i += ft_strlen(str);
 	return (i);
 }
 
@@ -35,8 +34,6 @@ int		ft_putstr_precision(char *str, t_format *f)
 	to_print = c_padding_to_print(f);
 	if (precision == 0 && f->flags.precision == true)
 		return (0);
-	if (!str)
-		return (0);
 	i = 0;
 	while (i < len)
 	{
@@ -45,23 +42,25 @@ int		ft_putstr_precision(char *str, t_format *f)
 		ft_putchar(str[i]);
 		i++;
 	}
-	if (f->flags.width == true && f->width < 0)
-	{
-		//write(1, "coucou", 6);
-		i += print_x_time(to_print, -f->width - len);
-	}
 	return (i);
 }
 
-int		ft_putstr_limit(const char *s, int preci, int w, char c)
+int		ft_putstr_limit(const char *s, int preci, int w, char c, t_format *f)
 {
 	int	i;
 	int	len;
+	int a_width;
+	int j;
+	(void)w;//a enlever
 
 	i = 0;
-	len = 0;
-	if (w > 0)
-		len += print_x_time(c, w - preci);
+	j = 0;
+	len = s ? ft_strlen(s) : 6;
+	a_width = f->width > 0 ? f->width : -f->width;
+	if (w > 0 && preci > ft_strlen(s))
+		j += print_x_time(c, a_width - len);
+	else if (w > 0 && preci <= ft_strlen(s))
+		i += print_x_time(c, a_width -  preci);
 	if (preci > 0)
 	{
 		while (i < preci && i < 6)
@@ -74,7 +73,7 @@ int		ft_putstr_limit(const char *s, int preci, int w, char c)
 	}
 	else
 		i = ft_putstr("(null)");
-	return (i + len);
+	return (i + j);
 }
 
 int		ft_put_pad_0_precision(t_format *f)

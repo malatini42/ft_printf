@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 20:07:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 16:46:48 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,16 @@ int		diff_width_any_type(t_format *f, const char *str)
 		diff_width = f->width > 0 ? f->width - ft_strlen(str) : -f->width - ft_strlen(str);
 	else if (f->type == S && !str)
 		diff_width = f->width - 6;
-	else if (f->type == S && str && f->precision > 0 && f->width < 0  && len != 1)
-	{
-		//pas besoin de mettre le ternaire puisque c est dans la condition
+	else if (f->type == S && str && f->precision >= len && f->flags.width == true && f->flags.precision == true && f->precision != 0)
+		diff_width = f->width > 0 ? f->width - len : -f->width - len;
+	else if (f->type == S && f->precision == 0 && f->flags.precision == true && f->flags.width == true)
+		diff_width = 0;
+	else if (f->type == S && str && f->precision < len && f->width < 0 && len != 1 && f->flags.precision == true)
 		diff_width = f->width > 0 ? f->width - f->precision : -f->width - f->precision;
-		//printf("%i", diff_width);
-	}
-
-	else if (f->type == S && str && f->precision > 0 && f->width < 0 && len == 1)
-	{
-		diff_width = -f->width - f->precision - 1;
-		//printf("%i", diff_width);
-	}
+	else if (f->type == S && str && f->flags.precision == false & f->width < 0)
+		diff_width = -f->width - len;
+	else if (f->type == S && str && f->precision > 0 && f->width < 0 && len == 1 && f->flags.precision == true)
+		diff_width = -f->width - len;//- 1
 	else if (f->precision == 0 && f->type == PC)
 		diff_width = f->width - 1;
 	return (diff_width);

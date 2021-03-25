@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/23 18:46:47 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 16:45:23 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		print_pad_s(t_format *f, const char *s)
 	char	to_print;
 	int		i;
 
+	//nb_pad = 0;
 	nb_pad = diff_width_any_type(f, s);
 	to_print = c_padding_to_print(f);
 	i = 0;
@@ -67,8 +68,8 @@ void	print_s(t_format *f, va_list arg)
 	if (f->precision >= 0)
 		i += ft_putstr_precision(s, f);
 	//Est-ce que c est bien positionne ici?
-	if (f->precision == 0 && f->flags.precision == true && f->width < 0)
-		i += print_x_time(c_padding_to_print(f), -f->width);// - len 
+	if (f->precision == 0 && f->flags.precision == true && f->width < 0 && f->flags.width == true)// && 
+		i += print_x_time(c_padding_to_print(f), -f->width);// - len
 	else if (f->precision < 0)
 		i += ft_putstr_neg_precision(s, f);
 	if (f->flags.justify_right == 1)

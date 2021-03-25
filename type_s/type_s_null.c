@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:06:11 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 20:32:52 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 17:00:31 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		null_s_no_justify(t_format *f, char c)
 	else if (f->flags.precision == true && f->precision == 0)
 		i += ft_put_pad_0_precision(f);
 	else if (f->flags.precision == true && f->precision != 0)
-		i += ft_putstr_limit("(null)", f->precision, f->width, c);
+		i += ft_putstr_limit("(null)", f->precision, f->width, c, f);
 	return (i);
 }
 
