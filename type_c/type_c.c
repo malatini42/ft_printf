@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:01:20 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/20 20:56:53 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 08:57:19 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,17 @@ int		print_c_justify(t_format *f, char c)
 {
 	int		i;
 	char	to_print;
+	int		w_to_print;
 
 	i = 0;
 	to_print = c_padding_to_print(f);
+	w_to_print = f->width > 0 ? f->width - 1 : -f->width -1;
 	if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putchar(c);
 	else if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putchar(c);
-		i += print_x_time(to_print, f->width - 1);
+		i += print_x_time(to_print, w_to_print);
 	}
 	return (i);
 }
