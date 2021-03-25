@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:16:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 20:03:03 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 21:01:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main(void)
 	char *p = NULL;
 	int i = 42;
 	int j = -42;
-	printf("Le mien : %i\n", ft_printf("%-*.*i\n", -4, 2, 13));
-	printf("Le vrai : %i\n", printf("%-*.*i\n", -4, 2, 13));
+	printf("Le mien : %i\n", ft_printf("%-5.0u\n", 0));
+	printf("Le vrai : %i\n", printf("%-5.0u\n", 0));
 	return (0);
 }

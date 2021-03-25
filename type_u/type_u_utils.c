@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 08:23:48 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 21:04:45 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,45 +17,49 @@ int		r_width_precision_u(t_format *f, int n, char c)
 	int i;
 	int w_to_print;
 	int p_to_print;
+	int a_width;
+	int a_print;
+	(void)c;
 
-	p_to_print = (n > 0) ? f->precision - n_size_u(n) : f->precision;
-	if (f->precision > n_size_u(n) && n > 0)
-		w_to_print = f->width - p_to_print - n_size_u(n);
-	else if (n == 0)
-		w_to_print = f->width - p_to_print;
-	else
-		w_to_print = f->width - n_size_u(n);
+	a_print = f->precision > 0 ? f->precision : 0;
+	a_width = f->width > 0 ? f->width : -f->width;
+	p_to_print = a_print > n_size_u(n) ? a_print - n_size_u(n) : 0;
+	w_to_print = a_width - p_to_print - n_size_u(n);
 	i = 0;
-	if (n_size_u(n) < 10)
-		i += print_x_time('0', p_to_print);
-	if (n == 0 && f->precision < 0 && f->width == 0 && f->flags.width == true)
+	if (n == 0 && f->precision <= 0 && f->width <= 0 && f->flags.width == true)
 	{
+		/*
+		if (f->precision > 0)
+			i += print_x_time('0', p_to_print);
+		*/
 		i += ft_putchar('0');
-		return (i);
+		i += print_x_time(c_padding_to_print(f), w_to_print - p_to_print);
+		//i += print_x_time(c_padding_to_print(f), w_to_print - p_to_print);
+		//return (i);
 	}
-	if (n != 0)
+	else if (n == 0 && f->precision <= 0 && f->width >= 0 && f->flags.width == true)
 	{
+		i += ft_putchar(' ');
+		i += print_x_time(c_padding_to_print(f), w_to_print - p_to_print);
+	}
+	else if (n != 0 && f->precision <= 0 && f->width <= 0 && f->flags.width == true)
+	{
+		if (f->precision > 0)
+			i += print_x_time('0', p_to_print);
 		ft_putnbr_u(n);
 		i += n_size_u(n);
+		i += print_x_time(c_padding_to_print(f), w_to_print - p_to_print);
 	}
-	//write(1, "coucou", 6);
-	if (n == 0 && f->precision < 0 && f->width > 0)
+	else if (f->flags.precision == true && f->flags.width == true && f->precision > 0 && f->width > 0)
 	{
-		i += ft_putnbr_i(0);
-		i += print_x_time(c_padding_to_print(f), f->width - n_size_i(n));
-		return (i);
+		if (f->precision > n_size_u(n))
+			i += print_x_time('0', p_to_print);
+		ft_putnbr_u(n);
+		//write(1, "coucou", 6);
+		i += n_size_u(n);
+		i += print_x_time(c, w_to_print);
 	}
-	if (n == 0 && f->precision < 0 && f->flags.width == false)
-	{
-		i += ft_putnbr_i(0);
-	}
-	if (n == 0 && f->precision < 0 && f->width < 0)
-		i += ft_putnbr_i(0);
-	if (n == 0 && f->precision == 0 && f->width < 0)
-	{
-		i += print_x_time(' ', -f->width);
-	}
-	i += print_x_time(c, w_to_print);
+	//i += print_x_time(c, w_to_print);
 	return (i);
 }
 
