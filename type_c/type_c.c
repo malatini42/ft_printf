@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:01:20 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 11:26:54 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 14:29:51 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ void	print_c(t_format *f, va_list arg)
 
 	c = va_arg(arg, int);
 	i = 0;
+	/*
 	if (!c)
 	{
 		print_null_c(f);
 		return ;
 	}
+	*/
 	if (f->flags.justify_right == 0)
 		i += print_c_no_justify(f, c);
 	else if (f->flags.justify_right == 1)

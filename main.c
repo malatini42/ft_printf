@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:16:15 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 11:18:13 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 14:15:06 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(void)
 {
 	char c = 'y';
-	printf("Le mien : %i\n", ft_printf("%*c\n", -4, c));
-	printf("Le vrai : %i\n", printf("%*c\n", -4, c));
+	printf("Le mien : %i\n", ft_printf("-->|%*c|<--\n", -4, c));
+	printf("Le vrai : %i\n", printf("-->|%*c|<--\n", -4, c));
 	return (0);
 }

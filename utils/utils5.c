@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:03:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 09:22:22 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/25 15:04:53 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,11 @@ int		after_star(const char *str, char c)
 	i = 0;
 	if (str[i] == '%')
 		i++;
-	while (str[i])
-	{
-		while (str[i] != '*' && str[i])
-			i++;
-		if (str[++i] == c)
-			return (1);
+	while (str[i] != '*' && str[i])
 		i++;
-	}
+	i++;
+	if (str[i] == c)
+		return (1);
 	return (0);
 }
 
