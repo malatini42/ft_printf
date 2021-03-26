@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 12:03:51 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 14:38:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,16 @@ int		handle_null_pointer(t_format *f, unsigned long long p);
 ** type_u.c
 */
 
-int		width_precision_u(t_format *f, unsigned int n, char c);
+int		width_precision_u(t_format *f, unsigned int n);
 int 	u_no_justify(t_format *f, unsigned int n);
 int 	u_justify(t_format *f, unsigned int n, char c);
 int		u_number(t_format *f, unsigned int n);
-void	print_u(t_format *f, va_list arg);
+void	print_u(t_format *f, va_list arg);//pas utilise ?
+int		handle_true_width(t_format *f, int n, int w_to_print, int i);//pas utilisee
+int		calculate_width_u(t_format *f, unsigned int n, int p_to_print);
+int		calculate_w_u_r(t_format *f, unsigned int n, int s, int p);
+int		handle_neg_w_p_u(t_format *f, unsigned int n, int s, int i);
+
 
 /*
 ** type_u_utils.c
@@ -128,8 +133,8 @@ void	print_s(t_format *f, va_list arg);
 */
 
 int		ft_putstr_precision(char *str, t_format *f);
-int		ft_putstr_neg_precision(char *str, t_format *f);
-int		ft_putstr_limit(const char *s, int preci, int w, char c, t_format *f);
+int		ft_putstr_neg_precision(char *str);
+int		ft_putstr_limit(const char *s, int preci, int w, t_format *f);
 int		ft_put_pad_0_precision(t_format *f);
 int		len_until_end_format(const char *s);
 
@@ -138,7 +143,7 @@ int		len_until_end_format(const char *s);
 */
 
 int		null_s_width_no_justify(t_format *f, int precision);
-int		null_s_no_justify(t_format *f, char c);
+int		null_s_no_justify(t_format *f);
 int		width_precision_null_left(t_format *f);
 int		null_s_justify(t_format *f);
 
@@ -180,7 +185,7 @@ int		print_pad_then_number(t_format *f, int n);
 int		zero_pad_true_width(int n, char c, int w_to_print);
 
 /*
-** type_id_pos.c
+** type_id_pos.cgit
 */
 
 int		width_precision_pos(t_format *f, int n, char c);
@@ -199,6 +204,9 @@ int 	neg_no_justify(t_format *f, int n, char c);
 int 	neg_justify(t_format *f, int n, char c);
 int		neg_number(t_format *f, int n);
 int		width_precision_neg_no_justify(t_format *f, int n, char c);
+int		precision_neg_justify(t_format *f, int n);
+int		precision_neg_justify_specials(t_format *f, int n, int p_to_print);
+int		calculate_width_neg(t_format *f, int n);
 
 /*
 ** type_c.c

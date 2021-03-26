@@ -6,11 +6,24 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:59:50 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 13:02:05 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:06:40 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
+
+int		calculate_width(t_format *f, int n, int p_to_print)
+{
+	int w_to_print;
+
+	if (f->precision > n_size_i(-n))
+		w_to_print = f->width - p_to_print - n_size_i(n);
+	else
+		w_to_print = f->width - n_size_i(n);
+	if (f->precision < 0 && f->width > 0 && n == 0)
+		w_to_print = f->width - n_size_i(n);
+	return (w_to_print);
+}
 
 int		calculate_width_neg(t_format *f, int n)
 {
@@ -37,7 +50,7 @@ int		width_precision_neg_no_justify(t_format *f, int n, char c)
 
 int		precision_neg_justify(t_format *f, int n)
 {
-	int 	i;
+	int		i;
 	char	c;
 
 	i = 0;
