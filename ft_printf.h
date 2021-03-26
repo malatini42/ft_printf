@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 10:14:02 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 10:27:32 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,11 @@ typedef struct	s_format
 	int printed_chars;
 }				t_format;
 
-/*
-** utils to delete
-*/
-
-void		printstruct(t_format format);
-
-/*
-** utils0.c
-*/
-
 int			ft_putchar(int c);
 int			ft_isdigit(int c);
 int			found_char(const char *str, char c);
 int			n_size_i(int n);
 int			ft_putnbr_i(int nbr);
-
-/*
-** utils1.c
-*/
-
 int			is_correct_type(char c);
 int			ft_strlen(const char *s);
 int			is_correct_spec(const char *s);
