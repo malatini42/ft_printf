@@ -6,14 +6,14 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 21:04:45 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 08:00:43 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		r_width_precision_u(t_format *f, int n, char c)
-{
+int		r_width_precision_u(t_format *f, unsigned int n, char c)
+{/*
 	int i;
 	int w_to_print;
 	int p_to_print;
@@ -28,14 +28,8 @@ int		r_width_precision_u(t_format *f, int n, char c)
 	i = 0;
 	if (n == 0 && f->precision <= 0 && f->width <= 0 && f->flags.width == true)
 	{
-		/*
-		if (f->precision > 0)
-			i += print_x_time('0', p_to_print);
-		*/
 		i += ft_putchar('0');
 		i += print_x_time(c_padding_to_print(f), w_to_print - p_to_print);
-		//i += print_x_time(c_padding_to_print(f), w_to_print - p_to_print);
-		//return (i);
 	}
 	else if (n == 0 && f->precision <= 0 && f->width >= 0 && f->flags.width == true)
 	{
@@ -55,11 +49,44 @@ int		r_width_precision_u(t_format *f, int n, char c)
 		if (f->precision > n_size_u(n))
 			i += print_x_time('0', p_to_print);
 		ft_putnbr_u(n);
-		//write(1, "coucou", 6);
 		i += n_size_u(n);
 		i += print_x_time(c, w_to_print);
 	}
-	//i += print_x_time(c, w_to_print);
+	return (i);
+	*/
+	int i;
+	int w_to_print;
+	int p_to_print;
+
+	//attention cas des precisions negatives !
+	p_to_print = (n > 0) ? f->precision - n_size_u(n) : f->precision;
+	if (f->precision > n_size_u(n) && n > 0)
+		w_to_print = f->width - p_to_print - n_size_u(n);
+	else if (n == 0)
+		w_to_print = f->width - p_to_print;
+	else
+		w_to_print = f->width - n_size_u(n);
+	i = 0;
+	if (n_size_u(n) < 10)
+		i += print_x_time('0', p_to_print);
+	if (n != 0)
+	{
+		ft_putnbr_u(n);
+		i += n_size_u(n);
+	}
+	else if (n == 0)
+	{
+		if (f->precision == 0 && f->width < 0)
+			i += print_x_time(' ', -f->width);
+		else if (f->precision < 0)
+			i += ft_putnbr_i(0);
+		if (f->precision < 0 && f->width >= 0)
+		{
+			i += print_x_time(c_padding_to_print(f), f->width - n_size_i(n));
+			w_to_print = 0;
+		}
+	}
+	i += print_x_time(c, w_to_print);
 	return (i);
 }
 

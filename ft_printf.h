@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 17:00:21 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 07:43:01 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void	print_u(t_format *f, va_list arg);
 ** type_u_utils.c
 */
 
-int		r_width_precision_u(t_format *f, int n, char c);
+int		r_width_precision_u(t_format *f, unsigned int n, char c);
 int		zero_pad_precision_u(t_format *f, unsigned int n, char print);
 int		n_size_u(unsigned int n);
 void	ft_putnbr_u(unsigned int nbr);

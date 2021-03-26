@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 20:04:47 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 07:41:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int		r_width_precision_pos(t_format *f, int n, char c)
 	if (f->precision <= 0)
 	{
 		p_to_print = 0;
-		//f->precision = 0;
 		if (f->width <= 0)
 			w_to_print = -f->width - n_size_i(n) ;
 	}
