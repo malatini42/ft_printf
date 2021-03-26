@@ -6,59 +6,64 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 09:50:04 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 16:07:54 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int		r_width_precision_pos_x(t_format *f, unsigned int n, char p, char *b)
+int		calculate_w_p(t_format *f, int pre, unsigned int n, char *b)
+{
+	int	w;
+	int	len;
+
+	len = count_nbr_u_base(n, b);
+	if (f->precision > len && n > 0)
+		w = f->width - pre - len;
+	else if (n == 0)
+		w = f->width - pre;
+	else
+		w = f->width - len;
+	return (w);
+}
+
+int		calculate_r_width_p_x(t_format *f, int len, int p, unsigned int n)
+{
+	int	w;
+
+	if (f->precision > len && n > 0)
+		w = f->width > 0 ? f->width - p - len : -f->width - p - len;
+	else if (n == 0)
+		w = f->width > 0 ? f->width - p : -f->width - p;
+	else
+		w = f->width > 0 ? f->width - len : -f->width - len;
+	return (w);
+}
+
+int		r_width_precision_pos_x(t_format *f, unsigned int n, char c, char *b)
 {
 	int i;
-	int w_to_print;
-	int p_to_print;
+	int w;
+	int p;
 
 	i = 0;
-	if (!(f->precision <= - 1 && f->width <= - 1))
+	p = (n > 0) ? f->precision - count_p_length(n, b) : f->precision;
+	w = calculate_r_width_p_x(f, count_p_length(n, b), p, n);
+	if (!(f->precision <= -1 && f->width <= -1))
 	{
-		p_to_print = (n > 0) ? f->precision - count_p_length(n , b) : f->precision;
-		if (f->precision > count_p_length(n , b) && n > 0)
-			w_to_print = f->width > 0 ? f->width - p_to_print - count_p_length(n , b) : - f->width - p_to_print - count_p_length(n , b);
-		else if (n == 0)
-			w_to_print = f->width > 0 ? f->width - p_to_print : - f->width - p_to_print;
-		else
-			w_to_print = f->width > 0 ? f->width - count_p_length(n , b) : - f->width - count_p_length(n , b);
 		if (n_size_u(n) < 10)
-			i += print_x_time('0', p_to_print);
+			i += print_x_time('0', p);
 		if (n != 0)
 			i += ft_putnbr_u_base(n, b);
 		else if (n == 0 && f->precision < 0)
 		{
 			i += ft_putnbr_i(0);
-			i += print_x_time(c_padding_to_print(f), f->width - 1);
-			return (i);
+			return (i += print_x_time(c_padding_to_print(f), f->width - 1));
 		}
-		if (n == 0 && f->precision < 0 && f->flags.width == false)
-		{
-			i += ft_putnbr_i(0);
-		}
-		if (n == 0 && f->precision == 0 && f->width < 0)
-		{
-			//modifier w_to_print pour eviter les returns etc
-			i += print_x_time(' ', -f->width);
-			return (i);
-		}
-		i += print_x_time(p, w_to_print);
+		i += print_x_time(c, w);
 	}
 	else
-	{
-		//write(1, "coucou", 6);
-		p_to_print = 0;
-		w_to_print = -f->width;
-		ft_putnbr_u_base(n, b);
-		i += count_nbr_u_base(n, b);
-		i += print_x_time(p, w_to_print - count_nbr_u_base(n, b));
-	}
+		i += ft_putnbr_u_base(n, b);
 	return (i);
 }
 
@@ -77,34 +82,28 @@ int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b)
 int		handle_null_pointer(t_format *f, unsigned long long p)
 {
 	int		i;
-	char	to_print;
-	int		width;
-	char	*b;
+	int		w;
+	int		len;
 
 	i = 0;
-	b = "0123456789abcdef";
-	to_print = c_padding_to_print(f);
-	width = f->width > 0 ? f->width - count_p_length(p, b) - 1 : - f->width - count_p_length(p, b) - 1;
+	len = count_p_length(p, "0123456789abcdef");
+	w = f->width > 0 ? f->width - len - 1 : -f->width - len - 1;
 	if (f->flags.justify_right == 0 && f->flags.precision == false &&
 			f->flags.width == true)
-		i += print_x_time(to_print, f->width - 3);
+		i += print_x_time(c_padding_to_print(f), f->width - 3);
 	else if (f->flags.precision == true && f->precision == 0)
 	{
-		if (f->flags.width == true && (f->flags.justify_right == false && f->flags.precision == true))
-			i += print_x_time(to_print, width);
+		if (f->flags.width == true && f->flags.justify_right == false)
+			i += print_x_time(c_padding_to_print(f), w);
 		i += ft_putstr("0x");
-		if (f->flags.width == true && (f->flags.justify_right == true || f->flags.precision == false))
-			i += print_x_time(to_print, width);
+		if (f->flags.width == true && f->flags.justify_right == true)
+			i += print_x_time(c_padding_to_print(f), w);
 		return (i);
 	}
 	i += ft_putstr("0x0");
 	if (f->flags.precision == true && f->precision != 0)
-	{
 		i += print_x_time('0', f->precision - 1);
-	}
-	if (f->flags.width == true && f->flags.precision == false && f->flags.justify_right == true)
-	{
-		i += print_x_time(c_padding_to_print(f), width - 1);
-	}
+	if (f->flags.width == true && f->flags.justify_right == true)
+		i += print_x_time(c_padding_to_print(f), w - 1);
 	return (i);
 }
