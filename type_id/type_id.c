@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 17:42:29 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 17:32:00 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 11:21:56 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,42 +73,29 @@ int		zero_pad_true_width(int n, char c, int w_to_print)
 int		zero_pad_width(t_format *f, unsigned int n, char c)
 {
 	int				i;
-	int 			len;
 	int				w_to_print;
-	unsigned int	num;
 
 	i = 0;
-	num = n;
 	if (n < 0 && f->flags.zero_pad == true)
 	{
 		ft_putchar('-');
-		num = -n;
+		n = -n;
 	}
-	len = n_size_i(num);
-	w_to_print = f->width - len;
-	if ((unsigned int)f->width > -num && num < 0)
+	w_to_print = f->width - n_size_i(n);
+	if ((unsigned int)f->width > -n && n < 0)
 	{
 		f->flags.zero_pad = true;
 		c = '0';
 	}
 	if (f->width <= n_size_u(n) && f->flags.width == true && f->type == U)
-	{
-		ft_putnbr_u(n);
-		i += n_size_u(n);
-		return (i);
-	}
-	if (!(num == 2147483648))
-		i += print_x_time(c, w_to_print);
-	else
-	{
-		ft_putnbr_u(num);
-		i += n_size_u(num);
-		return (i);
-	}
-	i += ft_putnbr_i(num);
+		return (i += ft_putnbr_u(n));
+	i += print_x_time(c, w_to_print);
+	if (n == 2147483648)
+		return (i += ft_putnbr_u(n));
+	i += ft_putnbr_i(n);
 	if (f->flags.precision == false && f->flags.width == true
 		&& f->width < 0 && n > 0)
-		i += print_x_time(c, -f->width - len);
+		i += print_x_time(c, -f->width - n_size_i(n));
 	return (i);
 }
 
