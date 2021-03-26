@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 18:33:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 09:50:04 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,47 @@ int		r_width_precision_pos_x(t_format *f, unsigned int n, char p, char *b)
 	int w_to_print;
 	int p_to_print;
 
-	p_to_print = (n > 0) ? f->precision - count_nbr_u_base(n, b) : f->precision;
-	if (f->precision > count_nbr_u_base(n, b) && n > 0)
-		w_to_print = f->width - p_to_print - count_nbr_u_base(n, b);
-	else if (n == 0)
-		w_to_print = f->width - p_to_print;
-	else
-		w_to_print = f->width - count_nbr_u_base(n, b);
 	i = 0;
-	if (n_size_u(n) < 10)
-		i += print_x_time('0', p_to_print);
-	if (n != 0)
-		i += ft_putnbr_u_base(n, b);
-	else if (n == 0 && f->precision < 0)
+	if (!(f->precision <= - 1 && f->width <= - 1))
 	{
-		i += ft_putnbr_i(0);
-		i += print_x_time(c_padding_to_print(f), f->width - 1);
-		return (i);
+		p_to_print = (n > 0) ? f->precision - count_p_length(n , b) : f->precision;
+		if (f->precision > count_p_length(n , b) && n > 0)
+			w_to_print = f->width > 0 ? f->width - p_to_print - count_p_length(n , b) : - f->width - p_to_print - count_p_length(n , b);
+		else if (n == 0)
+			w_to_print = f->width > 0 ? f->width - p_to_print : - f->width - p_to_print;
+		else
+			w_to_print = f->width > 0 ? f->width - count_p_length(n , b) : - f->width - count_p_length(n , b);
+		if (n_size_u(n) < 10)
+			i += print_x_time('0', p_to_print);
+		if (n != 0)
+			i += ft_putnbr_u_base(n, b);
+		else if (n == 0 && f->precision < 0)
+		{
+			i += ft_putnbr_i(0);
+			i += print_x_time(c_padding_to_print(f), f->width - 1);
+			return (i);
+		}
+		if (n == 0 && f->precision < 0 && f->flags.width == false)
+		{
+			i += ft_putnbr_i(0);
+		}
+		if (n == 0 && f->precision == 0 && f->width < 0)
+		{
+			//modifier w_to_print pour eviter les returns etc
+			i += print_x_time(' ', -f->width);
+			return (i);
+		}
+		i += print_x_time(p, w_to_print);
 	}
-	if (n == 0 && f->precision < 0 && f->flags.width == false)
+	else
 	{
 		//write(1, "coucou", 6);
-		i += ft_putnbr_i(0);
+		p_to_print = 0;
+		w_to_print = -f->width;
+		ft_putnbr_u_base(n, b);
+		i += count_nbr_u_base(n, b);
+		i += print_x_time(p, w_to_print - count_nbr_u_base(n, b));
 	}
-	if (n == 0 && f->precision == 0 && f->width < 0)
-	{
-		//modifier w_to_print pour eviter les returns etc
-		i += print_x_time(' ', -f->width);
-		return (i);
-	}
-	i += print_x_time(p, w_to_print);
 	return (i);
 }
 

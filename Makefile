@@ -6,18 +6,18 @@
 #    By: malatini <malatini@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/04 08:34:15 by malatini          #+#    #+#              #
-#    Updated: 2021/03/25 17:50:29 by malatini         ###   ########.fr        #
+#    Updated: 2021/03/26 10:09:35 by malatini         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS =	./ft_printf.c \
+		./utils/utils_to_delete.c \
 		./utils/utils0.c \
 		./utils/utils1.c \
 		./utils/utils2.c \
 		./utils/utils3.c \
 		./utils/utils4.c \
 		./utils/utils5.c \
-		./utils/utils_to_delete.c \
 		./type_pc/type_pc.c \
 		./type_s/type_s.c \
 		./type_s/type_s_null.c \

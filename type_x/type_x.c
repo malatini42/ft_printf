@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:16:16 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/24 15:42:31 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 09:54:38 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ int		pos_x_justify(t_format *f, unsigned int n, char x)
 	i = 0;
 	to_print = c_padding_to_print(f);
 	base = (x == 'x') ? "0123456789abcdef" : "0123456789ABCDEF";
-	w_to_print = (f->width > count_nbr_u_base(n, base)) ?
-		f->width - count_nbr_u_base(n, base) : 0;
+	w_to_print = f->width > 0 ? f->width : -f->width;
+	w_to_print = w_to_print - count_nbr_u_base(n, base); // (w_to_print > count_nbr_u_base(n, base)) ?: 0;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putnbr_u_base(n, base);
@@ -95,6 +95,15 @@ int		pos_x_justify(t_format *f, unsigned int n, char x)
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
 		i += r_width_precision_pos_x(f, n, to_print, base);
+	else if (f->flags.precision == true && f->flags.width == false)
+	{
+		if (f->precision > 0 && f->precision > count_p_length(n, base))
+			i += print_x_time('0', f->precision - count_p_length(n, base));
+		if (!(n == 0 && f->precision == 0))
+			i += ft_putnbr_u_base(n, base);
+	}
+	else if (f->flags.precision == false && f->flags.width == false)
+		i += ft_putnbr_u_base(n, base);
 	return (i);
 }
 
