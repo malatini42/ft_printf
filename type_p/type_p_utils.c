@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 20:41:42 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 17:57:47 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:20:42 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void	ft_putnbr_p_base(unsigned long long n, char *b)
 	write(1, &temp, 1);
 }
 
-//pb de calcul de la longueur !!!
 int		count_p_length(unsigned long long n, char *b)
 {
-	int					base_len;
-	int i;
+	int	base_len;
+	int	i;
+
 	i = 0;
 	base_len = 16;
 	if ((unsigned long long)(base_len - 1) < n)
@@ -44,9 +44,9 @@ int		r_width_precision_p(t_format *f, unsigned long long p, char c, char *b)
 	int	i;
 	int	w_to_print;
 
-
 	i = 0;
-	w_to_print = f->width > 0 ? f->width - count_p_length(p, b) : -f->width - count_p_length(p, b);
+	w_to_print = f->width > 0 ? f->width - count_p_length(p, b) :
+		-f->width - count_p_length(p, b);
 	i += ft_putstr("0x");
 	ft_putnbr_p_base(p, b);
 	i += print_x_time(c, w_to_print - 2);
@@ -57,17 +57,11 @@ int		r_width_precision_p(t_format *f, unsigned long long p, char c, char *b)
 int		zero_pad_width_p(t_format *f, unsigned long long p, char c, char *b)
 {
 	int	i;
-	//int	len;
 	int	w_to_print;
 
-
 	i = 0;
-	//revoir la logique !!! revoir les anciens tests
-	//a refaire
-
-	w_to_print = f->width - count_p_length(p, b); //- 4
+	w_to_print = f->width - count_p_length(p, b);
 	i += print_x_time(c, w_to_print - 2);
-	//Revoir le calcul de la width !!
 	i += ft_putstr("0x");
 	ft_putnbr_p_base(p, b);
 	i += count_p_length(p, b);

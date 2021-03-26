@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 10:47:41 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 17:57:11 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:15:55 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		width_precision_p_p(t_format *f, unsigned long long p, char c, char *b)
 	int w_to_print;
 	int	p_to_print;
 
-	//a enlever
 	p_to_print = (f->precision != 0 && p > 0) ?
 		f->precision - count_nbr_u_base(p, b) : f->precision;
 	if (f->precision > count_nbr_u_base(p, b) && p > 0)
@@ -75,7 +74,6 @@ int		pos_p_no_justify(t_format *f, unsigned long long p)
 	i = 0;
 	len = 0;
 	w_to_print = 0;
-	//je devrais la passer en argument partout
 	base = "0123456789abcdef";
 	c_to_print = c_padding_to_print(f);
 	if (f->flags.precision == false && f->flags.width == false)
@@ -102,22 +100,17 @@ int		pos_p_justify(t_format *f, unsigned long long p, char *b)
 
 	i = 0;
 	to_print = c_padding_to_print(f);
-	len = count_p_length(p, b);//ca ne va pas
-	//count_nbr_u_base plus utilise ?
-	w_to_print = f->width > 0 ? f->width - len : - f->width - len;
+	len = count_p_length(p, b);
+	w_to_print = f->width > 0 ? f->width - len : -f->width - len;
 	if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putstr("0x");
 		ft_putnbr_p_base(p, b);
 		i += count_p_length(p, b);
-		i += print_x_time(to_print, w_to_print -2);
+		i += print_x_time(to_print, w_to_print - 2);
 	}
-	/* a refaire */
 	else if (f->flags.precision == true && f->flags.width == true)
-	{
-		//write(1, "coucou", 6);
 		i += r_width_precision_p(f, p, to_print, b);
-	}
 	else if (f->precision == 0 && f->flags.width == false)
 	{
 		i += ft_putstr("0x");
@@ -130,10 +123,10 @@ int		pos_p_justify(t_format *f, unsigned long long p, char *b)
 void	print_p(const char *str, t_format *f, va_list arg)
 {
 	unsigned long long	ptr;
-	int		i;
-	char	x;
-	char	print;
-	char	*base;
+	int					i;
+	char				x;
+	char				print;
+	char				*base;
 
 	i = 0;
 	x = which_x_type(str);
