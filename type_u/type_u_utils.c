@@ -6,25 +6,29 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 10:21:43 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 11:14:29 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-void	ft_putnbr_u(unsigned int n)
+int		ft_putnbr_u(unsigned int n)
 {
-	unsigned int nb;
+	unsigned int 	nb;
+	int				i;
 
 	nb = n;
+	i = 0;
 	if (n < 0)
 	{
 		nb = -n;
 		ft_putchar('-');
 	}
 	if (nb > 9)
-		ft_putnbr_i(nb / 10);
+		i += ft_putnbr_u(nb / 10);
 	ft_putchar(nb % 10 + '0');
+	i++;
+	return (i);
 }
 
 int		ft_putnbr_u_base(unsigned int n, char *b)

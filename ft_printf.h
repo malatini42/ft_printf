@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 10:27:32 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 12:03:51 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,44 +56,25 @@ int			ft_strlen(const char *s);
 int			is_correct_spec(const char *s);
 int			ft_putstr(const char *str);
 char		c_padding_to_print(t_format *format);
-
-/*
-** utils2.c
-*/
-
 int			found_char_until_type(const char *str, char c);
 char		*ft_strdup(const char *s1);
 int			print_x_time(char c, int x);
 int			len_with_precision(const char *str, t_format *spec);
 char		which_x_type(const char *format);
-
-/*
-** utils3.c
-*/
-
 int			diff_width_any_type(t_format *spec, const char *str);
 int			get_width(const char *str, t_format *format);
 int			get_precision(const char *str, t_format *format);
 int			get_type(const char *format);
 int			count_nbr_u_base(unsigned int nbr, char *base);
-
-/*
-** utils4.c
-*/
-
 t_format	*ft_initialize_struct(void);
 bool		justify_right(const char *str, t_format *format);
 bool		zero_pad(const char *str, t_format *format);
 int			fill_type(const char *str, t_format *format);
 void		fill_struct(const char *str, t_format *format);
-
-/*
-** utils5.c
-*/
-
 int			found_star(const char *str, t_format *format);
 int			after_star(const char *str, char c);
 int			handle_star(const char *str, t_format *f, va_list arg_ptr, int star);
+int			calculate_width(t_format *f, int n, int p_to_print);
 
 
 /*
@@ -131,7 +112,7 @@ void	print_u(t_format *f, va_list arg);
 int		r_width_precision_u(t_format *f, unsigned int n, char c);
 int		zero_pad_precision_u(t_format *f, unsigned int n, char print);
 int		n_size_u(unsigned int n);
-void	ft_putnbr_u(unsigned int nbr);
+int		ft_putnbr_u(unsigned int nbr);
 int		ft_putnbr_u_base(unsigned int n, char *base);
 
 /*
@@ -150,9 +131,6 @@ int		ft_putstr_precision(char *str, t_format *f);
 int		ft_putstr_neg_precision(char *str, t_format *f);
 int		ft_putstr_limit(const char *s, int preci, int w, char c, t_format *f);
 int		ft_put_pad_0_precision(t_format *f);
-//a mettre ailleurs ?
-//int		zero_pad_width_i(t_format *f, int n, char c);
-//
 int		len_until_end_format(const char *s);
 
 /*
@@ -220,6 +198,7 @@ int		r_print_width_precision_neg(t_format *f, int n, char p);
 int 	neg_no_justify(t_format *f, int n, char c);
 int 	neg_justify(t_format *f, int n, char c);
 int		neg_number(t_format *f, int n);
+int		width_precision_neg_no_justify(t_format *f, int n, char c);
 
 /*
 ** type_c.c

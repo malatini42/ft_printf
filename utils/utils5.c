@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 18:03:45 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 10:56:53 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 11:51:13 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,20 @@ int		handle_star(const char *str, t_format *f, va_list arg, int star)
 	else if (star == 2)
 		handle_two_stars(f, arg);
 	return (1);
+}
+
+int		calculate_width(t_format *f, int n, int p_to_print)
+{
+	int w_to_print;
+
+	if (f->precision > n_size_i(-n))
+		w_to_print = f->width - p_to_print - n_size_i(n);
+	else
+		w_to_print = f->width - n_size_i(n);
+	if (f->precision < 0 && f->width > 0 && n == 0)
+	{
+		p_to_print = 0;
+		w_to_print = f->width - n_size_i(n);
+	}
+	return (w_to_print);
 }

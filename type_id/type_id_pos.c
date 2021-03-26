@@ -6,13 +6,11 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 18:09:32 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 10:16:44 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 11:41:16 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
-
-//J' ai un pb avec certains tests pour les pointeurs ?
 
 int		width_precision_pos(t_format *f, int n, char c)
 {
@@ -20,25 +18,23 @@ int		width_precision_pos(t_format *f, int n, char c)
 	int w_to_print;
 	int p_to_print;
 
+	i = 0;
 	p_to_print = f->precision - n_size_i(n);
-	if (f->precision > n_size_i(n) && f->precision > 0)
-		w_to_print = f->width - p_to_print - n_size_i(n);
-	else
-		w_to_print = f->width - n_size_i(n);
+	w_to_print = (f->precision > n_size_i(n) && f->precision > 0) ?
+		f->width - p_to_print - n_size_i(n) : f->width - n_size_i(n);
 	if (f->precision <= 0 && f->width > 0)
 	{
-
 		w_to_print = n == 0 ? f->width : f->width - n_size_i(n);
 		p_to_print = 0;
 	}
-	i = 0;
 	if (f->flags.zero_pad == true)
 		c = ' ';
-	if (f->width > n_size_i(n) && f->precision >= 0)//n > 10 &&
+	if (f->width > n_size_i(n) && f->precision >= 0)
 		i += print_x_time(c, w_to_print);
-	else if (f->flags.zero_pad == true && f->precision <= n_size_i(n))//n < 10 && n > 0 &&
+	else if (f->flags.zero_pad == true && f->precision <= n_size_i(n))
 		i += print_x_time('0', w_to_print);
-	else if ((f->flags.zero_pad == false) || (n < 10 && n > 0 && f->flags.zero_pad == true && (f->precision == 0 || f->precision == 1)))//n < 10 && n > 0 &&
+	else if ((f->flags.zero_pad == false) ||
+		(n < 10 && n > 0 && f->flags.zero_pad == true))
 		i += print_x_time(' ', w_to_print);
 	i += print_x_time('0', p_to_print);
 	i += ft_putnbr_i(n);
@@ -52,8 +48,9 @@ int		r_width_precision_pos(t_format *f, int n, char c)
 	int p_to_print;
 	int a_width;
 
-	p_to_print = f->precision > 0 ? f->precision - n_size_i(n) : f->precision - n_size_i(n);
-	a_width = f->width > 0 ? f->width : -f->width; 
+	p_to_print = f->precision > 0 ? f->precision - n_size_i(n) :
+		f->precision - n_size_i(n);
+	a_width = f->width > 0 ? f->width : -f->width;
 	if (f->precision > n_size_i(n))
 		w_to_print = a_width - p_to_print - n_size_i(n);
 	else
@@ -61,11 +58,10 @@ int		r_width_precision_pos(t_format *f, int n, char c)
 	if (f->precision <= 0)
 	{
 		p_to_print = 0;
-		//f->precision = 0;
 		if (f->width <= 0)
-			w_to_print = -f->width - n_size_i(n) ;
+			w_to_print = -f->width - n_size_i(n);
 	}
-	if (f->precision > 0 && f->width < 0 && n < 10)//&& f->precision >= n_size_i(n)
+	if (f->precision > 0 && f->width < 0 && n < 10)
 		w_to_print = -f->width - f->precision;
 	i = 0;
 	i += print_x_time('0', p_to_print);
@@ -101,33 +97,25 @@ int		pos_justify(t_format *f, int n, char c)
 {
 	int		i;
 	int		w_to_print;
-	char	to_print;
 	int		p_to_print;
 
 	i = 0;
-	to_print = c_padding_to_print(f);
-	w_to_print = f->width;
-	p_to_print = f->precision > 0 ? f->precision - n_size_i(n) : 0;//-f->precision - n_size_i(n)
-	if (w_to_print <= 0 && (w_to_print < n_size_i(n)))
+	p_to_print = f->precision > 0 ? f->precision - n_size_i(n) : 0;
+	if (f->width < n_size_i(n))
 		w_to_print = -(f->width) - n_size_i(n);
-	else if (f->width > 0)
-	{
+	if (f->width > 0)
 		w_to_print = (f->width > n_size_i(n)) ? f->width - n_size_i(n) : 0;
-	}
 	if (f->flags.precision == false && f->flags.width == true)
 	{
 		i += ft_putnbr_i(n);
 		i += print_x_time(c, w_to_print);
 	}
 	else if (f->flags.precision == true && f->flags.width == true)
-	{
-		i += r_width_precision_pos(f, n, to_print);
-	}
+		i += r_width_precision_pos(f, n, c_padding_to_print(f));
 	else if (f->flags.precision == false && f->flags.width == false)
 		i += ft_putnbr_i(n);
 	else if (f->flags.precision == true && f->flags.width == false)
 	{
-		//if (n_size_i(n) == 1)
 		i += print_x_time('0', p_to_print);
 		i += ft_putnbr_i(n);
 	}
