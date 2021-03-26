@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:06:11 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 19:27:09 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:47:29 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 int		null_s_width_no_justify(t_format *f, int preci)
 {
-	int		nb_pad;
-	int		i;
-	int		l_null;
+	int	nb_pad;
+	int	i;
 
 	i = 0;
-	l_null = 6;
 	nb_pad = 0;
-	//write(1, "coucou", 6);
 	if (f->flags.precision == true)
-		nb_pad = f->width - preci;//: 0
+		nb_pad = f->width - preci;
 	else if (f->flags.width == true)
-		nb_pad = (f->width - l_null >= 0) ? f->width - l_null : 0;
+		nb_pad = (f->width - 6 >= 0) ? f->width - 6 : 0;
 	if (nb_pad < 0)
 		return (0);
 	while (nb_pad)
@@ -38,7 +35,7 @@ int		null_s_width_no_justify(t_format *f, int preci)
 	return (i);
 }
 
-int		null_s_no_justify(t_format *f, char c)
+int		null_s_no_justify(t_format *f)
 {
 	int i;
 
@@ -52,7 +49,7 @@ int		null_s_no_justify(t_format *f, char c)
 	else if (f->flags.precision == true && f->precision == 0)
 		i += ft_put_pad_0_precision(f);
 	else if (f->flags.precision == true && f->precision != 0)
-		i += ft_putstr_limit("(null)", f->precision, f->width, c, f);
+		i += ft_putstr_limit("(null)", f->precision, f->width, f);
 	else if (f->flags.precision == true && f->width == false)
 		i += ft_putstr("(null)");
 	return (i);
@@ -67,7 +64,7 @@ int		width_precision_null_left(t_format *f)
 	int		a_width;
 
 	len = f->precision >= 0 ? f->precision : 6;
-	a_width = f->width > 0 ? f->width : - f->width;
+	a_width = f->width > 0 ? f->width : -f->width;
 	w_to_print = len < 6 ? a_width - len : a_width - 6;
 	i = 0;
 	n = ft_strdup("(null)");
@@ -83,33 +80,28 @@ int		width_precision_null_left(t_format *f)
 
 int		null_s_justify(t_format *f)
 {
-	int		i;
-	int		nb_pad;
-	char	to_print;
-	int		len_null;
+	int	i;
+	int	nb_pad;
 
 	i = 0;
-	len_null = 6;
 	nb_pad = 0;
-	to_print = c_padding_to_print(f);
-	if (f->width < len_null && f->flags.precision == false)
+	if (f->width < 6 && f->flags.precision == false)
 		i += ft_putstr("(null)");
-	else if (f->flags.precision == true && f->flags.width == true)//&& f->width >= 0
+	if (f->flags.precision == true && f->flags.width == true)
 		i += width_precision_null_left(f);
-	/*
-	else if (f->flags.precision == true && f->flags.width == false)
-		i += print_x_time(to_print, f->width);
-	*/
-	else if (f->width >= len_null && f->flags.precision == false)
+	else if (f->width >= 6 && f->flags.precision == false)
 	{
 		i += ft_putstr("(null)");
-		i += print_x_time(to_print, f->width - len_null);
+		i += print_x_time(c_padding_to_print(f), f->width - 6);
 	}
-	else if (f->flags.precision == true && f->flags.width == false && f->precision != 0)
-		i += ft_putstr_limit("(null)", f->precision, 0, to_print, f);
-	else if (f->flags.precision == true && f->flags.width == true && f->width < 0 && f->precision == 0)
-		i += print_x_time(to_print, -f->width);
-	else if (f->flags.precision == true && f->flags.width == true && f->width < 0 && f->precision < 0)
+	else if (f->flags.precision == true && f->flags.width == false
+		&& f->precision != 0)
+		i += ft_putstr_limit("(null)", f->precision, 0, f);
+	else if (f->flags.precision == true && f->flags.width == true
+		&& f->width < 0 && f->precision == 0)
+		i += print_x_time(c_padding_to_print(f), -f->width);
+	else if (f->flags.precision == true && f->flags.width == true
+		&& f->width < 0 && f->precision < 0)
 		i += ft_putstr("(null)");
 	return (i);
 }

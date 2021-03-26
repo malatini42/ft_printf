@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/13 10:22:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/25 16:45:23 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:42:39 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		print_pad_s(t_format *f, const char *s)
 	char	to_print;
 	int		i;
 
-	//nb_pad = 0;
 	nb_pad = diff_width_any_type(f, s);
 	to_print = c_padding_to_print(f);
 	i = 0;
@@ -43,7 +42,7 @@ void	print_null_s(t_format *f)
 	to_print = c_padding_to_print(f);
 	i = 0;
 	if (f->flags.justify_right == false)
-		i += null_s_no_justify(f, to_print);
+		i += null_s_no_justify(f);
 	else if (f->flags.justify_right == true)
 		i += null_s_justify(f);
 	f->printed_chars += i;
@@ -67,11 +66,11 @@ void	print_s(t_format *f, va_list arg)
 		i += print_pad_s(f, s);
 	if (f->precision >= 0)
 		i += ft_putstr_precision(s, f);
-	//Est-ce que c est bien positionne ici?
-	if (f->precision == 0 && f->flags.precision == true && f->width < 0 && f->flags.width == true)// && 
-		i += print_x_time(c_padding_to_print(f), -f->width);// - len
+	if (f->precision == 0 && f->flags.precision == true
+		&& f->width < 0 && f->flags.width == true)
+		i += print_x_time(c_padding_to_print(f), -f->width);
 	else if (f->precision < 0)
-		i += ft_putstr_neg_precision(s, f);
+		i += ft_putstr_neg_precision(s);
 	if (f->flags.justify_right == 1)
 		i += print_pad_s(f, s);
 	f->printed_chars += i;
