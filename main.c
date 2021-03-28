@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 10:59:50 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/28 11:56:30 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:02:49 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	printf("%i\n", ft_printf("%-*.*x\n", -2, -2, 0));
-	printf("%i\n", printf("%-*.*x\n", -2, -2, 0));
+	printf("%i\n", ft_printf("%-*.*%\n", -4, 3));
+	printf("%i\n", printf("%-*.*%\n", -4, 3));
 	return (0);
 }

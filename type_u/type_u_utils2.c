@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:54:26 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 15:29:47 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:09:41 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ int		handle_neg_w_p_u(t_format *f, unsigned int n, int s, int i)
 {
 	i += ft_putnbr_u(n);
 	i += print_x_time(c_padding_to_print(f), -f->width - s);
+	return (i);
+}
+
+int		handle_negs_ux(t_format *f, unsigned int n, char *b, int w)
+{
+	int	i;
+
+	i = 0;
+	i += ft_putnbr_u_base(n, b);
+	if (n != 0)
+		i += print_x_time(c_padding_to_print(f), w);
+	else
+		i += print_x_time(c_padding_to_print(f), w - 1);
 	return (i);
 }
 

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 21:34:08 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/28 11:06:51 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/28 12:09:41 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int				zero_pad_precision_u(t_format *f, unsigned int n, char print);
 int				n_size_u(unsigned int n);
 int				ft_putnbr_u(unsigned int nbr);
 int				ft_putnbr_u_base(unsigned int n, char *base);
+int				handle_negs_ux(t_format *f, unsigned int n, char *base, int w);
 int				print_pad_s(t_format *f, const char *str);
 void			print_null_s(t_format *f);
 void			print_s(t_format *f, va_list arg);
