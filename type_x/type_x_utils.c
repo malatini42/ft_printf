@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 16:07:54 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/28 11:58:22 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		calculate_r_width_p_x(t_format *f, int len, int p, unsigned int n)
 {
 	int	w;
 
+	p = p < 0 ? 0 : p;
 	if (f->precision > len && n > 0)
 		w = f->width > 0 ? f->width - p - len : -f->width - p - len;
 	else if (n == 0)
@@ -48,6 +49,7 @@ int		r_width_precision_pos_x(t_format *f, unsigned int n, char c, char *b)
 
 	i = 0;
 	p = (n > 0) ? f->precision - count_p_length(n, b) : f->precision;
+	//p = p < 0 ? 0 : p;
 	w = calculate_r_width_p_x(f, count_p_length(n, b), p, n);
 	if (!(f->precision <= -1 && f->width <= -1))
 	{
@@ -63,7 +65,13 @@ int		r_width_precision_pos_x(t_format *f, unsigned int n, char c, char *b)
 		i += print_x_time(c, w);
 	}
 	else
+	{
 		i += ft_putnbr_u_base(n, b);
+		if (n != 0)
+			i += print_x_time(c_padding_to_print(f), w);
+		else
+			i += print_x_time(c_padding_to_print(f), w - 1);
+	}
 	return (i);
 }
 
