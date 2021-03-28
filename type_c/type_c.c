@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 14:01:20 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/26 11:01:55 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/28 17:06:37 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ int		print_null_c(t_format *f)
 	if (f->flags.width == true && f->flags.justify_right == true)
 		i += print_x_time(' ', f->width - 1);
 	f->printed_chars += i;
+	return (i);
+}
+
+int		handle_special_maxs(t_format *f, unsigned int n, int i)
+{
+	int abs_width;
+
+	abs_width = f->width > 0 ? f->width : f->width;
+	if (f->type == H && ((abs_width >= 21 && (((int)n == INT_MIN ||
+		(int)n == CHAR_MIN))) || (n == UINT_MAX && f->precision >= 10)))
+		i += print_x_time('0', 2);
 	return (i);
 }
 
