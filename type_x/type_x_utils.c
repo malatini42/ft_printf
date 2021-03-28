@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:42:22 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/28 12:09:57 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/28 16:52:03 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,25 @@ int		r_width_precision_pos_x(t_format *f, unsigned int n, char c, char *b)
 	int i;
 	int w;
 	int p;
+	int abs_width;
 
 	i = 0;
 	p = (n > 0) ? f->precision - count_p_length(n, b) : f->precision;
 	w = calculate_r_width_p_x(f, count_p_length(n, b), p, n);
+	abs_width = f->width > 0 ? f->width : f->width;
 	if (!(f->precision <= -1 && f->width <= -1))
 	{
 		if (n_size_u(n) < 10)
 			i += print_x_time('0', p);
+		if (f->type == H && ((abs_width >= 21 && (((int)n == INT_MIN ||
+			(int)n == CHAR_MIN))) || (n == UINT_MAX && f->precision >= 10)))//|| (long)n == LONG_MIN)  || 
+			i += print_x_time('0', 2);
+		/*
+		else if (f->type == H && n == UINT_MAX && f->precision >= 10)
+			i += print_x_time('0', 2);
+		*/
 		if (n != 0)
-			i += ft_putnbr_u_base(n, b);
+			i += ft_putnbr_u_base(f, n, b);
 		else if (n == 0 && f->precision < 0)
 		{
 			i += ft_putnbr_i(0);
@@ -76,7 +85,7 @@ int		zero_pad_width_x(t_format *f, unsigned int n, char p, char *b)
 	i = 0;
 	len = count_nbr_u_base(n, b);
 	i += print_x_time(p, f->width - len);
-	i += ft_putnbr_u_base(n, b);
+	i += ft_putnbr_u_base(f, n, b);
 	return (i);
 }
 
