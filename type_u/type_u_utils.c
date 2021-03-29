@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 18:49:47 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/28 13:48:59 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/29 08:58:50 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int		ft_putnbr_u_base(t_format *f, unsigned int n, char *b)
 	int			temp;
 	int			base_len;
 	static int	i;
-	(void)f;
 
+	(void)f;
 	nb = n;
 	base_len = 16;
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: malatini <malatini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 17:38:53 by malatini          #+#    #+#             */
-/*   Updated: 2021/03/28 12:04:41 by malatini         ###   ########.fr       */
+/*   Updated: 2021/03/29 08:59:24 by malatini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int		diff_width_any_type(t_format *f, const char *str)
 			diff_width = a_width - len;
 	}
 	else if (f->type == PC)
-		diff_width =  f->width > 0 ? f->width - 1 : -f->width - 1;
+		diff_width = f->width > 0 ? f->width - 1 : -f->width - 1;
 	return (diff_width);
 }
 
